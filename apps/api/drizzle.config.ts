@@ -1,6 +1,6 @@
-import { DATABASE_URL } from '@/config/env';
-import { MIGRATIONS_FOLDER } from '@/drizzle/constants';
 import { defineConfig } from 'drizzle-kit';
+import { DATABASE_URL } from './src/config/env';
+import { MIGRATIONS_FOLDER } from './src/drizzle/constants';
 
 export default defineConfig({
   dialect: 'postgresql',

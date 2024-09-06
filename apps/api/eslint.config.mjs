@@ -6,7 +6,7 @@ import tseslint from 'typescript-eslint';
 // .config allows types for the config file
 export default tseslint.config(
   // Ignore
-  { ignores: ['dist'] },
+  { ignores: ['dist', 'drizzle.config.ts'] },
 
   // Extends
   eslint.configs.recommended,
