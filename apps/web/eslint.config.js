@@ -42,7 +42,7 @@ export default tseslint.config(
       // Custom rules
       'no-restricted-imports': [
         'error',
-        { patterns: ['src', '../**', '@/*/*/*/*'] },
+        { patterns: ['src', '../**', '@/*/*/*/*', './*/*/*/*'] },
       ],
     },
   },
