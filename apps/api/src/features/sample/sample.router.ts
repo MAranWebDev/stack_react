@@ -4,7 +4,6 @@ import { sampleValidator } from './sample.validator';
 
 export const sampleRouter = router({
   getAll: publicProcedure
-    .meta({ openapi: { method: 'GET', path: '/get-all' } })
     .input(sampleValidator.getAllInput)
     .query((opts) => sampleService.getAll(opts)),
 
