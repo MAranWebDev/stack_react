@@ -1,0 +1,20 @@
+{
+  "name": "t3",
+  "scripts": {
+    "prepare": "husky",
+    "clean:folders": "find . \\( -path './.husky/_' -o -name 'node_modules' -o -name 'dist' \\) -exec rm -rf {} +",
+    "clean:lock-files": "find . \\( -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' \\) -exec rm -f {} +",
+    "files:to-lf": "find . -name 'node_modules' -prune -o -type f -exec dos2unix {} +",
+    "prettier:format": "prettier --write \"**/*.{ts,tsx}\"",
+    "tsc:typecheck": "pnpm --filter @workspace/api --filter @workspace/web run tsc:typecheck",
+    "eslint:fix": "pnpm --filter @workspace/api --filter @workspace/web run eslint:fix",
+    "dev": "concurrently \"pnpm --filter @workspace/api run dev\" \"pnpm --filter @workspace/web run dev\""
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.4.1",
+    "@commitlint/config-conventional": "^19.4.1",
+    "concurrently": "^8.2.2",
+    "husky": "^9.1.5",
+    "prettier": "^3.3.3"
+  }
+}

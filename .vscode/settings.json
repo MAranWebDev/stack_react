@@ -1,0 +1,15 @@
+{
+  // Formatting settings
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true, // No prettier equivalent
+  "files.encoding": "utf8", // No prettier equivalent
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.wordWrapColumn": 80,
+  "files.trimTrailingWhitespace": true // No prettier equivalent
+}
