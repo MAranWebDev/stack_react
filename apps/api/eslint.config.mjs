@@ -10,7 +10,8 @@ export default tseslint.config(
 
   // Extends
   eslint.configs.recommended,
-  ...tseslint.configs.recommended,
+  ...tseslint.configs.strict,
+  ...tseslint.configs.stylistic,
   eslintConfigPrettier, // Needs to be at the end but before rules
 
   // Base config

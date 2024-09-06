@@ -9,10 +9,11 @@ interface PropsType {
 export default ({ mode }: PropsType) => {
   // To allow env variables in this file
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+  const port = Number(process.env.VITE_CLIENT_PORT) || 5173;
 
   return defineConfig({
     plugins: [react()],
     resolve: { alias: { '@': '/src' } },
-    server: { port: +process.env.VITE_CLIENT_PORT! },
+    server: { port },
   });
 };

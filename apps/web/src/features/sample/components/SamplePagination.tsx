@@ -4,8 +4,12 @@ import TablePagination from '@mui/material/TablePagination';
 const rowsPerPage = 0;
 const fullDataLength = 0;
 const page = 0;
-const handleChangePage = () => {};
-const handleChangeRowsPerPage = () => {};
+const handleChangePage = () => {
+  return;
+};
+const handleChangeRowsPerPage = () => {
+  return;
+};
 const rowsPerPageOptions = [5, 10, 20];
 
 export const SamplePagination = () => {

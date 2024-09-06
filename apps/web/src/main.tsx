@@ -4,7 +4,7 @@ import { MuiThemeProvider } from './config/MuiThemeProvider';
 import { ReactRouter } from './config/ReactRouter';
 import { TrpcProvider } from './config/TrpcProvider';
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
     <TrpcProvider>
       <MuiThemeProvider>
