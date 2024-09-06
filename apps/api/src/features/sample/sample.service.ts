@@ -1,13 +1,27 @@
 import { db } from '@/drizzle/db';
 import { sampleSchema } from '@/drizzle/schemas';
+import { ContextType } from '@/libs/trpc';
 import { eq } from 'drizzle-orm';
 import { SampleValidatorType } from './sample.validator';
 
-type GetAllOptsType = { input: SampleValidatorType['getAllInput'] };
-type GetOptsType = { input: SampleValidatorType['getInput'] };
-type CreateOptsType = { input: SampleValidatorType['createInput'] };
-type UpdateOptsType = { input: SampleValidatorType['updateInput'] };
-type DeleteOptsType = { input: SampleValidatorType['deleteInput'] };
+interface CtxType {
+  ctx: ContextType;
+}
+interface GetAllOptsType extends CtxType {
+  input: SampleValidatorType['getAllInput'];
+}
+interface GetOptsType extends CtxType {
+  input: SampleValidatorType['getInput'];
+}
+interface CreateOptsType extends CtxType {
+  input: SampleValidatorType['createInput'];
+}
+interface UpdateOptsType extends CtxType {
+  input: SampleValidatorType['updateInput'];
+}
+interface DeleteOptsType extends CtxType {
+  input: SampleValidatorType['deleteInput'];
+}
 
 export const sampleService = {
   async getAll({ input }: GetAllOptsType) {
