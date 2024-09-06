@@ -8,7 +8,10 @@ import {
 
 export const sampleSchema = pgTable('sample', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at')
+    .notNull()
+    .defaultNow()
+    .$onUpdate(() => new Date()),
   id: uuid('id').primaryKey().defaultRandom(),
   name: varchar('name').unique().notNull(),
   isDone: boolean('is_done').notNull().default(false),
