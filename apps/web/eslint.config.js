@@ -1,5 +1,5 @@
 import eslint from '@eslint/js';
-import tanstackQuery from '@tanstack/eslint-plugin-query';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
@@ -12,15 +12,10 @@ export default tseslint.config(
   { ignores: ['dist'] },
 
   //Plugins
-  {
-    plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
-      'tanstack-query': tanstackQuery,
-    },
-  },
+  { plugins: { 'react-hooks': reactHooks, 'react-refresh': reactRefresh } },
 
   // Extends
+  ...pluginQuery.configs['flat/recommended'],
   eslint.configs.recommended,
   ...tseslint.configs.strict,
   ...tseslint.configs.stylistic,

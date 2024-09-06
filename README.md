@@ -16,13 +16,13 @@
 ## Frontend
 
 - \*vite: https://vitejs.dev/guide/
-  - eslint-plugin-react-hooks: https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md
-  - eslint-plugin-react-refresh: https://github.com/ArnaudBarre/eslint-plugin-react-refresh
+  - \*eslint-plugin-react-hooks: https://github.com/facebook/react/blob/main/packages/eslint-plugin-react-hooks/README.md
+  - \*eslint-plugin-react-refresh: https://github.com/ArnaudBarre/eslint-plugin-react-refresh
 - \*mui: https://mui.com/material-ui/getting-started/installation/
 - \*react-router-dom: https://reactrouter.com/en/main/start/tutorial
 - \*react-hook-form: https://react-hook-form.com/get-started
 - \*tanstack/react-query: https://tanstack.com/query/latest/docs/framework/react/installation
-  - tanstack/eslint-plugin-query: https://tanstack.com/query/latest/docs/eslint/eslint-plugin-query
+  - \*tanstack/eslint-plugin-query: https://tanstack.com/query/latest/docs/eslint/eslint-plugin-query
 
 ## Backend
 
