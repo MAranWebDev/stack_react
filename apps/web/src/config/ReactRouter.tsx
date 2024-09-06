@@ -11,8 +11,8 @@ const router = createBrowserRouter([
     path: ROUTES.HOME,
     errorElement: <ErrorPage />, // Global error page
     element: <HomePage />,
-    children: [{ path: ROUTES.SAMPLE, element: <SamplePage /> }],
   },
+  { path: ROUTES.SAMPLE, element: <SamplePage /> },
   { path: ROUTES.UNAUTHORIZED, element: <UnauthorizedPage /> },
 ]);
 
