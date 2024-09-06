@@ -5,8 +5,7 @@ export type ContextType = Awaited<ReturnType<typeof createContext>>;
 
 // Setup context
 export const createContext = (opts: CreateExpressContextOptions) => {
-  console.log(opts);
-  return {};
+  return { opts };
 };
 
 const t = initTRPC.context<ContextType>().create();

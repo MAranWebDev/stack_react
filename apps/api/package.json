@@ -4,12 +4,12 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn ./src/main.ts",
     "build": "tsc && tsc-alias",
-    "start": "node ./dist/main.js",
+    "start": "node ./dist/src/main.js",
     "tsc:typecheck": "tsc --noEmit",
     "eslint:fix": "eslint . --fix",
-    "drizzle:studio": "drizzle-kit studio",
     "drizzle:generate": "drizzle-kit generate",
-    "drizzle:migrate": "ts-node -r tsconfig-paths/register ./src/drizzle/migrate.ts"
+    "drizzle:migrate": "ts-node -r tsconfig-paths/register ./src/drizzle/migrate.ts",
+    "drizzle:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@trpc/server": "11.0.0-rc.487",
