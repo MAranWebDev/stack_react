@@ -1,24 +1,36 @@
+import {
+  useReadSampleContext,
+  useUpdateSampleContext,
+} from '@/features/sample/context';
 import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
+import { ChangeEvent, MouseEvent } from 'react';
 
-const rowsPerPage = 0;
-const fullDataLength = 0;
-const page = 0;
-const handleChangePage = () => {
-  return;
-};
-const handleChangeRowsPerPage = () => {
-  return;
-};
-const rowsPerPageOptions = [5, 10, 20];
+// Types
+type ChangePageEventType = MouseEvent<HTMLButtonElement> | null;
+type ChangeRowsPerPageEventType = ChangeEvent<
+  HTMLInputElement | HTMLTextAreaElement
+>;
 
 export const SamplePagination = () => {
+  const { rowsPerPageOptions, dataCount, rowsPerPage, page } =
+    useReadSampleContext();
+  const { changePage, changeRowsPerPage } = useUpdateSampleContext();
+
+  const handleChangePage = (_: ChangePageEventType, newPage: number) =>
+    changePage(newPage);
+
+  const handleChangeRowsPerPage = (event: ChangeRowsPerPageEventType) => {
+    const newRowsPerPage = parseInt(event.target.value, 10);
+    changeRowsPerPage(newRowsPerPage);
+  };
+
   return (
     <Paper sx={{ p: 2 }}>
       <TablePagination
         component="div"
         rowsPerPageOptions={rowsPerPageOptions}
-        count={fullDataLength}
+        count={dataCount}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
