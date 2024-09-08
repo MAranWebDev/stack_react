@@ -1,14 +1,15 @@
+import { SampleProvider } from '@/features/sample/context';
 import Stack from '@mui/material/Stack';
-import { SamplePagination } from './SamplePagination';
+import { AddBox } from './AddBox';
 import { SampleTable } from './SampleTable';
-import { SearchBox } from './SearchBox';
 
 export const Sample = () => {
   return (
-    <Stack sx={{ minWidth: 650 }} spacing={1}>
-      <SearchBox />
-      <SampleTable />
-      <SamplePagination />
-    </Stack>
+    <SampleProvider>
+      <Stack sx={{ minWidth: 650 }} spacing={1}>
+        <AddBox />
+        <SampleTable />
+      </Stack>
+    </SampleProvider>
   );
 };
