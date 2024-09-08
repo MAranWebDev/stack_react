@@ -1,14 +1,15 @@
-import {
-  ReadSampleContext,
-  UpdateSampleContext,
-} from '@/features/sample/context';
 import { useContext } from 'react';
+import { ReadSampleContext, UpdateSampleContext } from './Sample.context';
+
+const PROVIDER_NAME = 'SampleProvider';
 
 export const useReadSampleContext = () => {
   const context = useContext(ReadSampleContext);
 
   if (context === undefined)
-    throw new Error('useReadSampleContext must be used within SampleProvider');
+    throw new Error(
+      `${useReadSampleContext.name} must be used within ${PROVIDER_NAME}`,
+    );
   return context;
 };
 
@@ -17,7 +18,7 @@ export const useUpdateSampleContext = () => {
 
   if (context === undefined)
     throw new Error(
-      'useUpdateSampleContext must be used within SampleProvider',
+      `${useUpdateSampleContext.name} must be used within ${PROVIDER_NAME}`,
     );
   return context;
 };
