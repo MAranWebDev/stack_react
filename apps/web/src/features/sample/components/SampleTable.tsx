@@ -1,3 +1,4 @@
+import { useReadSampleContext } from '@/features/sample/context';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,9 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-const filteredData = [{ id: 1, name: '', isDone: true }];
-
 export const SampleTable = () => {
+  const { results } = useReadSampleContext();
+
   return (
     <TableContainer component={Paper}>
       <Table>
@@ -20,11 +21,11 @@ export const SampleTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredData.map(({ id, name, isDone }) => (
+          {results.map(({ id, name, isDone }) => (
             <TableRow key={id} hover>
               <TableCell>{id}</TableCell>
               <TableCell>{name}</TableCell>
-              <TableCell>{isDone}</TableCell>
+              <TableCell>{isDone ? 'cerrado' : 'abierto'}</TableCell>
             </TableRow>
           ))}
         </TableBody>
