@@ -26,8 +26,8 @@ interface DeleteOptsType extends CtxType {
 export const sampleService = {
   async getAll({ input }: GetAllOptsType) {
     const { page, rowsPerPage } = input;
-    const previous = page > 1 ? page - 1 : null;
-    const offset = (page - 1) * rowsPerPage;
+    const previous = page > 0 ? page - 1 : null;
+    const offset = page * rowsPerPage;
 
     const [{ count: dataCount }] = await db
       .select({ count: count() })

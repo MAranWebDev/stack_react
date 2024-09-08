@@ -4,11 +4,11 @@ import { z } from 'zod';
 const SCHEMAS = {
   ID: z.string().max(60),
   NAME: z.string().min(2).max(20),
-};
+} as const;
 
 export const sampleValidator = {
   getAllInput: z.object({
-    page: z.number().positive().optional().default(1),
+    page: z.number().nonnegative().optional().default(0),
     rowsPerPage: z.number().positive().lte(25).optional().default(10),
   }),
 
