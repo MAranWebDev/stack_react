@@ -1,7 +1,7 @@
 import { db } from '@/drizzle/db';
 import { sampleSchema } from '@/drizzle/schemas';
 import { ContextType } from '@/libs/trpc';
-import { eq } from 'drizzle-orm';
+import { count, eq } from 'drizzle-orm';
 import { SampleValidatorType } from './sample.validator';
 
 interface CtxType {
@@ -25,9 +25,22 @@ interface DeleteOptsType extends CtxType {
 
 export const sampleService = {
   async getAll({ input }: GetAllOptsType) {
-    const limit = input.limit || 25;
-    const offset = input.offset || 0;
-    return db.query.sampleSchema.findMany({ limit, offset });
+    const { page, rowsPerPage } = input;
+    const previous = page > 1 ? page - 1 : null;
+    const offset = (page - 1) * rowsPerPage;
+
+    const [{ count: dataCount }] = await db
+      .select({ count: count() })
+      .from(sampleSchema);
+
+    const next = dataCount / rowsPerPage > page ? page + 1 : null;
+
+    const results = await db.query.sampleSchema.findMany({
+      offset,
+      limit: rowsPerPage,
+    });
+
+    return { dataCount, next, previous, results };
   },
 
   async get({ input }: GetOptsType) {

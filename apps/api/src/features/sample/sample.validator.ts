@@ -1,24 +1,30 @@
 import { z } from 'zod';
 
+// Constants
+const SCHEMAS = {
+  ID: z.string().max(60),
+  NAME: z.string().min(2).max(20),
+};
+
 export const sampleValidator = {
   getAllInput: z.object({
-    limit: z.number().optional(),
-    offset: z.number().optional(),
+    page: z.number().positive().optional().default(1),
+    rowsPerPage: z.number().positive().lte(25).optional().default(10),
   }),
 
-  getInput: z.string().max(60),
+  getInput: SCHEMAS.ID,
 
   createInput: z.object({
-    name: z.string().min(2).max(20),
+    name: SCHEMAS.NAME,
   }),
 
   updateInput: z.object({
     id: z.string().max(60),
-    name: z.string().min(2).max(20).optional(),
+    name: SCHEMAS.NAME.optional(),
     isDone: z.boolean().optional(),
   }),
 
-  deleteInput: z.string().max(60),
+  deleteInput: SCHEMAS.ID,
 };
 
 // Exported types
