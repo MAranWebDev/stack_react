@@ -39,6 +39,5 @@
 
 ## Luxury
 
-- absolute path alias
+- absolute path alias (requires composite in ts)
 - sort imports
-- trpc open api & swagger
