@@ -21,7 +21,7 @@ export const SampleTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {results.map(({ id, name, isDone }) => (
+          {results?.map(({ id, name, isDone }) => (
             <TableRow key={id} hover>
               <TableCell>{id}</TableCell>
               <TableCell>{name}</TableCell>
