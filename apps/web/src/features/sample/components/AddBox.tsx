@@ -7,24 +7,26 @@ import TextField from '@mui/material/TextField';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const schema = z.object({ name: z.string().max(10).min(2) });
-type Schema = z.infer<typeof schema>;
+// Types
+type ResolverSchema = z.infer<typeof resolverSchema>;
+
+// Values
+const resolverSchema = z.object({ name: z.string().max(10).min(2) });
 
 export const AddBox = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Schema>({
-    resolver: zodResolver(schema),
+  const { register, handleSubmit } = useForm<ResolverSchema>({
+    resolver: zodResolver(resolverSchema),
   });
-  const sampleCreator = trpc.sample.create.useMutation();
-  console.log(errors.name?.message);
 
-  const onSubmit = (data: Schema) => {
-    console.log(data);
+  const utils = trpc.useUtils();
+  const sampleCreator = trpc.sample.create.useMutation({
+    onSuccess() {
+      utils.sample.getAll.invalidate();
+    },
+  });
+
+  const onSubmit = (data: ResolverSchema) =>
     sampleCreator.mutate({ name: data.name });
-  };
 
   return (
     <Paper
