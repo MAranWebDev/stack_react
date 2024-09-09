@@ -3,27 +3,22 @@
   "scripts": {
     "prepare": "husky",
     "clean:folders": "find . \\( -path './.husky/_' -o -name 'node_modules' -o -name 'dist' \\) -exec rm -rf {} +",
-    "clean:tsbuildinfo": "find . -name 'tsconfig.tsbuildinfo' -exec rm -f {} +",
-    "clean:lock-files": "find . \\( -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' \\) -exec rm -f {} +",
-    "files:to-lf": "find . -name 'node_modules' -prune -o -type f -exec dos2unix {} +",
-    "prettier:format": "prettier --write \"**/*.{ts,tsx}\"",
-    "tsc:typecheck": "pnpm --filter @workspace/api --filter @workspace/web run tsc:typecheck",
-    "eslint:fix": "pnpm --filter @workspace/api --filter @workspace/web run eslint:fix",
+    "clean:files": "find . \\( -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' -o -name '*.tsbuildinfo' \\) -exec rm -f {} +",
+    "files:to-lf": "find . \\( -name 'node_modules' -o -name 'dist' \\) -prune -o -type f -exec dos2unix {} +",
+    "prettier": "pnpm --filter @workspace/api --filter @workspace/web run prettier",
+    "typecheck": "pnpm --filter @workspace/api --filter @workspace/web run typecheck",
+    "eslint": "pnpm --filter @workspace/api --filter @workspace/web run eslint",
     "drizzle:generate": "pnpm --filter @workspace/api run drizzle:generate",
     "drizzle:migrate": "pnpm --filter @workspace/api run drizzle:migrate",
     "drizzle:studio": "pnpm --filter @workspace/api run drizzle:studio",
     "dev": "concurrently \"pnpm --filter @workspace/api run dev\" \"pnpm --filter @workspace/web run dev\"",
-    "dev:api": "pnpm --filter @workspace/api run dev",
-    "dev:web": "pnpm --filter @workspace/web run dev",
     "build": "pnpm --filter @workspace/api --filter @workspace/web run build",
-    "start": "pnpm --filter @workspace/api run start",
-    "preview": "pnpm --filter @workspace/web run preview"
+    "preview": "concurrently \"pnpm --filter @workspace/api run start\" \"pnpm --filter @workspace/web run preview\""
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.1",
     "@commitlint/config-conventional": "^19.4.1",
     "concurrently": "^9.0.0",
-    "husky": "^9.1.5",
-    "prettier": "^3.3.3"
+    "husky": "^9.1.5"
   }
 }
