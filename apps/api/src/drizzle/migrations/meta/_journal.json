@@ -5,15 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1725057517059,
-      "tag": "0000_rare_firebrand",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1725656011390,
-      "tag": "0001_nosy_tarot",
+      "when": 1725915323252,
+      "tag": "0000_amused_peter_parker",
       "breakpoints": true
     }
   ]
