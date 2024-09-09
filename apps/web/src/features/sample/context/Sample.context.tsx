@@ -1,27 +1,20 @@
 import { RouterOutputType, trpc } from '@/libs/trpc';
-import {
-  createContext,
-  PropsWithChildren,
-  useCallback,
-  useMemo,
-  useReducer,
-} from 'react';
+import { createContext, PropsWithChildren, useMemo, useReducer } from 'react';
 
 // Types
-type GetAllType = RouterOutputType['sample']['getAll'];
+type SampleGetAllType = RouterOutputType['sample']['getAll'];
 
 interface ReadContextType {
   page: number;
   rowsPerPage: number;
   rowsPerPageOptions: number[];
-  dataCount: GetAllType['dataCount'] | undefined;
-  results: GetAllType['results'] | undefined;
+  dataCount: SampleGetAllType['dataCount'];
+  results: SampleGetAllType['results'];
 }
 
 interface UpdateContextType {
-  changePage: (page: ReadContextType['page']) => void;
-  changeRowsPerPage: (rowsPerPage: ReadContextType['rowsPerPage']) => void;
-  refetchResults: () => void;
+  changePage: (page: number) => void;
+  changeRowsPerPage: (rowsPerPage: number) => void;
 }
 
 type StateType = typeof initialStateValues;
@@ -45,8 +38,8 @@ const ROWS_PER_PAGE_OPTIONS = [5, 10, 25];
 
 // Initial values
 const initialStateValues = {
-  page: 1,
-  rowsPerPage: ROWS_PER_PAGE_OPTIONS[0],
+  page: 0,
+  rowsPerPage: ROWS_PER_PAGE_OPTIONS[1],
 };
 
 const reducer = (state: StateType, action: ActionType) => {
@@ -78,36 +71,33 @@ export const UpdateSampleContext = createContext<UpdateContextType | undefined>(
 // Context provider
 export const SampleProvider = ({ children }: PropsWithChildren) => {
   const [state, dispatch] = useReducer(reducer, initialStateValues);
-  const { data, refetch } = trpc.sample.getAll.useQuery({
+  const { data } = trpc.sample.getAll.useQuery({
     page: state.page,
     rowsPerPage: state.rowsPerPage,
   });
 
   // Methods
-  const changePage = (page: ReadContextType['page']) =>
+  const changePage = (page: number) =>
     dispatch({ type: ACTIONS.SET_PAGE, page });
 
-  const changeRowsPerPage = (rowsPerPage: ReadContextType['rowsPerPage']) =>
+  const changeRowsPerPage = (rowsPerPage: number) =>
     dispatch({ type: ACTIONS.SET_ROWS_PER_PAGE, rowsPerPage });
-
-  const refetchResults = useCallback(() => refetch(), [refetch]);
 
   // Context values
   const readContextValues: ReadContextType = {
     page: state.page,
     rowsPerPage: state.rowsPerPage,
     rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS,
-    dataCount: data?.dataCount,
-    results: data?.results,
+    dataCount: data?.dataCount || 0,
+    results: data?.results || [],
   };
 
-  const updateContextValues: UpdateContextType = useMemo(
+  const updateContextValues = useMemo(
     () => ({
       changePage,
       changeRowsPerPage,
-      refetchResults,
     }),
-    [refetchResults],
+    [],
   );
 
   return (

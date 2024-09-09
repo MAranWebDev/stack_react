@@ -3,4 +3,4 @@
 /dist
 
 # Files
-tsconfig.tsbuildinfo
+*.tsbuildinfo
