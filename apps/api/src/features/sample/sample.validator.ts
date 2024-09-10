@@ -35,7 +35,7 @@ export const sampleValidator = {
 
 // Exported types
 export interface SampleValidatorType {
-  getAllInput: z.infer<typeof sampleValidator.getAllInput>;
+  getAllInput: z.output<typeof sampleValidator.getAllInput>;
   getInput: z.infer<typeof sampleValidator.getInput>;
   createInput: z.infer<typeof sampleValidator.createInput>;
   updateInput: z.infer<typeof sampleValidator.updateInput>;

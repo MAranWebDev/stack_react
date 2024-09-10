@@ -1,7 +1,7 @@
 import { db } from '@/drizzle/db';
 import { sampleSchema } from '@/drizzle/schemas';
 import { ContextType } from '@/libs/trpc';
-import { count, eq } from 'drizzle-orm';
+import { and, count, eq, ilike } from 'drizzle-orm';
 import { SampleValidatorType } from './sample.validator';
 
 interface CtxType {
@@ -25,20 +25,30 @@ interface DeleteOptsType extends CtxType {
 
 export const sampleService = {
   async getAll({ input }: GetAllOptsType) {
-    const { page, rowsPerPage } = input;
+    const { page, rowsPerPage, likeId, likeName, isDone } = input;
+
     const previous = page > 0 ? page - 1 : null;
     const offset = page * rowsPerPage;
 
+    const where = and(
+      likeId ? ilike(sampleSchema.id, `%${likeId}%`) : undefined,
+      likeName ? ilike(sampleSchema.name, `%${likeName}%`) : undefined,
+      isDone != undefined ? eq(sampleSchema.isDone, isDone) : undefined,
+    );
+
     const [{ count: dataCount }] = await db
       .select({ count: count() })
-      .from(sampleSchema);
+      .from(sampleSchema)
+      .where(where);
 
     const next = dataCount / rowsPerPage > page ? page + 1 : null;
 
-    const results = await db.query.sampleSchema.findMany({
-      offset,
-      limit: rowsPerPage,
-    });
+    const results = await db
+      .select()
+      .from(sampleSchema)
+      .where(where)
+      .limit(rowsPerPage)
+      .offset(offset);
 
     return { dataCount, next, previous, results };
   },
