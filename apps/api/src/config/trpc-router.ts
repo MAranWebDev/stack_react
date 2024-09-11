@@ -1,6 +1,7 @@
 import { sampleRouter } from '@/features/sample/sample.router';
 import { usersRouter } from '@/features/users/users.router';
 import { router } from '@/libs/trpc';
+import { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 
 // Setup all routers here
 export const trpcRouter = router({
@@ -8,5 +9,7 @@ export const trpcRouter = router({
   users: usersRouter,
 });
 
-// export API type definition to the client
+// Exported TRPC API types shared with the client
 export type TrpcRouterType = typeof trpcRouter;
+export type TrpcRouterInputType = inferRouterInputs<TrpcRouterType>;
+export type TrpcRouterOutputType = inferRouterOutputs<TrpcRouterType>;
