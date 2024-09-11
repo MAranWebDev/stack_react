@@ -9,11 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 
-interface PropsType {
-  id: string;
-}
-
-export const DeleteDialog = ({ id }: PropsType) => {
+export const DeleteDialog = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
 
   const utils = trpc.useUtils();
