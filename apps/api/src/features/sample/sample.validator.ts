@@ -1,41 +1,29 @@
 import { z } from 'zod';
 
-// Constants
-const SCHEMAS = {
-  PAGE: z.number().nonnegative(),
-  ROWS_PER_PAGE: z.number().positive().lte(25),
-  ID: z.string().max(60),
-  NAME: z.string().min(2).max(20),
-  IS_DONE: z.boolean(),
-} as const;
+// Base schemas
+const values = z.object({
+  id: z.string().max(60),
+  name: z.string().min(2).max(20),
+  isDone: z.boolean(),
+});
 
+const defaultValues = z.object({
+  page: z.number().nonnegative().default(0),
+  rowsPerPage: z.number().positive().lte(25).default(10),
+});
+
+// Schemas
 export const sampleValidator = {
-  getAllInput: z.object({
-    page: SCHEMAS.PAGE.optional().default(0),
-    rowsPerPage: SCHEMAS.ROWS_PER_PAGE.optional().default(10),
-    likeId: SCHEMAS.ID.optional(),
-    likeName: SCHEMAS.NAME.optional(),
-    isDone: SCHEMAS.IS_DONE.optional(),
-  }),
-
-  getInput: SCHEMAS.ID,
-
-  createInput: z.object({
-    name: SCHEMAS.NAME,
-  }),
-
-  updateInput: z.object({
-    id: SCHEMAS.ID,
-    name: SCHEMAS.NAME.optional(),
-    isDone: SCHEMAS.IS_DONE.optional(),
-  }),
-
-  deleteInput: SCHEMAS.ID,
+  getAllInput: values.partial().merge(defaultValues),
+  getInput: values.pick({ id: true }),
+  createInput: values.pick({ name: true }),
+  updateInput: values.partial({ name: true, isDone: true }),
+  deleteInput: values.pick({ id: true }),
 };
 
 // Exported types
 export interface SampleValidatorType {
-  getAllInput: z.output<typeof sampleValidator.getAllInput>;
+  getAllInput: z.infer<typeof sampleValidator.getAllInput>;
   getInput: z.infer<typeof sampleValidator.getInput>;
   createInput: z.infer<typeof sampleValidator.createInput>;
   updateInput: z.infer<typeof sampleValidator.updateInput>;

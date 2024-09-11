@@ -25,14 +25,14 @@ interface DeleteOptsType extends CtxType {
 
 export const sampleService = {
   async getAll({ input }: GetAllOptsType) {
-    const { page, rowsPerPage, likeId, likeName, isDone } = input;
+    const { page, rowsPerPage, id, name, isDone } = input;
 
     const previous = page > 0 ? page - 1 : null;
     const offset = page * rowsPerPage;
 
     const where = and(
-      likeId ? ilike(sampleSchema.id, `%${likeId}%`) : undefined,
-      likeName ? ilike(sampleSchema.name, `%${likeName}%`) : undefined,
+      id ? ilike(sampleSchema.id, `%${id}%`) : undefined,
+      name ? ilike(sampleSchema.name, `%${name}%`) : undefined,
       isDone != undefined ? eq(sampleSchema.isDone, isDone) : undefined,
     );
 
@@ -55,7 +55,7 @@ export const sampleService = {
 
   async get({ input }: GetOptsType) {
     return db.query.sampleSchema.findFirst({
-      where: eq(sampleSchema.id, input),
+      where: eq(sampleSchema.id, input.id),
     });
   },
 
@@ -71,7 +71,7 @@ export const sampleService = {
   async delete({ input }: DeleteOptsType) {
     return db
       .delete(sampleSchema)
-      .where(eq(sampleSchema.id, input))
+      .where(eq(sampleSchema.id, input.id))
       .returning();
   },
 };
