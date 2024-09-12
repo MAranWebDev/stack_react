@@ -1,8 +1,8 @@
 import { db } from '@/drizzle/db';
 import { sampleSchema } from '@/drizzle/schemas';
 import { ContextType } from '@/libs/trpc';
+import { SampleZodType } from '@/libs/zod/schemas';
 import { and, count, eq, ilike } from 'drizzle-orm';
-import { SampleZodType } from './sample.zod';
 
 interface CtxType {
   ctx: ContextType;

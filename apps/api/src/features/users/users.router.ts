@@ -1,15 +1,15 @@
 import { publicProcedure, router } from '@/libs/trpc';
+import { usersZod } from '@/libs/zod/schemas';
 import { usersService } from './users.service';
-import { usersValidator } from './users.validator';
 
 export const usersRouter = router({
   getAll: publicProcedure.query(() => usersService.getAll()),
 
   get: publicProcedure
-    .input(usersValidator.getInput)
+    .input(usersZod.getInput)
     .query((opts) => usersService.get(opts)),
 
   create: publicProcedure
-    .input(usersValidator.createInput)
+    .input(usersZod.createInput)
     .mutation((opts) => usersService.create(opts)),
 });

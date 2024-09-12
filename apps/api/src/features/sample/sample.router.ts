@@ -1,6 +1,6 @@
 import { publicProcedure, router } from '@/libs/trpc';
+import { sampleZod } from '@/libs/zod/schemas';
 import { sampleService } from './sample.service';
-import { sampleZod } from './sample.zod';
 
 export const sampleRouter = router({
   getAll: publicProcedure

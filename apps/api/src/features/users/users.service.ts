@@ -1,17 +1,17 @@
 import { db } from '@/drizzle/db';
 import { usersSchema } from '@/drizzle/schemas';
 import { ContextType } from '@/libs/trpc';
+import { UsersZodType } from '@/libs/zod/schemas';
 import { eq } from 'drizzle-orm';
-import { CreateInputType, GetInputType } from './users.validator';
 
-interface GetOptsType {
+interface CtxType {
   ctx: ContextType;
-  input: GetInputType;
 }
-
-interface CreateOptsType {
-  ctx: ContextType;
-  input: CreateInputType;
+interface GetOptsType extends CtxType {
+  input: UsersZodType['getInput'];
+}
+interface CreateOptsType extends CtxType {
+  input: UsersZodType['createInput'];
 }
 
 export const usersService = {
@@ -21,7 +21,7 @@ export const usersService = {
 
   async get({ input }: GetOptsType) {
     return db.query.usersSchema.findFirst({
-      where: eq(usersSchema.email, input),
+      where: eq(usersSchema.email, input.email),
     });
   },
 
