@@ -2,25 +2,25 @@ import { db } from '@/drizzle/db';
 import { sampleSchema } from '@/drizzle/schemas';
 import { ContextType } from '@/libs/trpc';
 import { and, count, eq, ilike } from 'drizzle-orm';
-import { SampleValidatorType } from './sample.validator';
+import { SampleZodType } from './sample.zod';
 
 interface CtxType {
   ctx: ContextType;
 }
 interface GetAllOptsType extends CtxType {
-  input: SampleValidatorType['getAllInput'];
+  input: SampleZodType['getAllInput'];
 }
 interface GetOptsType extends CtxType {
-  input: SampleValidatorType['getInput'];
+  input: SampleZodType['getInput'];
 }
 interface CreateOptsType extends CtxType {
-  input: SampleValidatorType['createInput'];
+  input: SampleZodType['createInput'];
 }
 interface UpdateOptsType extends CtxType {
-  input: SampleValidatorType['updateInput'];
+  input: SampleZodType['updateInput'];
 }
 interface DeleteOptsType extends CtxType {
-  input: SampleValidatorType['deleteInput'];
+  input: SampleZodType['deleteInput'];
 }
 
 export const sampleService = {

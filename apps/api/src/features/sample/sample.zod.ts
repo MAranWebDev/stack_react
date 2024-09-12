@@ -13,7 +13,7 @@ const defaultValues = z.object({
 });
 
 // Schemas
-export const sampleValidator = {
+export const sampleZod = {
   getAllInput: values.partial().merge(defaultValues),
   getInput: values.pick({ id: true }),
   createInput: values.pick({ name: true }),
@@ -22,10 +22,10 @@ export const sampleValidator = {
 };
 
 // Exported types
-export interface SampleValidatorType {
-  getAllInput: z.infer<typeof sampleValidator.getAllInput>;
-  getInput: z.infer<typeof sampleValidator.getInput>;
-  createInput: z.infer<typeof sampleValidator.createInput>;
-  updateInput: z.infer<typeof sampleValidator.updateInput>;
-  deleteInput: z.infer<typeof sampleValidator.deleteInput>;
+export interface SampleZodType {
+  getAllInput: z.infer<typeof sampleZod.getAllInput>;
+  getInput: z.infer<typeof sampleZod.getInput>;
+  createInput: z.infer<typeof sampleZod.createInput>;
+  updateInput: z.infer<typeof sampleZod.updateInput>;
+  deleteInput: z.infer<typeof sampleZod.deleteInput>;
 }

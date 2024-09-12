@@ -1,25 +1,25 @@
 import { publicProcedure, router } from '@/libs/trpc';
 import { sampleService } from './sample.service';
-import { sampleValidator } from './sample.validator';
+import { sampleZod } from './sample.zod';
 
 export const sampleRouter = router({
   getAll: publicProcedure
-    .input(sampleValidator.getAllInput)
+    .input(sampleZod.getAllInput)
     .query((opts) => sampleService.getAll(opts)),
 
   get: publicProcedure
-    .input(sampleValidator.getInput)
+    .input(sampleZod.getInput)
     .query((opts) => sampleService.get(opts)),
 
   create: publicProcedure
-    .input(sampleValidator.createInput)
+    .input(sampleZod.createInput)
     .mutation((opts) => sampleService.create(opts)),
 
   update: publicProcedure
-    .input(sampleValidator.updateInput)
+    .input(sampleZod.updateInput)
     .mutation((opts) => sampleService.update(opts)),
 
   delete: publicProcedure
-    .input(sampleValidator.deleteInput)
+    .input(sampleZod.deleteInput)
     .mutation((opts) => sampleService.delete(opts)),
 });

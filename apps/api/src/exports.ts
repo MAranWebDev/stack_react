@@ -3,4 +3,4 @@ export {
   TrpcRouterOutputType,
   TrpcRouterType,
 } from './config/trpc-router';
-export * from './features/sample/sample.validator';
+export * from './features/sample/sample.zod';
