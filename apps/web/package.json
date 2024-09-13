@@ -17,6 +17,7 @@
     "@mui/icons-material": "^6.1.0",
     "@mui/material": "^6.1.0",
     "@tanstack/react-query": "^5.56.2",
+    "@tanstack/react-query-devtools": "^5.56.2",
     "@trpc/client": "11.0.0-rc.502",
     "@trpc/react-query": "11.0.0-rc.502",
     "@workspace/api": "workspace:*",
