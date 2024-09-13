@@ -12,10 +12,10 @@ import { sampleZod, SampleZodType } from '@workspace/api';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-// Ojo schema
+// Types
 type SchemaType = SampleZodType['updateInput'];
 
-export const EditDialog = ({ id }: { id: string }) => {
+export const UpdateDialog = ({ id }: { id: string }) => {
   const { register, handleSubmit } = useForm<SchemaType>({
     resolver: zodResolver(sampleZod.updateInput),
   });
@@ -37,7 +37,7 @@ export const EditDialog = ({ id }: { id: string }) => {
   return (
     <>
       <IconButton aria-label="edit" onClick={handleClickOpen}>
-        <EditIcon />;
+        <EditIcon />
       </IconButton>
 
       <Dialog

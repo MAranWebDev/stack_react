@@ -7,8 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { DeleteDialog } from './delete-dialog';
-import { EditDialog } from './edit-dialog';
+import { UpdateDialog } from './update-dialog';
 
+// Constants
 const STATUS = {
   CLOSE: 'cerrado',
   OPEN: 'abierto',
@@ -34,7 +35,7 @@ export const SampleTable = () => {
               <TableCell>{name}</TableCell>
               <TableCell>{isDone ? STATUS.CLOSE : STATUS.OPEN}</TableCell>
               <TableCell>
-                <EditDialog id={id} />
+                <UpdateDialog id={id} />
               </TableCell>
               <TableCell>
                 <DeleteDialog id={id} />

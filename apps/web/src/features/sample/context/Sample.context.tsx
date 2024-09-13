@@ -6,20 +6,24 @@ import { createContext, PropsWithChildren, useMemo, useReducer } from 'react';
 type GetAllInputType = TrpcRouterInputType['sample']['getAll'];
 type GetAllOutputType = TrpcRouterOutputType['sample']['getAll'];
 
+type PageType = NonNullable<GetAllInputType['page']>;
+type RowsPerPageType = NonNullable<GetAllInputType['rowsPerPage']>;
 type FiltersType = Pick<GetAllInputType, 'id' | 'name' | 'isDone'>;
+type DataCountType = GetAllOutputType['dataCount'];
+type ResultsType = GetAllOutputType['results'];
 
 interface ReadContextType {
-  page: number;
-  rowsPerPage: number;
+  page: PageType;
+  rowsPerPage: RowsPerPageType;
   rowsPerPageOptions: number[];
   filters: FiltersType;
-  dataCount: number;
-  results: GetAllOutputType['results'];
+  dataCount: DataCountType;
+  results: ResultsType;
 }
 
 interface UpdateContextType {
-  changePage: (page: number) => void;
-  changeRowsPerPage: (rowsPerPage: number) => void;
+  changePage: (page: PageType) => void;
+  changeRowsPerPage: (rowsPerPage: RowsPerPageType) => void;
   filterData: (filters: FiltersType) => void;
 }
 
@@ -105,10 +109,10 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
   });
 
   // Methods
-  const changePage = (page: number) =>
+  const changePage = (page: PageType) =>
     dispatch({ type: ACTIONS.SET_PAGE, page });
 
-  const changeRowsPerPage = (rowsPerPage: number) =>
+  const changeRowsPerPage = (rowsPerPage: RowsPerPageType) =>
     dispatch({ type: ACTIONS.SET_ROWS_PER_PAGE, rowsPerPage });
 
   const filterData = (filters: FiltersType) =>

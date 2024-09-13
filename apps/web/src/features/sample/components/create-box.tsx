@@ -8,10 +8,10 @@ import { SampleZodType, sampleZod } from '@workspace/api';
 import { useForm } from 'react-hook-form';
 
 // Types
-type ResolverSchemaType = SampleZodType['createInput'];
+type SchemaType = SampleZodType['createInput'];
 
 export const CreateBox = () => {
-  const { register, handleSubmit } = useForm<ResolverSchemaType>({
+  const { register, handleSubmit } = useForm<SchemaType>({
     resolver: zodResolver(sampleZod.createInput),
   });
 
@@ -22,8 +22,7 @@ export const CreateBox = () => {
     },
   });
 
-  const onSubmit = ({ name }: ResolverSchemaType) =>
-    sampleCreate.mutate({ name });
+  const onSubmit = ({ name }: SchemaType) => sampleCreate.mutate({ name });
 
   return (
     <Paper
