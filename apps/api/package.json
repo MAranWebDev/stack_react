@@ -2,14 +2,14 @@
   "name": "@workspace/api",
   "exports": "./src/exports.ts",
   "scripts": {
-    "dev": "ts-node-dev -r tsconfig-paths/register --respawn ./src/main.ts",
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn ./src/app/index.ts",
     "build": "tsc && tsc-alias",
-    "start": "node ./dist/main.js",
+    "start": "node ./dist/app/index.js",
     "prettier": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "eslint": "eslint . --fix",
     "drizzle:generate": "drizzle-kit generate",
-    "drizzle:migrate": "ts-node -r tsconfig-paths/register ./src/drizzle/migrate.ts",
+    "drizzle:migrate": "ts-node -r tsconfig-paths/register ./src/libs/drizzle/migrate.ts",
     "drizzle:studio": "drizzle-kit studio"
   },
   "dependencies": {
