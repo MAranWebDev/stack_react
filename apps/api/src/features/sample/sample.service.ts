@@ -1,6 +1,6 @@
-import { db } from '@/drizzle/db';
-import { sampleSchema } from '@/drizzle/schemas';
-import { ContextType } from '@/libs/trpc';
+import { db } from '@/libs/drizzle/db';
+import { sampleSchema } from '@/libs/drizzle/schemas';
+import { ContextType } from '@/libs/trpc/utils';
 import { SampleZodType } from '@/libs/zod/schemas';
 import { and, count, eq, ilike } from 'drizzle-orm';
 
