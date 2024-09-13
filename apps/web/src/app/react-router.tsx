@@ -2,8 +2,8 @@ import { LandingRoute } from '@/app/routes/landing.route';
 import { NotFoundRoute } from '@/app/routes/not-found.route';
 import { SampleRoute } from '@/app/routes/sample.route';
 import { UnauthorizedRoute } from '@/app/routes/unauthorized.route';
+import { ROUTES } from '@/constants/routes';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { ROUTES } from './constants';
 
 // Settings
 const router = createBrowserRouter([

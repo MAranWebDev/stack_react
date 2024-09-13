@@ -1,11 +1,12 @@
-import { RouterInputType, RouterOutputType, trpc } from '@/libs/trpc';
+import { trpc } from '@/libs/trpc/hooks';
+import { TrpcRouterInputType, TrpcRouterOutputType } from '@workspace/api';
 import { createContext, PropsWithChildren, useMemo, useReducer } from 'react';
 
 // Types
-type GetAllInputType = RouterInputType['sample']['getAll'];
-type GetAllOutputType = RouterOutputType['sample']['getAll'];
+type GetAllInputType = TrpcRouterInputType['sample']['getAll'];
+type GetAllOutputType = TrpcRouterOutputType['sample']['getAll'];
 
-type FiltersType = Pick<GetAllInputType, 'likeId' | 'likeName' | 'isDone'>;
+type FiltersType = Pick<GetAllInputType, 'id' | 'name' | 'isDone'>;
 
 interface ReadContextType {
   page: number;
@@ -73,8 +74,8 @@ const reducer = (state: StateType, action: ActionType) => {
         ...state,
         page: initialStateValues.page,
         filters: {
-          likeId: action.filters.likeId,
-          likeName: action.filters.likeName,
+          id: action.filters.id,
+          name: action.filters.name,
           isDone: action.filters.isDone,
         },
       };
@@ -94,11 +95,12 @@ export const UpdateSampleContext = createContext<UpdateContextType | undefined>(
 // Context provider
 export const SampleProvider = ({ children }: PropsWithChildren) => {
   const [state, dispatch] = useReducer(reducer, initialStateValues);
+
   const { data } = trpc.sample.getAll.useQuery({
     page: state.page,
     rowsPerPage: state.rowsPerPage,
-    likeId: state.filters.likeId,
-    likeName: state.filters.likeName,
+    id: state.filters.id,
+    name: state.filters.name,
     isDone: state.filters.isDone,
   });
 
