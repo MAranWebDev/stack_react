@@ -1,15 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { MuiThemeProvider } from './config/MuiThemeProvider';
-import { ReactRouter } from './config/ReactRouter';
-import { TrpcProvider } from './config/TrpcProvider';
+import { App } from './app';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
-    <TrpcProvider>
-      <MuiThemeProvider>
-        <ReactRouter />
-      </MuiThemeProvider>
-    </TrpcProvider>
+    <App />
   </StrictMode>,
 );
