@@ -1,2 +1,2 @@
-export { SampleProvider } from './Sample.context';
-export * from './useSampleContext';
+export { SampleProvider } from './sample.context';
+export * from './use-sample-context';
