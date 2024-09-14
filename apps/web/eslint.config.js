@@ -22,20 +22,16 @@ export default tseslint.config(
   },
 
   // Extends
-  ...pluginQuery.configs['flat/recommended'],
-  eslint.configs.recommended,
-  ...tseslint.configs.strict,
-  ...tseslint.configs.stylistic,
-  eslintConfigPrettier, // Needs to be at the end but before rules
+  eslint.configs.recommended, // eslint
+  ...tseslint.configs.strict, // typescript-eslint
+  ...tseslint.configs.stylistic, // typescript-eslint
+  ...pluginQuery.configs['flat/recommended'], // tanstack-query
+  eslintConfigPrettier, // prettier: Needs to be at the end
 
   // Base config
   {
     files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
-
+    languageOptions: { ecmaVersion: 2020, globals: globals.browser },
     rules: {
       // react-hooks
       ...reactHooks.configs.recommended.rules,
@@ -46,7 +42,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
 
-      // native
+      // eslint
       'no-restricted-imports': [
         'error',
         { patterns: ['src', '../**', '@/*/*/*/*', './*/*/*/*'] },
