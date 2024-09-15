@@ -3,19 +3,40 @@ import { createContext } from '@/libs/trpc/utils';
 import { createExpressMiddleware } from '@trpc/server/adapters/express';
 import cors from 'cors';
 import express from 'express';
+import { expressHandler } from 'trpc-playground/handlers/express';
 import { trpcRouter } from './trpc-router';
 
-const app = express();
+// Constants
+const ENDPOINTS = {
+  TRPC_API: '/trpc',
+  TRPC_PLAYGROUND: '/trpc-playground',
+} as const;
 
-// Cors
-app.use(cors());
+const runApp = async () => {
+  const app = express();
 
-// Trpc
-app.use(
-  '/trpc',
-  createExpressMiddleware({ router: trpcRouter, createContext }),
-);
+  // cors
+  app.use(cors());
 
-app.listen(SERVER_PORT, () => {
-  console.log(`Server is running on port: ${SERVER_PORT}`);
-});
+  // trpc
+  app.use(
+    ENDPOINTS.TRPC_API,
+    createExpressMiddleware({ router: trpcRouter, createContext }),
+  );
+
+  // trpc-playground
+  app.use(
+    ENDPOINTS.TRPC_PLAYGROUND,
+    await expressHandler({
+      trpcApiEndpoint: ENDPOINTS.TRPC_API,
+      playgroundEndpoint: ENDPOINTS.TRPC_PLAYGROUND,
+      router: trpcRouter,
+    }),
+  );
+
+  app.listen(SERVER_PORT, () => {
+    console.log(`Server is running on port: ${SERVER_PORT}`);
+  });
+};
+
+runApp();
