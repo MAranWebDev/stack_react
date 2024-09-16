@@ -1,4 +1,4 @@
-type ROUTES = (typeof ROUTES)[keyof typeof ROUTES];
+export type ROUTES = (typeof ROUTES)[keyof typeof ROUTES];
 
 export const ROUTES = {
   HOME: '/',
