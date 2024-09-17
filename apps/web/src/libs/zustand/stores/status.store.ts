@@ -1,20 +1,29 @@
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { devtools } from 'zustand/middleware';
 
 // Types
 type StatusType = (typeof STATUS)[keyof typeof STATUS];
+type StatusErrorType = typeof STATUS.ERROR;
+type StatusNoErrorType = Exclude<StatusType, StatusErrorType>;
+type ErrorMessageType = string;
+
+type UpdateStatusPropsType =
+  | { status: StatusErrorType; errorMessage: ErrorMessageType }
+  | { status: StatusNoErrorType };
 
 interface StateType {
   status: StatusType;
+  errorMessage: ErrorMessageType;
   isIdle: boolean;
   isPending: boolean;
   isError: boolean;
   isSuccess: boolean;
-  updateStatus: (newStatus: StatusType) => void;
+  updateStatus: (props: UpdateStatusPropsType) => void;
 }
 
 // Constants
 const STORE_NAME = 'statusStore';
+const ERROR_MESSAGE = 'El error del servidor viene vacío';
 
 const STATUS = {
   IDLE: 'idle',
@@ -25,22 +34,28 @@ const STATUS = {
 
 export const useStatusStore = create<StateType>()(
   devtools(
-    persist(
-      (set) => ({
-        status: STATUS.IDLE,
-        isIdle: true,
-        isPending: false,
-        isError: false,
-        isSuccess: false,
-        updateStatus: (newStatus: StatusType) =>
-          set(() => ({
-            status: newStatus,
-            isError: newStatus === STATUS.ERROR,
-            isPending: newStatus === STATUS.PENDING,
-            isSuccess: newStatus === STATUS.SUCCESS,
-          })),
-      }),
-      { name: STORE_NAME, partialize: () => ({}) },
-    ),
+    (set) => ({
+      status: STATUS.IDLE,
+      isIdle: true,
+      isPending: false,
+      isError: false,
+      isSuccess: false,
+      errorMessage: '',
+      updateStatus: (props: UpdateStatusPropsType) => {
+        const { status } = props;
+        const errorMessage =
+          status === STATUS.ERROR ? props.errorMessage || ERROR_MESSAGE : '';
+
+        return set({
+          status,
+          isIdle: status === STATUS.IDLE,
+          isError: status === STATUS.ERROR,
+          isPending: status === STATUS.PENDING,
+          isSuccess: status === STATUS.SUCCESS,
+          errorMessage,
+        });
+      },
+    }),
+    { name: STORE_NAME },
   ),
 );
