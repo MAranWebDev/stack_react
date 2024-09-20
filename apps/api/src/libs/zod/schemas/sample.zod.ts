@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 // Base schemas
 const values = z.object({
-  id: z.string().max(60),
-  name: z.string().min(2).max(20),
+  id: z.string().trim().max(60),
+  name: z.string().trim().min(2).max(20),
   isDone: z.boolean(),
 });
 
