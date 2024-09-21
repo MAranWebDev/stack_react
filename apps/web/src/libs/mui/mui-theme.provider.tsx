@@ -4,11 +4,15 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 import { CssBaseline } from '@mui/material';
+import { esES } from '@mui/material/locale';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { PropsWithChildren } from 'react';
 
 // Theme settings
-const theme = createTheme({});
+const theme = createTheme(
+  {},
+  esES, // Spanish localization
+);
 
 export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
   return (
