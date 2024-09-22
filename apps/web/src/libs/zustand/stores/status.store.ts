@@ -1,17 +1,17 @@
-import { create } from 'zustand';
+import { create, StateCreator } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import { immer } from 'zustand/middleware/immer';
 
 // Types
 type StatusType = (typeof STATUS)[keyof typeof STATUS];
 type StatusErrorType = typeof STATUS.ERROR;
-type StatusNoErrorType = Exclude<StatusType, StatusErrorType>;
 type ErrorMessageType = string;
 
 type UpdateStatusPropsType =
   | { status: StatusErrorType; errorMessage: ErrorMessageType }
-  | { status: StatusNoErrorType };
+  | { status: Exclude<StatusType, StatusErrorType> };
 
-interface StateType {
+interface StoreType {
   status: StatusType;
   errorMessage: ErrorMessageType;
   isIdle: boolean;
@@ -22,7 +22,6 @@ interface StateType {
 }
 
 // Constants
-const STORE_NAME = 'statusStore';
 const ERROR_MESSAGE = 'El error del servidor viene vacío';
 
 const STATUS = {
@@ -32,30 +31,28 @@ const STATUS = {
   SUCCESS: 'success',
 } as const;
 
-export const useStatusStore = create<StateType>()(
-  devtools(
-    (set) => ({
-      status: STATUS.IDLE,
-      isIdle: true,
-      isPending: false,
-      isError: false,
-      isSuccess: false,
-      errorMessage: '',
-      updateStatus: (props: UpdateStatusPropsType) => {
-        const { status } = props;
-        const errorMessage =
-          status === STATUS.ERROR ? props.errorMessage || ERROR_MESSAGE : '';
+// Store
+const store: StateCreator<StoreType> = (set) => ({
+  status: STATUS.IDLE,
+  isIdle: true,
+  isPending: false,
+  isError: false,
+  isSuccess: false,
+  errorMessage: '',
+  updateStatus: (props: UpdateStatusPropsType) => {
+    const { status } = props;
+    const errorMessage =
+      status === STATUS.ERROR ? props.errorMessage || ERROR_MESSAGE : '';
 
-        return set({
-          status,
-          isIdle: status === STATUS.IDLE,
-          isError: status === STATUS.ERROR,
-          isPending: status === STATUS.PENDING,
-          isSuccess: status === STATUS.SUCCESS,
-          errorMessage,
-        });
-      },
-    }),
-    { name: STORE_NAME },
-  ),
-);
+    return set({
+      status,
+      isIdle: status === STATUS.IDLE,
+      isError: status === STATUS.ERROR,
+      isPending: status === STATUS.PENDING,
+      isSuccess: status === STATUS.SUCCESS,
+      errorMessage,
+    });
+  },
+});
+
+export const useStatusStore = create<StoreType>()(devtools(immer(store)));
