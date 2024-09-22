@@ -5,15 +5,14 @@ import { immer } from 'zustand/middleware/immer';
 // Types
 type StatusType = (typeof STATUS)[keyof typeof STATUS];
 type StatusErrorType = typeof STATUS.ERROR;
-type ErrorMessageType = string;
 
 type UpdateStatusPropsType =
-  | { status: StatusErrorType; errorMessage: ErrorMessageType }
+  | { status: StatusErrorType; errorMessage: string }
   | { status: Exclude<StatusType, StatusErrorType> };
 
 interface StoreType {
   status: StatusType;
-  errorMessage: ErrorMessageType;
+  errorMessage: string;
   isIdle: boolean;
   isPending: boolean;
   isError: boolean;
@@ -32,7 +31,9 @@ const STATUS = {
 } as const;
 
 // Store
-const store: StateCreator<StoreType> = (set) => ({
+const createStore: StateCreator<StoreType, [['zustand/immer', never]]> = (
+  set,
+) => ({
   status: STATUS.IDLE,
   isIdle: true,
   isPending: false,
@@ -55,4 +56,4 @@ const store: StateCreator<StoreType> = (set) => ({
   },
 });
 
-export const useStatusStore = create<StoreType>()(devtools(immer(store)));
+export const useStatusStore = create<StoreType>()(devtools(immer(createStore)));

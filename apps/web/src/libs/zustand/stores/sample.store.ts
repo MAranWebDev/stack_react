@@ -3,12 +3,10 @@ import { devtools, persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
 
 // Types
-type BearsType = number;
-
 interface StoreType {
-  bears: BearsType;
+  bears: number;
   addBear: () => void;
-  addBearBy: (by: BearsType) => void;
+  addBearBy: (by: number) => void;
   removeBears: () => void;
 }
 
@@ -16,18 +14,31 @@ interface StoreType {
 const STORE_NAME = 'sampleStore';
 
 // Store
-const store: StateCreator<StoreType> = (set) => ({
+const createStore: StateCreator<StoreType, [['zustand/immer', never]]> = (
+  set,
+) => ({
   bears: 0,
-  addBear: () => set((state) => ({ bears: state.bears + 1 })),
-  addBearBy: (by: BearsType) => set((state) => ({ bears: state.bears + by })),
-  removeBears: () => set({ bears: 0 }),
+  addBear: () =>
+    set((state) => {
+      state.bears += 1;
+    }),
+  addBearBy: (by: number) =>
+    set((state) => {
+      state.bears += by;
+    }),
+  removeBears: () =>
+    set((state) => {
+      state.bears = 0;
+    }),
 });
 
 export const useSampleStore = create<StoreType>()(
   devtools(
-    persist(immer(store), {
+    persist(immer(createStore), {
       name: STORE_NAME,
-      partialize: (state) => ({ bears: state.bears }),
+      partialize: (state) => ({
+        bears: state.bears,
+      }),
     }),
   ),
 );
