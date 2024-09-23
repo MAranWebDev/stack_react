@@ -1,2 +1,2 @@
+export * from './hooks';
 export { SampleProvider } from './sample.context';
-export * from './use-sample-context';
