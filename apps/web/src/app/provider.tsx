@@ -4,7 +4,7 @@ import { PropsWithChildren } from 'react';
 
 export const AppProvider = ({ children }: PropsWithChildren) => {
   return (
-    // Must be placed first to trigger functionality in other providers
+    // mui: Must be first to trigger functionalities in other providers
     <MuiThemeProvider>
       <TrpcProvider>{children}</TrpcProvider>
     </MuiThemeProvider>
