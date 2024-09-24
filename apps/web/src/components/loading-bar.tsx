@@ -1,7 +1,7 @@
 import CircularProgress from '@mui/material/CircularProgress';
 import { useIsFetching, useIsMutating } from '@tanstack/react-query';
 
-export const StatusBar = () => {
+export const LoadingBar = () => {
   // react-query
   const isFetching = useIsFetching();
   const isMutating = useIsMutating();

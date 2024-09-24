@@ -1,5 +1,5 @@
 import { VITE_TRPC_URL } from '@/config/env';
-import { useNotification } from '@/libs/notistack/hooks';
+import { useNotistack } from '@/libs/mui/hooks';
 import {
   MutationCache,
   QueryCache,
@@ -17,7 +17,7 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
     trpc.createClient({ links: [httpBatchLink({ url: VITE_TRPC_URL })] }),
   );
 
-  const { show } = useNotification();
+  const { showNotification } = useNotistack();
 
   // react-query
   const [reactQueryClient] = useState(
@@ -25,18 +25,15 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
       new QueryClient({
         queryCache: new QueryCache({
           onError({ message }) {
-            show({ variant: 'error', text: message });
-          },
-          onSuccess() {
-            show({ variant: 'success' });
+            showNotification({ variant: 'error', text: message });
           },
         }),
         mutationCache: new MutationCache({
           onError({ message }) {
-            show({ variant: 'error', text: message });
+            showNotification({ variant: 'error', text: message });
           },
           onSuccess() {
-            show({ variant: 'success' });
+            showNotification({ variant: 'success' });
           },
         }),
       }),
