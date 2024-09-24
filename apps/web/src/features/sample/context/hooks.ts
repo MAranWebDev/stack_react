@@ -1,4 +1,4 @@
-import { useContextWithError } from '@/hooks/use-context-with-error';
+import { useContextWithError } from '@/context/hooks';
 import { ReadSampleContext, UpdateSampleContext } from './sample.context';
 
 // Constants
