@@ -4,8 +4,9 @@ import { PropsWithChildren } from 'react';
 
 export const AppProvider = ({ children }: PropsWithChildren) => {
   return (
-    <TrpcProvider>
-      <MuiThemeProvider>{children}</MuiThemeProvider>
-    </TrpcProvider>
+    // Must be placed first to trigger functionality in other providers
+    <MuiThemeProvider>
+      <TrpcProvider>{children}</TrpcProvider>
+    </MuiThemeProvider>
   );
 };
