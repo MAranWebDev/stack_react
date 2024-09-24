@@ -23,7 +23,7 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
       {/* Normalize css */}
       <CssBaseline />
 
-      {/* Notistack needs to go inside theme provider to apply the styles */}
+      {/* notistack: Must be inside theme provider to inherit styles */}
       <SnackbarProvider
         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         maxSnack={3}
