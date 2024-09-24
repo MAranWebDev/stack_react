@@ -1,5 +1,4 @@
 import { trpc } from '@/libs/trpc/hooks';
-import { useStatusStore } from '@/libs/zustand/stores';
 import { zodResolver } from '@hookform/resolvers/zod';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
@@ -22,25 +21,15 @@ export const CreateBox = () => {
     resolver: zodResolver(sampleZod.createInput),
   });
 
-  // zustand
-  const updateStatus = useStatusStore((state) => state.updateStatus);
-  const isPending = useStatusStore((state) => state.isPending);
-  const isError = useStatusStore((state) => state.isError);
-
   // trpc
-  const utils = trpc.useUtils();
-  const sampleCreate = trpc.sample.create.useMutation({
-    onMutate() {
-      updateStatus({ status: 'pending' });
-    },
+  const mutationCallbacks = {
     onSuccess() {
       utils.sample.getAll.invalidate();
-      updateStatus({ status: 'success' });
     },
-    onError({ message }) {
-      updateStatus({ status: 'error', errorMessage: message });
-    },
-  });
+  };
+
+  const utils = trpc.useUtils();
+  const sampleCreate = trpc.sample.create.useMutation(mutationCallbacks);
 
   const onSubmit = ({ name }: SchemaType) => sampleCreate.mutate({ name });
 
@@ -48,7 +37,7 @@ export const CreateBox = () => {
   const isFormEmpty = Object.values(watchedFields).some(
     (value) => value === '',
   );
-  const isAddButtonDisabled = isFormEmpty || isPending || isError;
+  const isAddButtonDisabled = isFormEmpty;
 
   return (
     <Paper
