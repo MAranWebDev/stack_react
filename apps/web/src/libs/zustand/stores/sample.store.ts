@@ -26,10 +26,7 @@ const createStore: StateCreator<StoreType, [['zustand/immer', never]]> = (
     set((state) => {
       state.bears += by;
     }),
-  removeBears: () =>
-    set((state) => {
-      state.bears = 0;
-    }),
+  removeBears: () => set({ bears: 0 }),
 });
 
 export const useSampleStore = create<StoreType>()(
