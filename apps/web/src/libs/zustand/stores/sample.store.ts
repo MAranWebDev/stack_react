@@ -1,6 +1,5 @@
-import { create, StateCreator } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
-import { immer } from 'zustand/middleware/immer';
+import { applyMiddlewares } from '@/libs/zustand/utils';
+import { create } from 'zustand';
 
 // Types
 interface StoreType {
@@ -11,31 +10,27 @@ interface StoreType {
 }
 
 // Constants
-const STORE_NAME = 'sampleStore';
-
-// Store
-const createStore: StateCreator<StoreType, [['zustand/immer', never]]> = (
-  set,
-) => ({
-  bears: 0,
-  addBear: () =>
-    set((state) => {
-      state.bears += 1;
-    }),
-  addBearBy: (by: number) =>
-    set((state) => {
-      state.bears += by;
-    }),
-  removeBears: () => set({ bears: 0 }),
-});
+const PERSIST_STORE_NAME = 'sampleStore';
+const PERSIST_KEYS = ['bears'] as const;
 
 export const useSampleStore = create<StoreType>()(
-  devtools(
-    persist(immer(createStore), {
-      name: STORE_NAME,
-      partialize: (state) => ({
-        bears: state.bears,
-      }),
+  applyMiddlewares({
+    persistStoreName: PERSIST_STORE_NAME,
+    persistKeys: PERSIST_KEYS,
+    store: (set) => ({
+      bears: 0,
+      addBear: () =>
+        set((state) => {
+          state.bears += 1;
+        }),
+      addBearBy: (by: number) =>
+        set((state) => {
+          state.bears += by;
+        }),
+      removeBears: () =>
+        set((state) => {
+          state.bears = 0;
+        }),
     }),
-  ),
+  }),
 );
