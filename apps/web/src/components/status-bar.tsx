@@ -1,14 +1,20 @@
-import { useStatusStore } from '@/libs/zustand/stores';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useIsFetching, useIsMutating } from '@tanstack/react-query';
 
 export const StatusBar = () => {
-  const isPending = useStatusStore((state) => state.isPending);
+  // react-query
+  const isFetching = useIsFetching();
+  const isMutating = useIsMutating();
+
+  const isShowing = isFetching || isMutating;
 
   return (
-    isPending && (
-      <CircularProgress
-        sx={{ position: 'absolute', zIndex: 'tooltip', top: 24, right: 24 }}
-      />
-    )
+    <>
+      {isShowing && (
+        <CircularProgress
+          sx={{ position: 'absolute', zIndex: 'tooltip', top: 24, right: 24 }}
+        />
+      )}
+    </>
   );
 };
