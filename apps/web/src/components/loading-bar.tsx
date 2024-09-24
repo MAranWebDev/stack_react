@@ -8,13 +8,9 @@ export const LoadingBar = () => {
 
   const isShowing = isFetching || isMutating;
 
-  return (
-    <>
-      {isShowing && (
-        <CircularProgress
-          sx={{ position: 'absolute', zIndex: 'tooltip', top: 24, right: 24 }}
-        />
-      )}
-    </>
-  );
+  return isShowing ? (
+    <CircularProgress
+      sx={{ position: 'absolute', zIndex: 'tooltip', top: 24, right: 24 }}
+    />
+  ) : null;
 };
