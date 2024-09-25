@@ -6,9 +6,9 @@ export const LoadingBar = () => {
   const isFetching = useIsFetching();
   const isMutating = useIsMutating();
 
-  const isShowing = isFetching || isMutating;
+  const howManyFetching = isFetching || isMutating;
 
-  return isShowing ? (
+  return howManyFetching ? (
     <CircularProgress
       sx={{ position: 'absolute', zIndex: 'tooltip', top: 24, right: 24 }}
     />
