@@ -26,6 +26,7 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.2",
+    "use-immer": "^0.10.0",
     "zustand": "5.0.0-rc.2"
   },
   "devDependencies": {
