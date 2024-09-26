@@ -22,8 +22,8 @@ export const SampleTable = () => {
   const { results, isFetching, rowsPerPage } = useReadSampleContext();
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
+    <TableContainer sx={{ maxHeight: 420 }} component={Paper}>
+      <Table stickyHeader>
         <TableHead>
           <TableRow>
             {COLUMNS.map((column) => (
