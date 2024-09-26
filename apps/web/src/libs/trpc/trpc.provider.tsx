@@ -1,5 +1,4 @@
 import { VITE_TRPC_URL } from '@/config/env';
-import { useNotistack } from '@/libs/mui/hooks';
 import {
   MutationCache,
   QueryCache,
@@ -8,8 +7,15 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { httpBatchLink } from '@trpc/client';
+import { useSnackbar } from 'notistack';
 import { PropsWithChildren, useState } from 'react';
 import { trpc } from './hooks';
+
+// Constants
+const MESSAGES = {
+  ERROR: 'El error del servidor viene vacío',
+  SUCCESS: 'Petición exitosa',
+} as const;
 
 export const TrpcProvider = ({ children }: PropsWithChildren) => {
   // trpc
@@ -17,7 +23,8 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
     trpc.createClient({ links: [httpBatchLink({ url: VITE_TRPC_URL })] }),
   );
 
-  const { showNotification } = useNotistack();
+  // notistack
+  const { enqueueSnackbar } = useSnackbar();
 
   // react-query
   const [reactQueryClient] = useState(
@@ -25,15 +32,17 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
       new QueryClient({
         queryCache: new QueryCache({
           onError({ message }) {
-            showNotification({ variant: 'error', text: message });
+            const errorMessage = message || MESSAGES.ERROR;
+            enqueueSnackbar(errorMessage, { variant: 'error' });
           },
         }),
         mutationCache: new MutationCache({
           onError({ message }) {
-            showNotification({ variant: 'error', text: message });
+            const errorMessage = message || MESSAGES.ERROR;
+            enqueueSnackbar(errorMessage, { variant: 'error' });
           },
           onSuccess() {
-            showNotification({ variant: 'success' });
+            enqueueSnackbar(MESSAGES.SUCCESS, { variant: 'success' });
           },
         }),
       }),
