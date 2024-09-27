@@ -97,6 +97,7 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
     isDone: state.filters.isDone,
   });
 
+  const dataCount = data?.dataCount ?? 0;
   const sampleGetAllKey = getQueryKey(sampleGetAll, undefined, 'query');
   const isFetching = useIsFetching({ queryKey: sampleGetAllKey }) > 0;
 
@@ -119,12 +120,12 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
 
   // Context values
   const readContextValues: ReadContext = {
-    page: state.page,
+    page: dataCount > 0 ? state.page : 0,
     rowsPerPage: state.rowsPerPage,
     rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS,
     filters: state.filters,
-    dataCount: data?.dataCount || 0,
-    results: data?.results || [],
+    dataCount,
+    results: data?.results ?? [],
     isFetching,
   };
 
