@@ -2,7 +2,7 @@ import { applyMiddlewares } from '@/libs/zustand/utils';
 import { create } from 'zustand';
 
 // Types
-interface StoreType {
+interface Store {
   bears: number;
   addBear: () => void;
   addBearBy: (by: number) => void;
@@ -13,7 +13,7 @@ interface StoreType {
 const PERSIST_STORE_NAME = 'sampleStore';
 const PERSIST_KEYS = ['bears'] as const;
 
-export const useSampleStore = create<StoreType>()(
+export const useSampleStore = create<Store>()(
   applyMiddlewares({
     persistStoreName: PERSIST_STORE_NAME,
     persistKeys: PERSIST_KEYS,

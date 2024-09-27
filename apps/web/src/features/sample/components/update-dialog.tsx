@@ -8,16 +8,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
-import { sampleZod, SampleZodType } from '@workspace/api';
+import { sampleZod, SampleZod } from '@workspace/api';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 // Types
-type SchemaType = SampleZodType['updateInput'];
+type Schema = SampleZod['updateInput'];
 
 export const UpdateDialog = ({ id }: { id: string }) => {
   // react-hook-form
-  const { register, handleSubmit } = useForm<SchemaType>({
+  const { register, handleSubmit } = useForm<Schema>({
     resolver: zodResolver(sampleZod.updateInput),
   });
 
@@ -35,7 +35,7 @@ export const UpdateDialog = ({ id }: { id: string }) => {
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const onSubmit = ({ name, isDone }: SchemaType) =>
+  const onSubmit = ({ name, isDone }: Schema) =>
     sampleUpdateMutation.mutate({ id, name, isDone });
 
   return (

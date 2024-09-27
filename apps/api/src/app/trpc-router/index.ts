@@ -8,6 +8,6 @@ export const trpcRouter = router({
 });
 
 // Exported TRPC API types shared with the client
-export type TrpcRouterType = typeof trpcRouter;
-export type TrpcRouterInputType = inferRouterInputs<TrpcRouterType>;
-export type TrpcRouterOutputType = inferRouterOutputs<TrpcRouterType>;
+export type TrpcRouter = typeof trpcRouter;
+export type TrpcRouterInput = inferRouterInputs<TrpcRouter>;
+export type TrpcRouterOutput = inferRouterOutputs<TrpcRouter>;

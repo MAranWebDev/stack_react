@@ -7,8 +7,8 @@ import TablePagination from '@mui/material/TablePagination';
 import { ChangeEvent, MouseEvent } from 'react';
 
 // Types
-type ChangePageEventType = MouseEvent<HTMLButtonElement> | null;
-type ChangeRowsPerPageEventType = ChangeEvent<
+type ChangePageEvent = MouseEvent<HTMLButtonElement> | null;
+type ChangeRowsPerPageEvent = ChangeEvent<
   HTMLInputElement | HTMLTextAreaElement
 >;
 
@@ -17,10 +17,10 @@ export const SamplePagination = () => {
     useReadSampleContext();
   const { changePage, changeRowsPerPage } = useUpdateSampleContext();
 
-  const handleChangePage = (_: ChangePageEventType, newPage: number) =>
+  const handleChangePage = (_: ChangePageEvent, newPage: number) =>
     changePage(newPage);
 
-  const handleChangeRowsPerPage = (event: ChangeRowsPerPageEventType) => {
+  const handleChangeRowsPerPage = (event: ChangeRowsPerPageEvent) => {
     const newRowsPerPage = parseInt(event.target.value, 10);
     changeRowsPerPage(newRowsPerPage);
   };

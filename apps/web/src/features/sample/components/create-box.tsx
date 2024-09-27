@@ -4,11 +4,11 @@ import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
-import { SampleZodType, sampleZod } from '@workspace/api';
+import { SampleZod, sampleZod } from '@workspace/api';
 import { useForm } from 'react-hook-form';
 
 // Types
-type SchemaType = SampleZodType['createInput'];
+type Schema = SampleZod['createInput'];
 
 export const CreateBox = () => {
   // react-hook-form
@@ -17,7 +17,7 @@ export const CreateBox = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<SchemaType>({
+  } = useForm<Schema>({
     resolver: zodResolver(sampleZod.createInput),
   });
 
@@ -31,7 +31,7 @@ export const CreateBox = () => {
   const utils = trpc.useUtils();
   const sampleCreate = trpc.sample.create.useMutation(mutationCallbacks);
 
-  const onSubmit = ({ name }: SchemaType) => sampleCreate.mutate({ name });
+  const onSubmit = ({ name }: Schema) => sampleCreate.mutate({ name });
 
   const watchedFields = watch(['name']);
   const isFormEmpty = Object.values(watchedFields).some(

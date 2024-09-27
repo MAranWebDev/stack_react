@@ -1,6 +1,6 @@
 export type {
-  TrpcRouterInputType,
-  TrpcRouterOutputType,
-  TrpcRouterType,
+  TrpcRouter,
+  TrpcRouterInput,
+  TrpcRouterOutput,
 } from './app/trpc-router';
 export * from './libs/zod/schemas';

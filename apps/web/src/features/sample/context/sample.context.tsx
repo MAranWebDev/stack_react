@@ -1,13 +1,13 @@
 import { trpc } from '@/libs/trpc/hooks';
 import { useIsFetching } from '@tanstack/react-query';
 import { getQueryKey } from '@trpc/react-query';
-import { TrpcRouterInputType, TrpcRouterOutputType } from '@workspace/api';
+import { TrpcRouterInput, TrpcRouterOutput } from '@workspace/api';
 import { createContext, PropsWithChildren, useCallback, useMemo } from 'react';
 import { useImmerReducer } from 'use-immer';
 
 // Types
-type SampleGetAllInput = TrpcRouterInputType['sample']['getAll'];
-type SampleGetAllOutput = TrpcRouterOutputType['sample']['getAll'];
+type SampleGetAllInput = TrpcRouterInput['sample']['getAll'];
+type SampleGetAllOutput = TrpcRouterOutput['sample']['getAll'];
 
 type Filters = Pick<SampleGetAllInput, 'id' | 'name' | 'isDone'>;
 type Results = SampleGetAllOutput['results'];

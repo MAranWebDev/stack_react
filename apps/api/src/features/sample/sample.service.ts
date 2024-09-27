@@ -1,30 +1,30 @@
 import { db } from '@/libs/drizzle/db';
 import { sampleSchema } from '@/libs/drizzle/schemas';
-import { ContextType } from '@/libs/trpc/utils';
-import { SampleZodType } from '@/libs/zod/schemas';
+import { Context } from '@/libs/trpc/utils';
+import { SampleZod } from '@/libs/zod/schemas';
 import { and, count, eq, ilike } from 'drizzle-orm';
 
-interface CtxType {
-  ctx: ContextType;
+interface Ctx {
+  ctx: Context;
 }
-interface GetAllOptsType extends CtxType {
-  input: SampleZodType['getAllInput'];
+interface GetAllOpts extends Ctx {
+  input: SampleZod['getAllInput'];
 }
-interface GetOptsType extends CtxType {
-  input: SampleZodType['getInput'];
+interface GetOpts extends Ctx {
+  input: SampleZod['getInput'];
 }
-interface CreateOptsType extends CtxType {
-  input: SampleZodType['createInput'];
+interface CreateOpts extends Ctx {
+  input: SampleZod['createInput'];
 }
-interface UpdateOptsType extends CtxType {
-  input: SampleZodType['updateInput'];
+interface UpdateOpts extends Ctx {
+  input: SampleZod['updateInput'];
 }
-interface DeleteOptsType extends CtxType {
-  input: SampleZodType['deleteInput'];
+interface DeleteOpts extends Ctx {
+  input: SampleZod['deleteInput'];
 }
 
 export const sampleService = {
-  async getAll({ input }: GetAllOptsType) {
+  async getAll({ input }: GetAllOpts) {
     const { page, rowsPerPage, id, name, isDone } = input;
 
     const previous = page > 0 ? page - 1 : null;
@@ -53,22 +53,22 @@ export const sampleService = {
     return { dataCount, next, previous, results };
   },
 
-  async get({ input }: GetOptsType) {
+  async get({ input }: GetOpts) {
     return db.query.sampleSchema.findFirst({
       where: eq(sampleSchema.id, input.id),
     });
   },
 
-  async create({ input }: CreateOptsType) {
+  async create({ input }: CreateOpts) {
     return db.insert(sampleSchema).values(input).returning();
   },
 
-  async update({ input }: UpdateOptsType) {
+  async update({ input }: UpdateOpts) {
     const { id, ...values } = input;
     return db.update(sampleSchema).set(values).where(eq(sampleSchema.id, id));
   },
 
-  async delete({ input }: DeleteOptsType) {
+  async delete({ input }: DeleteOpts) {
     return db
       .delete(sampleSchema)
       .where(eq(sampleSchema.id, input.id))

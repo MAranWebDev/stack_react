@@ -5,21 +5,21 @@ import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
-import { sampleZod, SampleZodType } from '@workspace/api';
+import { sampleZod, SampleZod } from '@workspace/api';
 import { useForm } from 'react-hook-form';
 
 // Types
-type SchemaType = SampleZodType['getAllInput'];
+type Schema = SampleZod['getAllInput'];
 
 export const FilterBox = () => {
   // react-hook-form
-  const { register, handleSubmit } = useForm<SchemaType>({
+  const { register, handleSubmit } = useForm<Schema>({
     resolver: zodResolver(sampleZod.getAllInput),
   });
 
   const { filterData } = useUpdateSampleContext();
 
-  const onSubmit = (inputs: SchemaType) => filterData(inputs);
+  const onSubmit = (inputs: Schema) => filterData(inputs);
   const handleClickClean = () => filterData({});
 
   return (

@@ -22,7 +22,7 @@ export const sampleZod = {
 };
 
 // Exported types
-export interface SampleZodType {
+export interface SampleZod {
   getAllInput: z.infer<typeof sampleZod.getAllInput>;
   getInput: z.infer<typeof sampleZod.getInput>;
   createInput: z.infer<typeof sampleZod.createInput>;

@@ -14,7 +14,7 @@ interface TableSkeletonProps extends SkeletonCellsProps {
 const SkeletonCells = ({ columns }: SkeletonCellsProps) =>
   Array.from({ length: columns }, (_, index) => (
     <TableCell key={index}>
-      <Skeleton variant="text" />
+      <Skeleton variant="text" animation="wave" />
     </TableCell>
   ));
 
