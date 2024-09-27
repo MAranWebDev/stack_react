@@ -30,15 +30,14 @@ interface UpdateContext {
 
 type State = Pick<ReadContext, 'page' | 'rowsPerPage' | 'filters'>;
 
-type Actions = typeof ACTIONS;
 interface ActionSetPage extends Pick<ReadContext, 'page'> {
-  type: Actions['SET_PAGE'];
+  type: typeof ACTIONS.SET_PAGE;
 }
 interface ActionSetRowsPerPage extends Pick<ReadContext, 'rowsPerPage'> {
-  type: Actions['SET_ROWS_PER_PAGE'];
+  type: typeof ACTIONS.SET_ROWS_PER_PAGE;
 }
 interface ActionSetFilters extends Pick<ReadContext, 'filters'> {
-  type: Actions['SET_FILTERS'];
+  type: typeof ACTIONS.SET_FILTERS;
 }
 type Action = ActionSetPage | ActionSetRowsPerPage | ActionSetFilters;
 
