@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 type SchemaType = SampleZodType['getAllInput'];
 
 export const FilterBox = () => {
+  // react-hook-form
   const { register, handleSubmit } = useForm<SchemaType>({
     resolver: zodResolver(sampleZod.getAllInput),
   });
