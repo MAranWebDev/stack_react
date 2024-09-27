@@ -10,6 +10,6 @@ export default defineConfig({
   schema: SCHEMAS_FOLDER, // For drizzle generate
   out: MIGRATIONS_FOLDER, // For drizzle generate
   dbCredentials: { url: DATABASE_URL }, // For drizzle studio,
-  verbose: true, // print all queries that will be executed
-  strict: true, // always ask for an approve before pushing the schema
+  verbose: true, // Print all queries that will be executed
+  strict: true, // Always ask for an approve before pushing the schema
 });
