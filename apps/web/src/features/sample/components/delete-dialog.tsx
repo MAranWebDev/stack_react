@@ -12,6 +12,7 @@ import { useState } from 'react';
 export const DeleteDialog = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
 
+  // "trpc"
   const utils = trpc.useUtils();
   const sampleDelete = trpc.sample.delete.useMutation({
     onSuccess() {
@@ -19,6 +20,7 @@ export const DeleteDialog = ({ id }: { id: string }) => {
     },
   });
 
+  // Methods
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleClickRemove = (id: string) => sampleDelete.mutate({ id });
