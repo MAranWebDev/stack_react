@@ -10,7 +10,6 @@ type SampleGetAllInput = TrpcRouterInput['sample']['getAll'];
 type SampleGetAllOutput = TrpcRouterOutput['sample']['getAll'];
 
 type Filters = Pick<SampleGetAllInput, 'id' | 'name' | 'isDone'>;
-type Results = SampleGetAllOutput['results'];
 
 interface ReadContext {
   page: number;
@@ -18,7 +17,7 @@ interface ReadContext {
   rowsPerPageOptions: number[];
   filters: Filters;
   dataCount: number;
-  results: Results;
+  results: SampleGetAllOutput['results'];
   isFetching: boolean;
 }
 
