@@ -16,23 +16,27 @@ import { useForm } from 'react-hook-form';
 type SchemaType = SampleZodType['updateInput'];
 
 export const UpdateDialog = ({ id }: { id: string }) => {
+  // react-hook-form
   const { register, handleSubmit } = useForm<SchemaType>({
     resolver: zodResolver(sampleZod.updateInput),
   });
 
   const [open, setOpen] = useState(false);
 
+  // trpc
   const utils = trpc.useUtils();
-  const sampleUpdate = trpc.sample.update.useMutation({
+  const sampleUpdateMutation = trpc.sample.update.useMutation({
     onSuccess() {
       utils.sample.getAll.invalidate();
     },
   });
 
+  // Methods
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   const onSubmit = ({ name, isDone }: SchemaType) =>
-    sampleUpdate.mutate({ id, name, isDone });
+    sampleUpdateMutation.mutate({ id, name, isDone });
 
   return (
     <>
