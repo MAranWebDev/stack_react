@@ -14,16 +14,16 @@ const ENDPOINTS = {
 const runApp = async () => {
   const app = express();
 
-  // cors
+  // "cors"
   app.use(cors());
 
-  // trpc
+  // "trpc"
   app.use(
     ENDPOINTS.TRPC_API,
     createExpressMiddleware({ router: trpcRouter, createContext }),
   );
 
-  // trpc-playground
+  // "trpc-playground"
   if (NODE_ENV !== 'production') {
     const { expressHandler } = await import('trpc-playground/handlers/express');
 

@@ -2,7 +2,7 @@ import { router } from '@/libs/trpc/utils';
 import { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 import { sampleRouter } from './sample.router';
 
-// Setup all routers here
+// Routers
 export const trpcRouter = router({
   sample: sampleRouter,
 });
