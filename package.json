@@ -2,7 +2,8 @@
   "name": "t3",
   "scripts": {
     "prepare": "husky || true",
-    "clean:folders": "find . \\( -path './.husky/_' -o -name 'node_modules' -o -name 'dist' \\) -exec rm -rf {} +",
+    "clean:folders": "find . \\( -path './.husky/_' -o -name 'node_modules' \\) -exec rm -rf {} +",
+    "clean:builds": "find . \\( -name 'dist' \\) -exec rm -rf {} +",
     "clean:files": "find . \\( -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' -o -name '*.tsbuildinfo' \\) -exec rm -f {} +",
     "files:to-lf": "find . \\( -name 'node_modules' -o -name 'dist' \\) -prune -o -type f -exec dos2unix {} +",
     "prettier": "pnpm --filter @workspace/api --filter @workspace/web run prettier",
