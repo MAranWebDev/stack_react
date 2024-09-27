@@ -1,8 +1,8 @@
 import { Context, useContext } from 'react';
 
-// Use this hook yo prevent using context without his provider
-export const useContextWithError = <T>(
-  context: Context<T | undefined>,
+// Use this hook to prevent using context without his provider
+export const useContextWithError = <TContext>(
+  context: Context<TContext | undefined>,
   hookName: string,
   providerName: string,
 ) => {

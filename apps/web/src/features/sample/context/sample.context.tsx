@@ -29,8 +29,8 @@ interface UpdateContext {
 }
 
 type State = Pick<ReadContext, 'page' | 'rowsPerPage' | 'filters'>;
-type Actions = typeof ACTIONS;
 
+type Actions = typeof ACTIONS;
 interface ActionSetPage extends Pick<ReadContext, 'page'> {
   type: Actions['SET_PAGE'];
 }
@@ -88,7 +88,7 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
     }
   }, initialStateValues);
 
-  // Trpc
+  // "trpc"
   const { data } = sampleGetAll.useQuery({
     page: state.page,
     rowsPerPage: state.rowsPerPage,

@@ -18,15 +18,15 @@ const MESSAGES = {
 } as const;
 
 export const TrpcProvider = ({ children }: PropsWithChildren) => {
-  // trpc
+  // "trpc"
   const [trpcClient] = useState(() =>
     trpc.createClient({ links: [httpBatchLink({ url: VITE_TRPC_URL })] }),
   );
 
-  // notistack
+  // "notistack"
   const { enqueueSnackbar } = useSnackbar();
 
-  // react-query
+  // "react-query"
   const [reactQueryClient] = useState(
     () =>
       new QueryClient({
@@ -49,7 +49,7 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
   );
 
   return (
-    // trpc
+    // "trpc"
     <trpc.Provider client={trpcClient} queryClient={reactQueryClient}>
       {/* react-query */}
       <QueryClientProvider client={reactQueryClient}>
