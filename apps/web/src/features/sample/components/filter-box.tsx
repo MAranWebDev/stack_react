@@ -12,13 +12,14 @@ import { useForm } from 'react-hook-form';
 type Schema = SampleZod['getAllInput'];
 
 export const FilterBox = () => {
-  // react-hook-form
+  const { filterData } = useUpdateSampleContext();
+
+  // "react-hook-form"
   const { register, handleSubmit } = useForm<Schema>({
     resolver: zodResolver(sampleZod.getAllInput),
   });
 
-  const { filterData } = useUpdateSampleContext();
-
+  // Methods
   const onSubmit = (inputs: Schema) => filterData(inputs);
   const handleClickClean = () => filterData({});
 
