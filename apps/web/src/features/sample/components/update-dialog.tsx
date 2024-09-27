@@ -15,15 +15,19 @@ import { useForm } from 'react-hook-form';
 // Types
 type Schema = SampleZod['updateInput'];
 
-export const UpdateDialog = ({ id }: { id: string }) => {
-  // react-hook-form
+interface Props {
+  id: string;
+}
+
+export const UpdateDialog = ({ id }: Props) => {
+  const [open, setOpen] = useState(false);
+
+  // "react-hook-form"
   const { register, handleSubmit } = useForm<Schema>({
     resolver: zodResolver(sampleZod.updateInput),
   });
 
-  const [open, setOpen] = useState(false);
-
-  // trpc
+  // "trpc"
   const utils = trpc.useUtils();
   const sampleUpdateMutation = trpc.sample.update.useMutation({
     onSuccess() {

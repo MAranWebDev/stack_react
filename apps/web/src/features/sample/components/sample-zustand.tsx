@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 
 export const SampleZustand = () => {
-  // Zustand
+  // "zustand"
   const bears = useSampleStore((state) => state.bears);
   const addBear = useSampleStore((state) => state.addBear);
   const addBearBy = useSampleStore((state) => state.addBearBy);
