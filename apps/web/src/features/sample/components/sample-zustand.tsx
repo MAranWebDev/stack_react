@@ -1,6 +1,8 @@
 import { useSampleStore } from '@/libs/zustand/stores';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 export const SampleZustand = () => {
   // "zustand"
@@ -15,9 +17,13 @@ export const SampleZustand = () => {
   const handleClickReset = () => removeBears();
 
   return (
-    <Paper sx={{ display: 'flex', gap: 2, p: 2 }}>
-      <h3>Bears: {bears}</h3>
-
+    <Stack
+      sx={{ p: 2, alignItems: 'center' }}
+      component={Paper}
+      direction="row"
+      spacing={2}
+    >
+      <Typography sx={{ fontWeight: 'medium' }}>Bears: {bears}</Typography>
       <Button variant="outlined" onClick={handleClickOne}>
         +1
       </Button>
@@ -27,6 +33,6 @@ export const SampleZustand = () => {
       <Button variant="outlined" onClick={handleClickReset}>
         Reiniciar
       </Button>
-    </Paper>
+    </Stack>
   );
 };
