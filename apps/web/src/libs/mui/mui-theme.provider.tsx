@@ -5,9 +5,9 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 // Libs
-import { CssBaseline } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
 import { esES } from '@mui/material/locale';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import { PropsWithChildren } from 'react';
 
@@ -24,10 +24,7 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
       <CssBaseline />
 
       {/* "notistack": must be inside theme provider to inherit styles */}
-      <SnackbarProvider
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        maxSnack={3}
-      >
+      <SnackbarProvider maxSnack={1} preventDuplicate={true}>
         {children}
       </SnackbarProvider>
     </ThemeProvider>
