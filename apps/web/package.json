@@ -21,6 +21,8 @@
     "@trpc/react-query": "11.0.0-rc.528",
     "@workspace/api": "workspace:*",
     "i18next": "^23.15.1",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.6.1",
     "immer": "^10.1.1",
     "notistack": "^3.0.1",
     "react": "^18.3.1",
