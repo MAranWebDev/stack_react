@@ -1,3 +1,5 @@
+import '@/libs/i18next/i18n';
+
 import { MuiThemeProvider } from '@/libs/mui/mui-theme.provider';
 import { TrpcProvider } from '@/libs/trpc/trpc.provider';
 import { PropsWithChildren } from 'react';
