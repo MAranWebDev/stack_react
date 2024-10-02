@@ -11,33 +11,25 @@ import { useForm } from 'react-hook-form';
 type Schema = SampleZod['createInput'];
 
 export const CreateBox = () => {
-  // react-hook-form
+  // "react-hook-form"
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<Schema>({
     resolver: zodResolver(sampleZod.createInput),
   });
 
   // trpc
-  const mutationCallbacks = {
+  const utils = trpc.useUtils();
+  const sampleCreate = trpc.sample.create.useMutation({
     onSuccess() {
       utils.sample.getAll.invalidate();
     },
-  };
+  });
 
-  const utils = trpc.useUtils();
-  const sampleCreate = trpc.sample.create.useMutation(mutationCallbacks);
-
+  // Methods
   const onSubmit = ({ name }: Schema) => sampleCreate.mutate({ name });
-
-  const watchedFields = watch(['name']);
-  const isFormEmpty = Object.values(watchedFields).some(
-    (value) => value === '',
-  );
-  const isAddButtonDisabled = isFormEmpty;
 
   return (
     <Paper
@@ -47,14 +39,16 @@ export const CreateBox = () => {
     >
       <TextField
         required
+        size="medium"
         label="Nombre"
         variant="outlined"
+        autoComplete="off"
         error={!!errors.name}
         helperText={errors.name?.message}
         {...register('name')}
       />
 
-      <Button type="submit" variant="outlined" disabled={isAddButtonDisabled}>
+      <Button type="submit" variant="outlined">
         <AddIcon />
       </Button>
     </Paper>

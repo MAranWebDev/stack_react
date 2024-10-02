@@ -59,11 +59,13 @@ export const UpdateDialog = ({ id }: Props) => {
             <TextField
               label="Nombre"
               variant="outlined"
+              autoComplete="off"
               {...register('name')}
             />
           </form>
         </DialogContent>
         <DialogActions>
+          <Button onClick={handleClose}>Cancelar</Button>
           <Button type="submit">Editar</Button>
         </DialogActions>
       </Dialog>

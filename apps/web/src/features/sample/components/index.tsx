@@ -10,11 +10,11 @@ export const Sample = () => {
   return (
     <SampleProvider>
       <Stack sx={{ minWidth: 650 }} spacing={1}>
-        <SampleZustand />
         <CreateBox />
         <FilterBox />
         <SampleTable />
         <SamplePagination />
+        <SampleZustand />
       </Stack>
     </SampleProvider>
   );

@@ -51,11 +51,11 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
   return (
     // "trpc"
     <trpc.Provider client={trpcClient} queryClient={reactQueryClient}>
-      {/* react-query */}
+      {/* "react-query" */}
       <QueryClientProvider client={reactQueryClient}>
         {children}
 
-        {/* react-query-devtools */}
+        {/* "react-query-devtools" by default, only included in NODE_ENV === 'development' */}
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </trpc.Provider>

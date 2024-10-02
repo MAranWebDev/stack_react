@@ -29,9 +29,19 @@ export const FilterBox = () => {
       component="form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <TextField label="Id" variant="outlined" {...register('id')} />
+      <TextField
+        label="Id"
+        variant="outlined"
+        autoComplete="off"
+        {...register('id')}
+      />
 
-      <TextField label="Nombre" variant="outlined" {...register('name')} />
+      <TextField
+        label="Nombre"
+        variant="outlined"
+        autoComplete="off"
+        {...register('name')}
+      />
 
       <Button type="submit" variant="outlined">
         <SearchIcon />
