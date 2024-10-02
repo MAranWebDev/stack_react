@@ -13,7 +13,7 @@
     "drizzle:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@trpc/server": "11.0.0-rc.528",
+    "@trpc/server": "11.0.0-rc.553",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
@@ -25,20 +25,19 @@
     "@eslint/js": "^9.11.1",
     "@types/cors": "^2.8.17",
     "@types/eslint__js": "^8.42.3",
-    "@types/express": "^4.17.21",
-    "@types/node": "^22.6.1",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.4",
     "drizzle-kit": "^0.24.2",
     "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-check-file": "^2.8.0",
-    "globals": "^15.9.0",
+    "globals": "^15.10.0",
     "prettier": "^3.3.3",
-    "trpc-playground": "^1.0.4",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.6.2",
-    "typescript-eslint": "^8.7.0"
+    "typescript-eslint": "^8.8.0"
   }
 }
