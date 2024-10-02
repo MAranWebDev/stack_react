@@ -1,7 +1,9 @@
+import { MainLayout } from '@/components/layouts/main-layout';
+
 export const LandingRoute = () => {
   return (
-    <main>
+    <MainLayout>
       <h1>Landing Route</h1>
-    </main>
+    </MainLayout>
   );
 };
