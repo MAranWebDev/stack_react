@@ -8,7 +8,7 @@
     "prettier": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "eslint": "eslint . --fix",
-    "i18next:resources": "i18next-resources-for-ts interface -i ./public/locales -o ./src/@types/i18next-resources.d.ts"
+    "i18next:resources": "i18next-resources-for-ts interface -i ./public/locales/en -o ./src/@types/i18next-resources.d.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
