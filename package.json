@@ -12,6 +12,7 @@
     "prettier": "pnpm --filter @workspace/api --filter @workspace/web run prettier",
     "typecheck": "pnpm --filter @workspace/api --filter @workspace/web run typecheck",
     "eslint": "pnpm --filter @workspace/api --filter @workspace/web run eslint",
+    "i18next:resources": "pnpm --filter @workspace/web run i18next:resources",
     "drizzle:generate": "pnpm --filter @workspace/api run drizzle:generate",
     "drizzle:migrate": "pnpm --filter @workspace/api run drizzle:migrate",
     "drizzle:studio": "pnpm --filter @workspace/api run drizzle:studio"
