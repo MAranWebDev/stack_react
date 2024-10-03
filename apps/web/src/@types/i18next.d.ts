@@ -2,13 +2,11 @@
 import 'i18next';
 
 // import all namespaces (for the default language, only)
-import ns1 from '@/locales/en.json';
+import { DEFAULT_NS, resources } from '@/libs/i18n';
 
 declare module 'i18next' {
   interface CustomTypeOptions {
-    defaultNS: 'ns1';
-    resources: {
-      ns1: typeof ns1;
-    };
+    defaultNS: typeof DEFAULT_NS;
+    resources: (typeof resources)['en'];
   }
 }
