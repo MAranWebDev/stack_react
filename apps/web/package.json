@@ -8,7 +8,7 @@
     "prettier": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "eslint": "eslint . --fix",
-    "i18next:resources": "i18next-resources-for-ts interface -i ./public/locales/en -o ./src/@types/i18next-resources.d.ts"
+    "i18next:resources": "i18next-resources-for-ts interface -i ./public/locales -o ./src/@types/i18next-resources.d.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -24,7 +24,7 @@
     "@workspace/api": "workspace:*",
     "i18next": "^23.15.1",
     "i18next-browser-languagedetector": "^8.0.0",
-    "i18next-http-backend": "^2.6.1",
+    "i18next-http-backend": "^2.6.2",
     "immer": "^10.1.1",
     "notistack": "^3.0.1",
     "react": "^18.3.1",
