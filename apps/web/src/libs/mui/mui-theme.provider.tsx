@@ -5,19 +5,30 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
 // Libs
+import { useDarkModeStore } from '@/libs/zustand/stores';
 import CssBaseline from '@mui/material/CssBaseline';
-import { esES } from '@mui/material/locale';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import { PropsWithChildren } from 'react';
-
-// Theme settings
-const theme = createTheme(
-  {},
-  esES, // Spanish localization
-);
+import { useI18nMuiLocale } from './hooks';
 
 export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
+  const { muiLocale } = useI18nMuiLocale();
+
+  // "zustand"
+  const isDarkMode = useDarkModeStore((state) => state.isDarkMode);
+
+  // Setup
+  const mode = isDarkMode ? 'dark' : 'light';
+
+  // Theme settings
+  const theme = createTheme(
+    {
+      palette: { mode },
+    },
+    muiLocale,
+  );
+
   return (
     <ThemeProvider theme={theme}>
       {/* Normalize css */}
