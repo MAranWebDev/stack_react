@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend, { HttpBackendOptions } from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
-import { DEFAULT_NS } from './constants';
+import { DEFAULT_NS, LANGUAGES } from './constants';
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -21,7 +21,7 @@ i18n
 
     // Other i18next options
     debug: false,
-    fallbackLng: 'en',
+    fallbackLng: LANGUAGES.ENGLISH,
     defaultNS: DEFAULT_NS,
     interpolation: {
       escapeValue: false, // Not needed for react as it escapes by default
