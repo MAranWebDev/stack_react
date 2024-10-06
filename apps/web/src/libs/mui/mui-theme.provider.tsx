@@ -18,7 +18,6 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
   // "zustand"
   const isDarkMode = useDarkModeStore((state) => state.isDarkMode);
 
-  // Setup
   const mode = isDarkMode ? 'dark' : 'light';
 
   // Theme settings
