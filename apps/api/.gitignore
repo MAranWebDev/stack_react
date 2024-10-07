@@ -1,6 +1,6 @@
-# Folders
-/node_modules
-/dist
+# Directories
+node_modules
+dist
 
 # Files
 *.tsbuildinfo
