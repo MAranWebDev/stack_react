@@ -1,6 +1,6 @@
 import { LanguageDropdown } from '@/components/ui/dropdown';
 import { RequestSpinner } from '@/components/ui/spinner';
-import { DarkModeSwitch } from '@/components/ui/switch';
+import { ThemeModeToggle } from '@/components/ui/toggle';
 import { Box } from '@mui/material';
 import { PropsWithChildren } from 'react';
 
@@ -8,7 +8,7 @@ export const MainLayout = ({ children }: PropsWithChildren) => {
   return (
     <div>
       <header>
-        <DarkModeSwitch />
+        <ThemeModeToggle />
         <LanguageDropdown />
         <RequestSpinner />
       </header>
