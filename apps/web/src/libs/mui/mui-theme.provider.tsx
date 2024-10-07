@@ -24,6 +24,14 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
   const theme = createTheme(
     {
       palette: { mode },
+      components: {
+        MuiButton: {
+          styleOverrides: { root: { textTransform: 'none' } },
+        },
+        MuiToggleButton: {
+          styleOverrides: { root: { textTransform: 'none' } },
+        },
+      },
     },
     muiLocale,
   );
