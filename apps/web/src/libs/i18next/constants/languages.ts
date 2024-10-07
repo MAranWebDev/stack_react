@@ -1,7 +1,7 @@
 // Constants
 export const LANGUAGES = {
-  ENGLISH: 'en',
-  SPANISH: 'es',
+  EN: 'en', // English
+  ES: 'es', // Spanish
 } as const;
 
 // Exported types
