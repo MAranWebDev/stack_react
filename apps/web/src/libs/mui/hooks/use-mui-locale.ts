@@ -4,18 +4,17 @@ import { useTranslation } from 'react-i18next';
 
 // Constants
 const MUI_LOCALES: Record<LANGUAGES, Localization> = {
-  [LANGUAGES.ENGLISH]: enUS,
-  [LANGUAGES.SPANISH]: esES,
+  [LANGUAGES.EN]: enUS,
+  [LANGUAGES.ES]: esES,
 };
 
-export const useI18nMuiLocale = () => {
+export const useMuiLocale = () => {
   // "react-i18next"
   const { i18n } = useTranslation();
 
-  const language = i18n.resolvedLanguage || LANGUAGES.ENGLISH;
+  const language = i18n.resolvedLanguage || LANGUAGES.EN;
   const assertedLanguage = language as LANGUAGES;
+  const muiLocale = MUI_LOCALES[assertedLanguage];
 
-  return {
-    muiLocale: MUI_LOCALES[assertedLanguage],
-  };
+  return { muiLocale };
 };

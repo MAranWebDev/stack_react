@@ -11,10 +11,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import { PropsWithChildren } from 'react';
 import { THEME_MODES } from './constants';
-import { useI18nMuiLocale } from './hooks';
+import { useMuiLocale } from './hooks';
 
 export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
-  const { muiLocale } = useI18nMuiLocale();
+  const { muiLocale } = useMuiLocale();
 
   // "zustand"
   const isDarkMode = useThemeModeStore((state) => state.isDarkMode);
