@@ -25,7 +25,7 @@ export const SamplePagination = () => {
   };
 
   return (
-    <Paper sx={{ p: 2 }}>
+    <Paper>
       <TablePagination
         component="div"
         rowsPerPageOptions={rowsPerPageOptions}
