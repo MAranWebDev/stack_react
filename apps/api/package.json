@@ -9,8 +9,7 @@
     "typecheck": "tsc --noEmit",
     "eslint": "eslint . --fix",
     "drizzle:generate": "drizzle-kit generate",
-    "drizzle:migrate": "ts-node -r tsconfig-paths/register ./src/libs/drizzle/migrate.ts",
-    "drizzle:studio": "drizzle-kit studio"
+    "drizzle:migrate": "ts-node -r tsconfig-paths/register ./src/libs/drizzle/migrate.ts"
   },
   "dependencies": {
     "@trpc/server": "11.0.0-rc.553",

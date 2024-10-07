@@ -8,13 +8,14 @@
     "clean:builds": "find . \\( -name 'dist' \\) -exec rm -rf {} +",
     "clean:folders": "find . \\( -path './.husky/_' -o -name 'node_modules' \\) -exec rm -rf {} +",
     "clean:files": "find . \\( -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' -o -name '*.tsbuildinfo' \\) -exec rm -f {} +",
+    "clean:all": "pnpm run clean:builds && pnpm run clean:folders && pnpm run clean:files",
     "files:to-lf": "find . \\( -name 'node_modules' -o -name 'dist' \\) -prune -o -type f -exec dos2unix {} +",
     "prettier": "pnpm --filter @workspace/api --filter @workspace/web run prettier",
     "typecheck": "pnpm --filter @workspace/api --filter @workspace/web run typecheck",
     "eslint": "pnpm --filter @workspace/api --filter @workspace/web run eslint",
+    "format:all": "pnpm run files:to-lf && pnpm run prettier && pnpm run typecheck && pnpm run eslint",
     "drizzle:generate": "pnpm --filter @workspace/api run drizzle:generate",
-    "drizzle:migrate": "pnpm --filter @workspace/api run drizzle:migrate",
-    "drizzle:studio": "pnpm --filter @workspace/api run drizzle:studio"
+    "drizzle:migrate": "pnpm --filter @workspace/api run drizzle:migrate"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.5.0",
