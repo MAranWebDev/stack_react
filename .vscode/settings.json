@@ -11,5 +11,23 @@
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
   "editor.wordWrapColumn": 80,
-  "files.trimTrailingWhitespace": true // No prettier equivalent
+  "files.trimTrailingWhitespace": true, // No prettier equivalent
+
+  // Formatters
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[env]": {
+    "editor.defaultFormatter": "IronGeek.vscode-env"
+  },
+  "[properties][ignore][shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[dockercompose][dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+
+  // File-extension association
+  "files.associations": {
+    ".env": "env",
+    "*.env.*": "env"
+  }
 }
