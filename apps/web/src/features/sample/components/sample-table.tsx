@@ -1,4 +1,4 @@
-import { TableSkeleton } from '@/components/table-skeleton';
+import { TableSkeleton } from '@/components/ui/table';
 import { useReadSampleContext } from '@/features/sample/context';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -7,23 +7,22 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { useTranslation } from 'react-i18next';
 import { DeleteDialog } from './delete-dialog';
 import { UpdateDialog } from './update-dialog';
 
 // Constants
 const COLUMNS = ['Id', 'Nombre', 'Estado', 'Acciones'] as const;
 
-const STATUS = {
-  CLOSED: 'cerrado',
-  OPEN: 'abierto',
-} as const;
-
 export const SampleTable = () => {
   const { results, isFetching, rowsPerPage } = useReadSampleContext();
 
+  // "i18next"
+  const { t } = useTranslation();
+
   return (
-    <TableContainer sx={{ maxHeight: 420 }} component={Paper}>
-      <Table stickyHeader>
+    <TableContainer sx={{ height: 565 }} component={Paper}>
+      <Table stickyHeader size="small">
         <TableHead>
           <TableRow>
             {COLUMNS.map((column) => (
@@ -34,12 +33,18 @@ export const SampleTable = () => {
         <TableBody>
           {isFetching ? (
             <TableSkeleton columns={COLUMNS.length} rows={rowsPerPage} />
+          ) : results.length === 0 ? (
+            <TableRow>
+              <TableCell colSpan={COLUMNS.length} align="center">
+                {t('noData')}
+              </TableCell>
+            </TableRow>
           ) : (
             results.map(({ id, name, isDone }) => (
               <TableRow key={id} hover>
                 <TableCell>{id}</TableCell>
                 <TableCell>{name}</TableCell>
-                <TableCell>{isDone ? STATUS.CLOSED : STATUS.OPEN}</TableCell>
+                <TableCell>{isDone ? t('closed') : t('open')}</TableCell>
                 <TableCell>
                   <UpdateDialog id={id} />
                   <DeleteDialog id={id} />
