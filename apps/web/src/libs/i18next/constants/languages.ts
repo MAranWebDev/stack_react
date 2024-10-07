@@ -1,6 +1,4 @@
 // Constants
-export const DEFAULT_NS = 'translation';
-
 export const LANGUAGES = {
   ENGLISH: 'en',
   SPANISH: 'es',
