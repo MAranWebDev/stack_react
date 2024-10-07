@@ -1,10 +1,10 @@
 {
   "name": "t3",
   "scripts": {
+    "prepare": "husky || true",
     "dev": "concurrently \"pnpm --filter @workspace/api run dev\" \"pnpm --filter @workspace/web run dev\"",
     "build": "pnpm --filter @workspace/api --filter @workspace/web run build",
     "preview": "concurrently \"pnpm --filter @workspace/api run start\" \"pnpm --filter @workspace/web run preview\"",
-    "prepare": "husky || true",
     "clean:builds": "find . \\( -name 'dist' \\) -exec rm -rf {} +",
     "clean:folders": "find . \\( -path './.husky/_' -o -name 'node_modules' \\) -exec rm -rf {} +",
     "clean:files": "find . \\( -name 'package-lock.json' -o -name 'yarn.lock' -o -name 'pnpm-lock.yaml' -o -name '*.tsbuildinfo' \\) -exec rm -f {} +",
@@ -12,7 +12,6 @@
     "prettier": "pnpm --filter @workspace/api --filter @workspace/web run prettier",
     "typecheck": "pnpm --filter @workspace/api --filter @workspace/web run typecheck",
     "eslint": "pnpm --filter @workspace/api --filter @workspace/web run eslint",
-    "i18next:resources": "pnpm --filter @workspace/web run i18next:resources",
     "drizzle:generate": "pnpm --filter @workspace/api run drizzle:generate",
     "drizzle:migrate": "pnpm --filter @workspace/api run drizzle:migrate",
     "drizzle:studio": "pnpm --filter @workspace/api run drizzle:studio"

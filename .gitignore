@@ -3,5 +3,5 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# Folders
-/node_modules
+# Directories
+node_modules
