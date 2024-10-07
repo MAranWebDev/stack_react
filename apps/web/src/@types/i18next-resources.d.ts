@@ -1,11 +1,12 @@
 interface Resources {
   "translation": {
     "closed": "closed",
-    "english": "english",
     "language": "language",
     "noData": "no data",
     "open": "open",
-    "spanish": "spanish"
+    "light": "light",
+    "dark": "dark",
+    "system": "system"
   }
 }
 
