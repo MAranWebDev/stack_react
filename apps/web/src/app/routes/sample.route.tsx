@@ -6,16 +6,14 @@ import Typography from '@mui/material/Typography';
 export const SampleRoute = () => {
   return (
     <MainLayout>
-      <Box sx={{ width: '90%', mx: 'auto' }}>
-        <Box sx={{ my: 2 }} component="section">
-          <Typography sx={{ fontWeight: 'medium' }} component="h1" variant="h4">
-            Sample
-          </Typography>
-        </Box>
+      <Box component="section">
+        <Typography sx={{ fontWeight: 'medium' }} component="h1" variant="h4">
+          Sample
+        </Typography>
+      </Box>
 
-        <Box sx={{ mb: 2 }} component="section">
-          <Sample />
-        </Box>
+      <Box component="section">
+        <Sample />
       </Box>
     </MainLayout>
   );
