@@ -1,2 +1,2 @@
-export * from './default-ns';
+export * from './constants';
 export * from './languages';
