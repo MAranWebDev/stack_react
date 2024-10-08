@@ -5,25 +5,21 @@ import { initReactI18next } from 'react-i18next';
 import { DEFAULT_NS, LANGUAGES } from './constants';
 
 // Constants
+const DEFAULT_LANGUAGE = LANGUAGES.EN;
+
+// Translations
 const resources = {
   [LANGUAGES.EN]: { [DEFAULT_NS]: enLocale },
   [LANGUAGES.ES]: { [DEFAULT_NS]: esLocale },
 } as const;
 
-const DEFAULT_LANGUAGE = LANGUAGES.EN;
-
 // Settings
 i18n
-  // detect user language
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
-  .use(LanguageDetector)
-  // pass the i18n instance to react-i18next.
-  .use(initReactI18next)
+  .use(LanguageDetector) // detect user language
+  .use(initReactI18next) // pass the i18n instance to react-i18next.
   // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    // Translations
-    resources,
+    resources, // Translations
 
     // Other i18next options
     debug: false,
