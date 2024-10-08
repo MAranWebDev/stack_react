@@ -34,7 +34,7 @@ i18n
     },
   });
 
-// Exported i18n instance
+// Exported i18next instance
 export { i18n };
 
 // Exported types
