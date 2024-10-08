@@ -18,11 +18,11 @@ export const LanguageDropdown = () => {
 
   return (
     <FormControl>
-      <InputLabel id="select-label">{t('Language')}</InputLabel>
+      <InputLabel id="select-label">{t('language')}</InputLabel>
       <Select
         labelId="select-label"
         id="select"
-        label={t('Language')}
+        label={t('language')}
         value={currentLanguage}
         onChange={handleChange}
       >

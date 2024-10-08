@@ -1,9 +1,13 @@
 {
-  "Closed": "Closed",
-  "Language": "Language",
-  "NoData": "No data",
-  "Open": "Open",
-  "Light": "Light",
-  "Dark": "Dark",
-  "System": "System"
+  "language": "Language",
+  "noData": "No data",
+  "status": {
+    "open": "Open",
+    "closed": "Closed"
+  },
+  "themeMode": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
 }
