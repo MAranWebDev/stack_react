@@ -5,6 +5,7 @@ import { create } from 'zustand';
 // Types
 interface Store {
   isDarkMode: boolean;
+  themeMode: THEME_MODES;
   changeThemeMode: (themeMode: THEME_MODES) => void;
 }
 
@@ -29,8 +30,10 @@ export const useThemeModeStore = create<Store>()(
     persistKeys: PERSIST_KEYS,
     store: (set) => ({
       isDarkMode: getIsDarkMode(THEME_MODES.SYSTEM),
+      themeMode: THEME_MODES.SYSTEM,
       changeThemeMode: (themeMode: THEME_MODES) =>
         set((state) => {
+          state.themeMode = themeMode;
           state.isDarkMode = getIsDarkMode(themeMode);
         }),
     }),

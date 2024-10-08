@@ -1,9 +1,9 @@
 {
-  "closed": "closed",
-  "language": "language",
-  "noData": "no data",
-  "open": "open",
-  "light": "light",
-  "dark": "dark",
-  "system": "system"
+  "Closed": "Closed",
+  "Language": "Language",
+  "NoData": "No data",
+  "Open": "Open",
+  "Light": "Light",
+  "Dark": "Dark",
+  "System": "System"
 }

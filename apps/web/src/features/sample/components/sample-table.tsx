@@ -36,7 +36,7 @@ export const SampleTable = () => {
           ) : results.length === 0 ? (
             <TableRow>
               <TableCell colSpan={COLUMNS.length} align="center">
-                {t('noData')}
+                {t('NoData')}
               </TableCell>
             </TableRow>
           ) : (
@@ -44,7 +44,7 @@ export const SampleTable = () => {
               <TableRow key={id} hover>
                 <TableCell>{id}</TableCell>
                 <TableCell>{name}</TableCell>
-                <TableCell>{isDone ? t('closed') : t('open')}</TableCell>
+                <TableCell>{isDone ? t('Closed') : t('Open')}</TableCell>
                 <TableCell>
                   <UpdateDialog id={id} />
                   <DeleteDialog id={id} />
