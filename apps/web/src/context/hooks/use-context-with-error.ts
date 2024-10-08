@@ -6,9 +6,9 @@ export const useContextWithError = <TContext>(
   hookName: string,
   providerName: string,
 ) => {
-  const ctx = useContext(context);
+  const contextValues = useContext(context);
 
-  if (ctx === undefined)
+  if (contextValues === undefined)
     throw new Error(`${hookName} must be used within ${providerName}`);
-  return ctx;
+  return contextValues;
 };
