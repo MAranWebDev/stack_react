@@ -11,17 +11,16 @@ interface Store {
 
 // Constants
 const PERSIST_STORE_NAME = 'darkModeStore';
-const PERSIST_KEYS = ['isDarkMode'] as const;
+const PERSIST_KEYS = ['isDarkMode', 'themeMode'] as const;
 
 // Methods
 const getIsDarkMode = (themeMode: THEME_MODES) => {
   if (themeMode === THEME_MODES.DARK) return true;
   if (themeMode === THEME_MODES.LIGHT) return false;
 
-  const systemThemeIsDark = window.matchMedia(
-    '(prefers-color-scheme: dark)',
-  ).matches;
-  return systemThemeIsDark;
+  const darkModeMediaQuery = '(prefers-color-scheme: dark)';
+  const isSystemInDarkMode = window.matchMedia(darkModeMediaQuery).matches;
+  return isSystemInDarkMode;
 };
 
 export const useThemeModeStore = create<Store>()(
