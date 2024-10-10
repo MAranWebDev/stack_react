@@ -31,7 +31,7 @@ export const ExclusiveIconToggle = ({
       onChange={onChange}
     >
       {toggleButtons.map(({ MuiIcon, value, text }) => (
-        <ToggleButton sx={{ color: 'text.primary' }} value={value}>
+        <ToggleButton sx={{ color: 'text.primary' }} key={value} value={value}>
           <MuiIcon sx={{ mr: 1 }} />
           {text}
         </ToggleButton>
