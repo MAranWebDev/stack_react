@@ -3,10 +3,30 @@ import { useThemeModeStore } from '@/libs/zustand/stores';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ExclusiveIconToggle } from './exlusive-icon-toggle';
+
+// Constants
+const MODES = Object.values(THEME_MODES);
+
+const TOGGLE_BUTTONS = [
+  {
+    MuiIcon: LightModeIcon,
+    value: THEME_MODES.LIGHT,
+    text: 'themeMode.light',
+  },
+  {
+    MuiIcon: SettingsBrightnessOutlinedIcon,
+    value: THEME_MODES.SYSTEM,
+    text: 'themeMode.system',
+  },
+  {
+    MuiIcon: DarkModeOutlinedIcon,
+    value: THEME_MODES.DARK,
+    text: 'themeMode.dark',
+  },
+] as const;
 
 export const ThemeModeToggle = () => {
   // "zustand"
@@ -16,35 +36,22 @@ export const ThemeModeToggle = () => {
   // "react-i18next"
   const { t } = useTranslation();
 
+  const toggleButtons = TOGGLE_BUTTONS.map(({ text, ...button }) => ({
+    ...button,
+    text: t(text),
+  }));
+
   // Methods
-  const handleChange = (
-    _: MouseEvent<HTMLElement>,
-    newThemeMode: THEME_MODES | null,
-  ) => {
-    if (newThemeMode !== null) changeThemeMode(newThemeMode);
+  const handleChange = (_: MouseEvent<HTMLElement>, value: string) => {
+    const themeMode = value as THEME_MODES; // Asserted because onChange value must be string
+    if (MODES.includes(themeMode)) changeThemeMode(themeMode);
   };
 
   return (
-    <ToggleButtonGroup
-      color="primary"
-      value={themeMode}
-      exclusive
-      size="large"
-      aria-label="Color scheme"
+    <ExclusiveIconToggle
+      exclusiveValue={themeMode}
+      toggleButtons={toggleButtons}
       onChange={handleChange}
-    >
-      <ToggleButton value={THEME_MODES.LIGHT}>
-        <LightModeIcon sx={{ mr: 1 }} />
-        {t('themeMode.light')}
-      </ToggleButton>
-      <ToggleButton value={THEME_MODES.SYSTEM}>
-        <SettingsBrightnessOutlinedIcon sx={{ mr: 1 }} />
-        {t('themeMode.system')}
-      </ToggleButton>
-      <ToggleButton value={THEME_MODES.DARK}>
-        <DarkModeOutlinedIcon sx={{ mr: 1 }} />
-        {t('themeMode.dark')}
-      </ToggleButton>
-    </ToggleButtonGroup>
+    />
   );
 };
