@@ -22,9 +22,10 @@ export const LanguageDropdown = () => {
       <Select
         labelId="select-label"
         id="select"
-        label={t('language')}
+        name="select"
         value={currentLanguage}
         onChange={handleChange}
+        label={t('language')}
       >
         {languageCodes.map((code) => (
           <MenuItem key={code} value={code}>
