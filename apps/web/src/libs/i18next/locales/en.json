@@ -1,6 +1,8 @@
 {
   "language": "Language",
   "noData": "No data",
+  "settings": "Settings",
+  "mode": "Mode",
   "status": {
     "open": "Open",
     "closed": "Closed"

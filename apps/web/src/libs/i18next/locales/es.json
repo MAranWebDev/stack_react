@@ -1,6 +1,8 @@
 {
   "language": "Idioma",
   "noData": "Sin datos",
+  "settings": "Configuración",
+  "mode": "Modo",
   "status": {
     "open": "Abierto",
     "closed": "Cerrado"
