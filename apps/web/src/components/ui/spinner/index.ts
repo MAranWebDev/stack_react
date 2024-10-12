@@ -1,1 +1,1 @@
-export * from './request-spinner';
+export * from './absolute-spinner';
