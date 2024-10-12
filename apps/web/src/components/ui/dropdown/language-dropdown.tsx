@@ -15,7 +15,7 @@ export const LanguageDropdown = () => {
     i18n.changeLanguage(event.target.value);
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <InputLabel id="select-label">{t('language')}</InputLabel>
       <Select
         labelId="select-label"
