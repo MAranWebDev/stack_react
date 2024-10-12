@@ -4,7 +4,7 @@ import { FC, MouseEventHandler, SVGProps } from 'react';
 
 interface Props {
   Icon: FC<SVGProps<SVGSVGElement>> | SvgIconComponent;
-  onClick: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const IconButtonWithIcon = ({ Icon, onClick }: Props) => {
