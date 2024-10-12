@@ -1,20 +1,14 @@
-import { LanguageDropdown } from '@/components/ui/dropdown';
-import { RequestSpinner } from '@/components/ui/spinner';
-import { ThemeModeToggle } from '@/components/ui/toggle';
-import { Box } from '@mui/material';
+import { HeaderAppBar } from '@/components/ui/header';
+import Box from '@mui/material/Box';
 import { PropsWithChildren } from 'react';
 
 export const MainLayout = ({ children }: PropsWithChildren) => {
   return (
-    <div>
-      <header>
-        <ThemeModeToggle />
-        <LanguageDropdown />
-        <RequestSpinner />
-      </header>
+    <>
+      <HeaderAppBar />
       <Box sx={{ width: '90%', mx: 'auto' }} component="main">
         {children}
       </Box>
-    </div>
+    </>
   );
 };
