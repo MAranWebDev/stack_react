@@ -6,7 +6,7 @@ export const SampleRoute = () => {
   return (
     <MainLayout>
       <Box component="section">
-        <h1>Sample Route</h1>
+        <h1>Sample</h1>
       </Box>
 
       <Box component="section">

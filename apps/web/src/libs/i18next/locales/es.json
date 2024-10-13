@@ -3,6 +3,8 @@
   "noData": "Sin datos",
   "settings": "Configuración",
   "mode": "Modo",
+  "unauthorized": "Sin autorización",
+  "notFound": "No encontrado",
   "status": {
     "open": "Abierto",
     "closed": "Cerrado"
