@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import { sampleZod, SampleZod } from '@workspace/api';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 // Types
 type Schema = SampleZod['updateInput'];
@@ -21,6 +22,9 @@ interface Props {
 
 export const UpdateDialog = ({ id }: Props) => {
   const [open, setOpen] = useState(false);
+
+  // "react-i18next"
+  const { t } = useTranslation();
 
   // "react-hook-form"
   const { register, handleSubmit } = useForm<Schema>({
@@ -53,7 +57,7 @@ export const UpdateDialog = ({ id }: Props) => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
       >
-        <DialogTitle id="alert-dialog-title">Editar</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{t('actions.edit')}</DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
@@ -65,8 +69,8 @@ export const UpdateDialog = ({ id }: Props) => {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button type="submit">Editar</Button>
+          <Button onClick={handleClose}>{t('actions.cancel')}</Button>
+          <Button type="submit">{t('actions.edit')}</Button>
         </DialogActions>
       </Dialog>
     </>

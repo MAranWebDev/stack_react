@@ -8,9 +8,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const DeleteDialog = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false);
+
+  // "react-i18next"
+  const { t } = useTranslation();
 
   // "trpc"
   const utils = trpc.useUtils();
@@ -38,18 +42,17 @@ export const DeleteDialog = ({ id }: { id: string }) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          Desea eliminar el registro?
+          {t('messages.confirmation')}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Esta acción eliminará el registro permanentemente de la base de
-            datos.
+            {t('messages.permanentDeleteWarning')}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Rechazar</Button>
+          <Button onClick={handleClose}> {t('actions.cancel')}</Button>
           <Button onClick={() => handleClickRemove(id)} autoFocus>
-            Aceptar
+            {t('actions.accept')}
           </Button>
         </DialogActions>
       </Dialog>

@@ -36,7 +36,7 @@ export const SampleTable = () => {
           ) : results.length === 0 ? (
             <TableRow>
               <TableCell colSpan={COLUMNS.length} align="center">
-                {t('noData')}
+                {t('messages.noData')}
               </TableCell>
             </TableRow>
           ) : (
