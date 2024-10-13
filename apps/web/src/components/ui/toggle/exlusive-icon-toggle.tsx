@@ -2,7 +2,7 @@ import { SvgIconComponent } from '@mui/icons-material';
 import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-interface IconToggleButtonProps {
+interface IconToggleButton {
   Icon: SvgIconComponent;
   value: string;
   text: string;
@@ -11,7 +11,7 @@ interface IconToggleButtonProps {
 interface Props {
   exclusiveValue: string;
   onChange: ToggleButtonProps['onChange'];
-  toggleButtons: IconToggleButtonProps[];
+  toggleButtons: IconToggleButton[];
 }
 
 export const ExclusiveIconToggle = ({
