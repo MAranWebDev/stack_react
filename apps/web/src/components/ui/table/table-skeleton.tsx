@@ -9,17 +9,13 @@ interface Props {
 }
 
 export const TableSkeleton = ({ rows, columns }: Props) => {
-  return (
-    <>
-      {Array.from({ length: rows }, (_, rowIndex) => (
-        <TableRow key={rowIndex}>
-          {Array.from({ length: columns }, (_, columnIndex) => (
-            <TableCell key={columnIndex}>
-              <Skeleton variant="text" animation="wave" />
-            </TableCell>
-          ))}
-        </TableRow>
+  return Array.from({ length: rows }, (_, rowIndex) => (
+    <TableRow key={rowIndex}>
+      {Array.from({ length: columns }, (_, columnIndex) => (
+        <TableCell key={columnIndex}>
+          <Skeleton variant="text" animation="wave" />
+        </TableCell>
       ))}
-    </>
-  );
+    </TableRow>
+  ));
 };
