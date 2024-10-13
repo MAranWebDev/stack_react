@@ -30,8 +30,8 @@ export const es: DefaultLocale = {
     unauthorized: 'Sin autorización',
     noData: 'Sin datos',
     notFound: 'No encontrado',
-    confirmation: 'Estás seguro de querer continuar?',
+    confirmation: 'Está seguro de querer continuar?',
     permanentDeleteWarning:
-      'Advertencia: esta acción eliminará permanentemente el registro y no se puede deshacer.',
+      'Advertencia: esta acción eliminará permanentemente el registro.',
   },
 };

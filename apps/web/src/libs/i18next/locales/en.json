@@ -26,6 +26,6 @@
     "noData": "No data",
     "notFound": "Not found",
     "confirmation": "Are you sure you want to proceed?",
-    "permanentDeleteWarning": "Warning: This action will permanently delete the record and cannot be undone."
+    "permanentDeleteWarning": "Warning: This action will permanently delete the record."
   }
 }
