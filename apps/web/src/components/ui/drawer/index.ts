@@ -1,1 +1,1 @@
-export * from './custom-drawer';
+export * from './settings-drawer';
