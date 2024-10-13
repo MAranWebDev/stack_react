@@ -1,9 +1,7 @@
 import { CustomIconButton } from '@/components/ui/button';
 import { SettingsDrawer } from '@/components/ui/drawer';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
 import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
@@ -41,11 +39,6 @@ export const MainHeader = () => {
           </Typography>
 
           <Stack direction="row" spacing={1}>
-            <CustomIconButton>
-              <Badge badgeContent={2} color="error">
-                <NotificationsIcon fontSize="small" />
-              </Badge>
-            </CustomIconButton>
             <CustomIconButton onClick={toggleDrawer(true)}>
               <SettingsOutlinedIcon fontSize="small" />
             </CustomIconButton>
