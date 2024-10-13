@@ -1,4 +1,4 @@
-import { enLocale, esLocale } from '@/libs/i18next/locales';
+import { en, es } from '@/libs/i18next/locales';
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
@@ -9,8 +9,8 @@ const DEFAULT_LANGUAGE = LANGUAGES.EN;
 
 // Translations
 const resources = {
-  [LANGUAGES.EN]: { [DEFAULT_NS]: enLocale },
-  [LANGUAGES.ES]: { [DEFAULT_NS]: esLocale },
+  [LANGUAGES.EN]: { [DEFAULT_NS]: en },
+  [LANGUAGES.ES]: { [DEFAULT_NS]: es },
 } as const;
 
 // Settings

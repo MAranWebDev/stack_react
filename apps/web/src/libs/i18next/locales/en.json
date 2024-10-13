@@ -3,16 +3,19 @@
   "settings": "Settings",
   "mode": "Mode",
   "name": "Name",
+  "bears": "Bears",
   "themeModes": {
     "light": "Light",
     "dark": "Dark",
     "system": "System"
   },
   "status": {
+    "label": "Status",
     "open": "Open",
     "closed": "Closed"
   },
   "actions": {
+    "label": "Actions",
     "accept": "Accept",
     "edit": "Edit",
     "cancel": "Cancel",
