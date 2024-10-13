@@ -2,6 +2,7 @@ import { SvgIconComponent } from '@mui/icons-material';
 import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
+// Types
 interface IconToggleButton {
   Icon: SvgIconComponent;
   value: string;
