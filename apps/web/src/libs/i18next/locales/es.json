@@ -2,8 +2,7 @@
   "language": "Idioma",
   "settings": "Configuración",
   "mode": "Modo",
-  "unauthorized": "Sin autorización",
-  "notFound": "No encontrado",
+  "name": "Nombre",
   "themeModes": {
     "light": "Luz",
     "dark": "Oscuro",
@@ -20,8 +19,10 @@
     "clean": "Limpiar"
   },
   "messages": {
+    "unauthorized": "Sin autorización",
     "noData": "Sin datos",
+    "notFound": "No encontrado",
     "confirmMessage": "Estás seguro de querer continuar?",
-    "permanentDeleteWarning": "Advertencia: esta acción eliminará permanentemente el registro y no se puede deshacer"
+    "permanentDeleteWarning": "Advertencia: esta acción eliminará permanentemente el registro y no se puede deshacer."
   }
 }

@@ -2,8 +2,7 @@
   "language": "Language",
   "settings": "Settings",
   "mode": "Mode",
-  "unauthorized": "Unauthorized",
-  "notFound": "Not found",
+  "name": "Name",
   "themeModes": {
     "light": "Light",
     "dark": "Dark",
@@ -20,7 +19,9 @@
     "clean": "Clean"
   },
   "messages": {
+    "unauthorized": "Unauthorized",
     "noData": "No data",
+    "notFound": "Not found",
     "confirmation": "Are you sure you want to proceed?",
     "permanentDeleteWarning": "Warning: This action will permanently delete the record and cannot be undone."
   }

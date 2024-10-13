@@ -6,7 +6,7 @@ export const UnauthorizedRoute = () => {
 
   return (
     <main>
-      <h1>{t('unauthorized')}</h1>
+      <h1>{t('messages.unauthorized')}</h1>
     </main>
   );
 };

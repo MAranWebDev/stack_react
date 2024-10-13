@@ -6,7 +6,7 @@ export const NotFoundRoute = () => {
 
   return (
     <main>
-      <h1>{t('notFound')}</h1>
+      <h1>{t('messages.notFound')}</h1>
     </main>
   );
 };
