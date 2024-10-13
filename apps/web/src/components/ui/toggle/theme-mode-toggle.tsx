@@ -12,17 +12,17 @@ const TOGGLE_BUTTONS = [
   {
     Icon: LightModeIcon,
     value: THEME_MODES.LIGHT,
-    text: 'themeMode.light',
+    text: 'themeModes.light',
   },
   {
     Icon: SettingsBrightnessOutlinedIcon,
     value: THEME_MODES.SYSTEM,
-    text: 'themeMode.system',
+    text: 'themeModes.system',
   },
   {
     Icon: DarkModeOutlinedIcon,
     value: THEME_MODES.DARK,
-    text: 'themeMode.dark',
+    text: 'themeModes.dark',
   },
 ] as const;
 

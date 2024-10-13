@@ -17,7 +17,7 @@ const COLUMNS = ['Id', 'Nombre', 'Estado', 'Acciones'] as const;
 export const SampleTable = () => {
   const { results, isFetching, rowsPerPage } = useReadSampleContext();
 
-  // "i18next"
+  // "react-i18next"
   const { t } = useTranslation();
 
   return (

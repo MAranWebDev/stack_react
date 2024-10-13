@@ -20,7 +20,7 @@ export const CreateBox = () => {
     resolver: zodResolver(sampleZod.createInput),
   });
 
-  // trpc
+  // "trpc"
   const utils = trpc.useUtils();
   const sampleCreate = trpc.sample.create.useMutation({
     onSuccess() {

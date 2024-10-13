@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 export const UnauthorizedRoute = () => {
+  // "react-i18next"
   const { t } = useTranslation();
 
   return (

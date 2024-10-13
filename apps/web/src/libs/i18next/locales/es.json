@@ -5,11 +5,15 @@
   "mode": "Modo",
   "unauthorized": "Sin autorización",
   "notFound": "No encontrado",
+  "actions": {
+    "edit": "Editar",
+    "cancel": "Cancelar"
+  },
   "status": {
     "open": "Abierto",
     "closed": "Cerrado"
   },
-  "themeMode": {
+  "themeModes": {
     "light": "Luz",
     "dark": "Oscuro",
     "system": "Sistema"
