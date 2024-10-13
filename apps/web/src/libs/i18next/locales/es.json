@@ -1,21 +1,27 @@
 {
   "language": "Idioma",
-  "noData": "Sin datos",
   "settings": "Configuración",
   "mode": "Modo",
   "unauthorized": "Sin autorización",
   "notFound": "No encontrado",
-  "actions": {
-    "edit": "Editar",
-    "cancel": "Cancelar"
+  "themeModes": {
+    "light": "Luz",
+    "dark": "Oscuro",
+    "system": "Sistema"
   },
   "status": {
     "open": "Abierto",
     "closed": "Cerrado"
   },
-  "themeModes": {
-    "light": "Luz",
-    "dark": "Oscuro",
-    "system": "Sistema"
+  "actions": {
+    "accept": "Aceptar",
+    "edit": "Editar",
+    "cancel": "Cancelar",
+    "clean": "Limpiar"
+  },
+  "messages": {
+    "noData": "Sin datos",
+    "confirmMessage": "Estás seguro de querer continuar?",
+    "permanentDeleteWarning": "Advertencia: esta acción eliminará permanentemente el registro y no se puede deshacer"
   }
 }

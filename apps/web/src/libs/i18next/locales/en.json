@@ -1,21 +1,27 @@
 {
   "language": "Language",
-  "noData": "No data",
   "settings": "Settings",
   "mode": "Mode",
   "unauthorized": "Unauthorized",
   "notFound": "Not found",
-  "actions": {
-    "edit": "Edit",
-    "cancel": "Cancel"
+  "themeModes": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   },
   "status": {
     "open": "Open",
     "closed": "Closed"
   },
-  "themeModes": {
-    "light": "Light",
-    "dark": "Dark",
-    "system": "System"
+  "actions": {
+    "accept": "Accept",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "clean": "Clean"
+  },
+  "messages": {
+    "noData": "No data",
+    "confirmation": "Are you sure you want to proceed?",
+    "permanentDeleteWarning": "Warning: This action will permanently delete the record and cannot be undone."
   }
 }
