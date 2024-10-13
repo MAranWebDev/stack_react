@@ -1,5 +1,5 @@
 import { CustomIconButton } from '@/components/ui/button';
-import { CustomDrawer } from '@/components/ui/drawer';
+import { SettingsDrawer } from '@/components/ui/drawer';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AppBar from '@mui/material/AppBar';
@@ -58,11 +58,7 @@ export const HeaderAppBar = () => {
       {/* Empty toolbar to not have content behind the AppBar  */}
       <Toolbar />
 
-      <CustomDrawer
-        anchor="right"
-        open={isDrawerOpen}
-        onClose={toggleDrawer(false)}
-      />
+      <SettingsDrawer open={isDrawerOpen} onClose={toggleDrawer(false)} />
     </Box>
   );
 };
