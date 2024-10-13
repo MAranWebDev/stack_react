@@ -6,11 +6,15 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import { SampleZod, sampleZod } from '@workspace/api';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 // Types
 type Schema = SampleZod['createInput'];
 
 export const CreateBox = () => {
+  // "react-i18next"
+  const { t } = useTranslation();
+
   // "react-hook-form"
   const {
     register,
@@ -40,7 +44,7 @@ export const CreateBox = () => {
       <TextField
         required
         size="medium"
-        label="Nombre"
+        label={t('name')}
         variant="outlined"
         autoComplete="off"
         error={!!errors.name}

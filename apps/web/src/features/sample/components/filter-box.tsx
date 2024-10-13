@@ -7,12 +7,16 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import { sampleZod, SampleZod } from '@workspace/api';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 // Types
 type Schema = SampleZod['getAllInput'];
 
 export const FilterBox = () => {
   const { filterData } = useUpdateSampleContext();
+
+  // "react-i18next"
+  const { t } = useTranslation();
 
   // "react-hook-form"
   const { register, handleSubmit } = useForm<Schema>({
@@ -37,7 +41,7 @@ export const FilterBox = () => {
       />
 
       <TextField
-        label="Nombre"
+        label={t('name')}
         variant="outlined"
         autoComplete="off"
         {...register('name')}

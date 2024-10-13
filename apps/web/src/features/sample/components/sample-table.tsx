@@ -12,7 +12,6 @@ import { DeleteDialog } from './delete-dialog';
 import { UpdateDialog } from './update-dialog';
 
 // Constants
-const COLUMNS = ['Id', 'Nombre', 'Estado', 'Acciones'] as const;
 
 export const SampleTable = () => {
   const { results, isFetching, rowsPerPage } = useReadSampleContext();
@@ -20,22 +19,24 @@ export const SampleTable = () => {
   // "react-i18next"
   const { t } = useTranslation();
 
+  const columns = ['Id', t('name'), t('status.label'), t('actions.label')];
+
   return (
     <TableContainer sx={{ height: 565 }} component={Paper}>
       <Table stickyHeader size="small">
         <TableHead>
           <TableRow>
-            {COLUMNS.map((column) => (
+            {columns.map((column) => (
               <TableCell key={column}>{column}</TableCell>
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
           {isFetching ? (
-            <TableSkeleton columns={COLUMNS.length} rows={rowsPerPage} />
+            <TableSkeleton columns={columns.length} rows={rowsPerPage} />
           ) : results.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={COLUMNS.length} align="center">
+              <TableCell colSpan={columns.length} align="center">
                 {t('messages.noData')}
               </TableCell>
             </TableRow>

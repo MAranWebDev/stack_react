@@ -61,7 +61,7 @@ export const UpdateDialog = ({ id }: Props) => {
         <DialogContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
-              label="Nombre"
+              label={t('name')}
               variant="outlined"
               autoComplete="off"
               {...register('name')}
