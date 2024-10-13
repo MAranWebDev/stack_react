@@ -32,6 +32,10 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
         MuiToggleButton: {
           styleOverrides: { root: { textTransform: 'none' } },
         },
+        MuiDrawer: {
+          styleOverrides: { paper: { borderRadius: '10px' } },
+          defaultProps: { SlideProps: { appear: true } },
+        },
       },
     },
     muiLocale,
