@@ -4,7 +4,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import { useIsFetching, useIsMutating } from '@tanstack/react-query';
 import { useState } from 'react';
 
-export const HeaderAppBar = () => {
+export const MainHeader = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // "react-query"
@@ -27,7 +26,7 @@ export const HeaderAppBar = () => {
     setIsDrawerOpen(newIsDrawerOpen);
 
   return (
-    <Box component="header">
+    <header>
       <AppBar
         sx={{
           color: 'primary.dark',
@@ -59,6 +58,6 @@ export const HeaderAppBar = () => {
       <Toolbar />
 
       <SettingsDrawer open={isDrawerOpen} onClose={toggleDrawer(false)} />
-    </Box>
+    </header>
   );
 };
