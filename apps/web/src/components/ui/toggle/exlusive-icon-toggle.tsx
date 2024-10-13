@@ -1,19 +1,17 @@
 import { SvgIconComponent } from '@mui/icons-material';
-import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { MouseEvent } from 'react';
 
-// Types
-type ToggleButtons = {
-  MuiIcon: SvgIconComponent;
+interface IconToggleButtonProps {
+  Icon: SvgIconComponent;
   value: string;
   text: string;
-}[];
+}
 
 interface Props {
   exclusiveValue: string;
-  onChange: (event: MouseEvent<HTMLElement>, value: string) => void;
-  toggleButtons: ToggleButtons;
+  onChange: ToggleButtonProps['onChange'];
+  toggleButtons: IconToggleButtonProps[];
 }
 
 export const ExclusiveIconToggle = ({
@@ -23,16 +21,17 @@ export const ExclusiveIconToggle = ({
 }: Props) => {
   return (
     <ToggleButtonGroup
+      fullWidth
       color="primary"
       value={exclusiveValue}
       exclusive
-      size="large"
+      size="medium"
       aria-label="Exclusive icon toggle"
       onChange={onChange}
     >
-      {toggleButtons.map(({ MuiIcon, value, text }) => (
-        <ToggleButton sx={{ color: 'text.primary' }} key={value} value={value}>
-          <MuiIcon sx={{ mr: 1 }} />
+      {toggleButtons.map(({ Icon, value, text }) => (
+        <ToggleButton sx={{ borderRadius: '10px' }} key={value} value={value}>
+          <Icon sx={{ mr: 1 }} />
           {text}
         </ToggleButton>
       ))}

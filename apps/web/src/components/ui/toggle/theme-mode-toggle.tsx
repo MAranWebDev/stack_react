@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { ExclusiveIconToggle } from './exlusive-icon-toggle';
 
 // Constants
-
 const TOGGLE_BUTTONS = [
   {
     Icon: LightModeIcon,
@@ -41,9 +40,11 @@ export const ThemeModeToggle = () => {
   }));
 
   // Methods
-  const handleChange = (_: MouseEvent<HTMLElement>, value: string) => {
-    const themeMode = value as THEME_MODES; // Asserted because onChange value must be string
-    if (THEME_MODE_VALUES.includes(themeMode)) changeThemeMode(themeMode);
+  const handleChange = (
+    _: MouseEvent<HTMLElement>,
+    newThemeMode: THEME_MODES,
+  ) => {
+    if (THEME_MODE_VALUES.includes(newThemeMode)) changeThemeMode(newThemeMode);
   };
 
   return (
