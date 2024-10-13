@@ -35,3 +35,4 @@ export { i18n };
 
 // Exported types
 export type DefaultResources = (typeof resources)[typeof DEFAULT_LANGUAGE];
+export type DefaultLocale = typeof en;
