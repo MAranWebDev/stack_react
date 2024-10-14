@@ -1,7 +1,4 @@
-import en from './en.json';
-
-// Types
-type DefaultLocale = typeof en;
+import { DefaultLocale } from '@/libs/i18next/i18n';
 
 export const es: DefaultLocale = {
   language: 'Idioma',

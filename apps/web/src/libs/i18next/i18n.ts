@@ -2,14 +2,20 @@ import { en, es } from '@/libs/i18next/locales';
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import { DEFAULT_NS, LANGUAGES } from './constants';
+import { DEFAULT_NS, DefaultNS, LANGUAGES } from './constants';
+
+// Types
+type DefaultLanguage = typeof DEFAULT_LANGUAGE;
 
 // Constants
 const DEFAULT_LANGUAGE = LANGUAGES.EN;
 
 // Translations
+const defaultResource = {
+  [DEFAULT_LANGUAGE]: { [DEFAULT_NS]: en },
+} as const;
 const resources = {
-  [LANGUAGES.EN]: { [DEFAULT_NS]: en },
+  ...defaultResource,
   [LANGUAGES.ES]: { [DEFAULT_NS]: es },
 } as const;
 
@@ -34,4 +40,7 @@ i18n
 export { i18n };
 
 // Exported types
-export type DefaultResources = (typeof resources)[typeof DEFAULT_LANGUAGE];
+export type DefaultLocale =
+  (typeof defaultResource)[DefaultLanguage][DefaultNS];
+
+export type DefaultResources = (typeof resources)[DefaultLanguage];
