@@ -8,10 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useTranslation } from 'react-i18next';
-import { SampleDeleteTriggerDialog } from './sample-delete-trigger-dialog';
-import { SampleUpdateTriggerDialog } from './sample-update-trigger-dialog';
-
-// Constants
+import { SampleDeleteTrigger } from './sample-delete-trigger';
+import { SampleUpdateTrigger } from './sample-update-trigger';
 
 export const SampleTable = () => {
   const { results, isFetching, rowsPerPage } = useReadSampleContext();
@@ -49,8 +47,8 @@ export const SampleTable = () => {
                   {isDone ? t('status.closed') : t('status.open')}
                 </TableCell>
                 <TableCell>
-                  <SampleUpdateTriggerDialog id={id} />
-                  <SampleDeleteTriggerDialog id={id} />
+                  <SampleUpdateTrigger id={id} />
+                  <SampleDeleteTrigger id={id} />
                 </TableCell>
               </TableRow>
             ))
