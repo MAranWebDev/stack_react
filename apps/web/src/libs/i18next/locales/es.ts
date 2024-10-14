@@ -5,7 +5,7 @@ export const es: DefaultLocale = {
   settings: 'Configuración',
   mode: 'Modo',
   name: 'Nombre',
-  bears: 'Osos',
+  amount: 'Cantidad',
   themeModes: {
     light: 'Luz',
     dark: 'Oscuro',

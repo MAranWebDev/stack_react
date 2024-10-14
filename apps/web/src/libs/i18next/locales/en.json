@@ -3,7 +3,7 @@
   "settings": "Settings",
   "mode": "Mode",
   "name": "Name",
-  "bears": "Bears",
+  "amount": "Amount",
   "themeModes": {
     "light": "Light",
     "dark": "Dark",
