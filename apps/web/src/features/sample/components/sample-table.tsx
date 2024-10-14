@@ -8,8 +8,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { useTranslation } from 'react-i18next';
-import { DeleteDialog } from './delete-dialog';
-import { UpdateDialog } from './update-dialog';
+import { SampleDeleteTriggerDialog } from './sample-delete-trigger-dialog';
+import { SampleUpdateTriggerDialog } from './sample-update-trigger-dialog';
 
 // Constants
 
@@ -49,8 +49,8 @@ export const SampleTable = () => {
                   {isDone ? t('status.closed') : t('status.open')}
                 </TableCell>
                 <TableCell>
-                  <UpdateDialog id={id} />
-                  <DeleteDialog id={id} />
+                  <SampleUpdateTriggerDialog id={id} />
+                  <SampleDeleteTriggerDialog id={id} />
                 </TableCell>
               </TableRow>
             ))
