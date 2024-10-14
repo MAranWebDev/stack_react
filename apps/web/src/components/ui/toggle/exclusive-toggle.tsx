@@ -3,22 +3,22 @@ import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 // Types
-interface IconToggleButton {
-  Icon: SvgIconComponent;
+interface ToggleValue {
   value: string;
   text: string;
+  Icon?: SvgIconComponent;
 }
 
 interface Props {
   exclusiveValue: string;
   onChange: ToggleButtonProps['onChange'];
-  toggleButtons: IconToggleButton[];
+  toggleValues: ToggleValue[];
 }
 
-export const ExclusiveIconToggle = ({
+export const ExclusiveToggle = ({
   exclusiveValue,
   onChange,
-  toggleButtons,
+  toggleValues,
 }: Props) => {
   return (
     <ToggleButtonGroup
@@ -30,9 +30,9 @@ export const ExclusiveIconToggle = ({
       aria-label="Exclusive icon toggle"
       onChange={onChange}
     >
-      {toggleButtons.map(({ Icon, value, text }) => (
+      {toggleValues.map(({ value, Icon, text }) => (
         <ToggleButton sx={{ borderRadius: '10px' }} key={value} value={value}>
-          <Icon sx={{ mr: 1 }} />
+          {Icon ? <Icon sx={{ mr: 1 }} /> : null}
           {text}
         </ToggleButton>
       ))}

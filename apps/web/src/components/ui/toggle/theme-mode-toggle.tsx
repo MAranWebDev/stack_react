@@ -5,10 +5,10 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ExclusiveIconToggle } from './exlusive-icon-toggle';
+import { ExclusiveToggle } from './exclusive-toggle';
 
 // Constants
-const TOGGLE_BUTTONS = [
+const TOGGLE_VALUES = [
   {
     Icon: LightModeIcon,
     value: THEME_MODES.LIGHT,
@@ -34,7 +34,7 @@ export const ThemeModeToggle = () => {
   // "react-i18next"
   const { t } = useTranslation();
 
-  const toggleButtons = TOGGLE_BUTTONS.map(({ text, ...button }) => ({
+  const toggleValues = TOGGLE_VALUES.map(({ text, ...button }) => ({
     ...button,
     text: t(text),
   }));
@@ -48,9 +48,9 @@ export const ThemeModeToggle = () => {
   };
 
   return (
-    <ExclusiveIconToggle
+    <ExclusiveToggle
       exclusiveValue={themeMode}
-      toggleButtons={toggleButtons}
+      toggleValues={toggleValues}
       onChange={handleChange}
     />
   );

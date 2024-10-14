@@ -1,2 +1,2 @@
-export * from './exlusive-icon-toggle';
+export * from './exclusive-toggle';
 export * from './theme-mode-toggle';
