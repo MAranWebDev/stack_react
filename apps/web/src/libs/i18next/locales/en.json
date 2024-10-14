@@ -18,8 +18,7 @@
     "label": "Actions",
     "accept": "Accept",
     "edit": "Edit",
-    "cancel": "Cancel",
-    "clean": "Clean"
+    "cancel": "Cancel"
   },
   "messages": {
     "unauthorized": "Unauthorized",

@@ -24,7 +24,6 @@ export const es: DefaultLocale = {
     accept: 'Aceptar',
     edit: 'Editar',
     cancel: 'Cancelar',
-    clean: 'Limpiar',
   },
   messages: {
     unauthorized: 'Sin autorización',

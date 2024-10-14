@@ -1,9 +1,13 @@
 import { useSampleStore } from '@/libs/zustand/stores';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
+
+// Constants
+const MULTIPLE_BEARS = 3;
 
 export const SampleZustand = () => {
   // "zustand"
@@ -16,27 +20,28 @@ export const SampleZustand = () => {
   const { t } = useTranslation();
 
   // Methods
-  const handleClickOne = () => addBear();
-  const handleClickThree = () => addBearBy(3);
-  const handleClickReset = () => removeBears();
+  const handleAddOneBear = () => addBear();
+  const handleAddMultipleBears = () => addBearBy(MULTIPLE_BEARS);
+  const handleResetBears = () => removeBears();
 
   return (
-    <Stack
-      sx={{ p: 2, alignItems: 'center' }}
+    <Box
+      sx={{ display: 'flex', alignItems: 'center', p: 2 }}
       component={Paper}
-      direction="row"
-      spacing={2}
+      gap={2}
     >
-      <Typography sx={{ fontWeight: 'medium' }}>Bears: {bears}</Typography>
-      <Button variant="outlined" onClick={handleClickOne}>
+      <Typography sx={{ fontWeight: 'medium' }}>
+        {t('bears')}: {bears}
+      </Typography>
+      <Button variant="outlined" onClick={handleAddOneBear}>
         +1
       </Button>
-      <Button variant="outlined" onClick={handleClickThree}>
-        +3
+      <Button variant="outlined" onClick={handleAddMultipleBears}>
+        +{MULTIPLE_BEARS}
       </Button>
-      <Button variant="outlined" onClick={handleClickReset}>
-        {t('actions.clean')}
+      <Button variant="outlined" onClick={handleResetBears}>
+        <CleaningServicesIcon />
       </Button>
-    </Stack>
+    </Box>
   );
 };
