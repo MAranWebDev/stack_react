@@ -7,13 +7,10 @@ export const useTrpcSample = () => {
   const utils = trpc.useUtils();
   const getAllInvalidate = utils.sample.getAll.invalidate;
   const getAllQuery = trpc.sample.getAll;
-  const getQuery = trpc.sample.get;
 
   // "react-query"
   const getAllKey = getQueryKey(getAllQuery, undefined, 'query');
-  const getKey = getQueryKey(getQuery, undefined, 'query');
   const isGetAllSampleFetching = useIsFetching({ queryKey: getAllKey }) > 0;
-  const isGetSampleFetching = useIsFetching({ queryKey: getKey }) > 0;
 
   // Mutations
   const createMutation = trpc.sample.create.useMutation({
@@ -36,11 +33,10 @@ export const useTrpcSample = () => {
 
   return {
     getAllSample: getAllQuery.useQuery,
-    getSample: getQuery.useQuery,
+    getSample: trpc.sample.get.useQuery,
     createSample: createMutation.mutate,
     updateSample: updateMutation.mutate,
     deleteSample: deleteMutation.mutate,
     isGetAllSampleFetching,
-    isGetSampleFetching,
   };
 };
