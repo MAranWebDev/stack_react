@@ -11,14 +11,14 @@ interface Props {
   open: boolean;
   textWarning: string;
   onClose: () => void;
-  onClickAccept: () => void;
+  onAccept: () => void;
 }
 
 export const ConfirmationDialog = ({
   open,
   textWarning,
   onClose,
-  onClickAccept,
+  onAccept,
 }: Props) => {
   // "react-i18next"
   const { t } = useTranslation();
@@ -40,7 +40,7 @@ export const ConfirmationDialog = ({
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>{t('actions.cancel')}</Button>
-        <Button onClick={onClickAccept} autoFocus>
+        <Button onClick={onAccept} autoFocus>
           {t('actions.accept')}
         </Button>
       </DialogActions>
