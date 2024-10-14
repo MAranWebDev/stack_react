@@ -12,7 +12,7 @@ const DEFAULT_LANGUAGE = LANGUAGES.EN;
 
 // Translations
 const defaultResource = {
-  [DEFAULT_LANGUAGE]: { [DEFAULT_NS]: en },
+  [LANGUAGES.EN]: { [DEFAULT_NS]: en },
 } as const;
 const resources = {
   ...defaultResource,
