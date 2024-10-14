@@ -2,6 +2,7 @@ import { useSampleStore } from '@/libs/zustand/stores';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
@@ -33,15 +34,14 @@ export const SampleZustand = () => {
       <Typography sx={{ fontWeight: 'medium' }}>
         {t('amount')}: {amount}
       </Typography>
-      <Button variant="outlined" onClick={handleAdd}>
-        +1
-      </Button>
-      <Button variant="outlined" onClick={handleAddBy}>
-        +{ADD_BY}
-      </Button>
-      <Button variant="outlined" onClick={handleReset}>
-        <CleaningServicesIcon />
-      </Button>
+
+      <ButtonGroup variant="outlined" aria-label="button group">
+        <Button onClick={handleAdd}>+1</Button>
+        <Button onClick={handleAddBy}>+{ADD_BY}</Button>
+        <Button onClick={handleReset}>
+          <CleaningServicesIcon />
+        </Button>
+      </ButtonGroup>
     </Box>
   );
 };
