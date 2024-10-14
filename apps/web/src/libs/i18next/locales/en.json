@@ -25,6 +25,7 @@
     "noData": "No data",
     "notFound": "Not found",
     "confirmation": "Are you sure you want to proceed?",
-    "permanentDeleteWarning": "Warning: This action will permanently delete the record."
+    "warningCreate": "Warning: This action will create a new record.",
+    "warningDelete": "Warning: This action will delete the record permanently."
   }
 }

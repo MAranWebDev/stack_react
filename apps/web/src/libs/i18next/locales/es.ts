@@ -27,7 +27,8 @@ export const es: DefaultLocale = {
     noData: 'Sin datos',
     notFound: 'No encontrado',
     confirmation: 'Está seguro de querer continuar?',
-    permanentDeleteWarning:
-      'Advertencia: esta acción eliminará permanentemente el registro.',
+    warningCreate: 'Advertencia: Esta acción creará un nuevo registro.',
+    warningDelete:
+      'Advertencia: Esta acción eliminará el registro permanentemente.',
   },
 };
