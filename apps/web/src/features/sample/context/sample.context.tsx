@@ -1,6 +1,4 @@
-import { trpc } from '@/libs/trpc/hooks';
-import { useIsFetching } from '@tanstack/react-query';
-import { getQueryKey } from '@trpc/react-query';
+import { useTrpcSample } from '@/features/sample/hooks';
 import { TrpcRouterInput, TrpcRouterOutput } from '@workspace/api';
 import { createContext, PropsWithChildren, useCallback, useMemo } from 'react';
 import { useImmerReducer } from 'use-immer';
@@ -56,8 +54,6 @@ const initialStateValues: State = {
   filters: {},
 };
 
-const sampleGetAll = trpc.sample.getAll;
-
 // Create context
 export const ReadSampleContext = createContext<ReadContext | undefined>(
   undefined,
@@ -87,7 +83,8 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
   }, initialStateValues);
 
   // "trpc"
-  const { data } = sampleGetAll.useQuery({
+  const { getAllSample, isGetAllSampleFetching } = useTrpcSample();
+  const { data } = getAllSample({
     page: state.page,
     rowsPerPage: state.rowsPerPage,
     id: state.filters.id,
@@ -95,9 +92,8 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
     isDone: state.filters.isDone,
   });
 
+  // Values
   const dataCount = data?.dataCount ?? 0;
-  const sampleGetAllKey = getQueryKey(sampleGetAll, undefined, 'query');
-  const isFetching = useIsFetching({ queryKey: sampleGetAllKey }) > 0;
 
   // Methods
   const changePage = useCallback(
@@ -124,7 +120,7 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
     filters: state.filters,
     dataCount,
     results: data?.results ?? [],
-    isFetching,
+    isFetching: isGetAllSampleFetching,
   };
 
   const updateContextValues = useMemo(
