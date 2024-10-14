@@ -7,6 +7,7 @@ export const useTrpcSample = () => {
   const utils = trpc.useUtils();
   const getAllInvalidate = utils.sample.getAll.invalidate;
   const getAllQuery = trpc.sample.getAll;
+  const getQuery = trpc.sample.get;
 
   // "react-query"
   const getAllKey = getQueryKey(getAllQuery, undefined, 'query');
@@ -33,7 +34,7 @@ export const useTrpcSample = () => {
 
   return {
     getAllSample: getAllQuery.useQuery,
-    getSample: trpc.sample.get.useQuery,
+    getSample: getQuery.useQuery,
     createSample: createMutation.mutate,
     updateSample: updateMutation.mutate,
     deleteSample: deleteMutation.mutate,
