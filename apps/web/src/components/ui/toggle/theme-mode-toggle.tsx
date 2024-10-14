@@ -34,8 +34,8 @@ export const ThemeModeToggle = () => {
   // "react-i18next"
   const { t } = useTranslation();
 
-  const toggleValues = TOGGLE_VALUES.map(({ text, ...button }) => ({
-    ...button,
+  const translatedToggleValues = TOGGLE_VALUES.map(({ text, ...rest }) => ({
+    ...rest,
     text: t(text),
   }));
 
@@ -50,7 +50,7 @@ export const ThemeModeToggle = () => {
   return (
     <ExclusiveToggle
       exclusiveValue={themeMode}
-      toggleValues={toggleValues}
+      toggleValues={translatedToggleValues}
       onChange={handleChange}
     />
   );
