@@ -29,6 +29,9 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
         MuiButton: {
           styleOverrides: { root: { textTransform: 'none' } },
         },
+        MuiIconButton: {
+          styleOverrides: { root: { borderRadius: '16px' } },
+        },
         MuiToggleButton: {
           styleOverrides: { root: { textTransform: 'none' } },
         },
