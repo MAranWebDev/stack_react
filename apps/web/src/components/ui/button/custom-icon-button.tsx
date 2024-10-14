@@ -13,7 +13,6 @@ export const CustomIconButton = ({
     <IconButton
       sx={{
         border: 1,
-        borderRadius: '16px',
         borderColor: 'text.disabled',
         color: 'inherit',
       }}
