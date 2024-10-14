@@ -10,15 +10,15 @@ import { useTranslation } from 'react-i18next';
 interface Props {
   open: boolean;
   textWarning: string;
-  onClose: () => void;
-  onAccept: () => void;
+  onClickClose: () => void;
+  onClickAccept: () => void;
 }
 
 export const ConfirmationDialog = ({
   open,
   textWarning,
-  onClose,
-  onAccept,
+  onClickClose,
+  onClickAccept,
 }: Props) => {
   // "react-i18next"
   const { t } = useTranslation();
@@ -26,7 +26,7 @@ export const ConfirmationDialog = ({
   return (
     <Dialog
       open={open}
-      onClose={onClose}
+      onClose={onClickClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -39,8 +39,8 @@ export const ConfirmationDialog = ({
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>{t('actions.cancel')}</Button>
-        <Button onClick={onAccept} autoFocus>
+        <Button onClick={onClickClose}>{t('actions.cancel')}</Button>
+        <Button onClick={onClickAccept} autoFocus>
           {t('actions.accept')}
         </Button>
       </DialogActions>
