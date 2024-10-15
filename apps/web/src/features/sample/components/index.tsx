@@ -4,11 +4,11 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { SampleCounter } from './sample-counter';
 import { SampleCreateTrigger } from './sample-create-trigger';
 import { SampleFilter } from './sample-filter';
 import { SamplePagination } from './sample-pagination';
 import { SampleTable } from './sample-table';
-import { SampleZustand } from './sample-zustand';
 
 export const Sample = () => {
   const [isTable, setIsTable] = useState(true);
@@ -24,11 +24,9 @@ export const Sample = () => {
     <>
       <ToggleButtonGroup
         fullWidth
-        color="primary"
-        value={isTable}
         exclusive
-        size="small"
-        arial-label="view"
+        value={isTable}
+        arial-label="sample view"
         onChange={handleChange}
       >
         <ToggleButton value={true}>{t('table')}</ToggleButton>
@@ -45,7 +43,7 @@ export const Sample = () => {
               <SamplePagination />
             </>
           ) : (
-            <SampleZustand />
+            <SampleCounter />
           )}
         </Stack>
       </SampleProvider>
