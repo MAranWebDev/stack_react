@@ -20,7 +20,12 @@ export const SettingsDrawer = ({ open, onClose }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <Drawer anchor="right" open={open} onClose={onClose}>
+    <Drawer
+      PaperProps={{ sx: { borderRadius: '10px 0px 0px 10px' } }}
+      anchor="right"
+      open={open}
+      onClose={onClose}
+    >
       <Box sx={{ width: 360 }} role="presentation">
         <Stack
           sx={{
