@@ -3,9 +3,10 @@ import { useThemeModeStore } from '@/libs/zustand/stores';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ExclusiveToggle } from './exclusive-toggle';
 
 // Constants
 const TOGGLE_VALUES = [
@@ -48,10 +49,20 @@ export const ThemeModeToggle = () => {
   };
 
   return (
-    <ExclusiveToggle
-      exclusiveValue={themeMode}
-      toggleValues={translatedToggleValues}
+    <ToggleButtonGroup
+      fullWidth
+      value={themeMode}
+      exclusive
+      size="medium"
+      aria-label="theme mode toggle"
       onChange={handleChange}
-    />
+    >
+      {translatedToggleValues.map(({ value, text, Icon }) => (
+        <ToggleButton key={value} value={value}>
+          <Icon sx={{ mr: 1 }} />
+          {text}
+        </ToggleButton>
+      ))}
+    </ToggleButtonGroup>
   );
 };
