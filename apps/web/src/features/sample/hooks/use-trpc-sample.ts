@@ -6,38 +6,38 @@ export const useTrpcSample = () => {
   // "trpc"
   const utils = trpc.useUtils();
   const getAllInvalidate = utils.sample.getAll.invalidate;
-  const getAllQuery = trpc.sample.getAll;
-  const getQuery = trpc.sample.get;
+  const getAll = trpc.sample.getAll;
+  const get = trpc.sample.get;
 
   // "react-query"
-  const getAllKey = getQueryKey(getAllQuery, undefined, 'query');
+  const getAllKey = getQueryKey(getAll, undefined, 'query');
   const isGetAllSampleFetching = useIsFetching({ queryKey: getAllKey }) > 0;
 
   // Mutations
-  const createMutation = trpc.sample.create.useMutation({
+  const createSample = trpc.sample.create.useMutation({
     onSuccess() {
       getAllInvalidate();
     },
   });
 
-  const updateMutation = trpc.sample.update.useMutation({
+  const updateSample = trpc.sample.update.useMutation({
     onSuccess() {
       getAllInvalidate();
     },
   });
 
-  const deleteMutation = trpc.sample.delete.useMutation({
+  const deleteSample = trpc.sample.delete.useMutation({
     onSuccess() {
       getAllInvalidate();
     },
   });
 
   return {
-    getAllSample: getAllQuery.useQuery,
-    getSample: getQuery.useQuery,
-    createSample: createMutation.mutate,
-    updateSample: updateMutation.mutate,
-    deleteSample: deleteMutation.mutate,
+    getAllSample: getAll.useQuery,
+    getSample: get.useQuery,
+    createSample,
+    updateSample,
+    deleteSample,
     isGetAllSampleFetching,
   };
 };
