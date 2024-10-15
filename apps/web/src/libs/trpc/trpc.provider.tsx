@@ -26,20 +26,24 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
   // "notistack"
   const { enqueueSnackbar } = useSnackbar();
 
+  // Methods
+  const enqueueError = (message: string) => {
+    const errorMessage = message || MESSAGES.ERROR;
+    enqueueSnackbar(errorMessage, { variant: 'error' });
+  };
+
   // "react-query"
   const [reactQueryClient] = useState(
     () =>
       new QueryClient({
         queryCache: new QueryCache({
           onError({ message }) {
-            const errorMessage = message || MESSAGES.ERROR;
-            enqueueSnackbar(errorMessage, { variant: 'error' });
+            enqueueError(message);
           },
         }),
         mutationCache: new MutationCache({
           onError({ message }) {
-            const errorMessage = message || MESSAGES.ERROR;
-            enqueueSnackbar(errorMessage, { variant: 'error' });
+            enqueueError(message);
           },
           onSuccess() {
             enqueueSnackbar(MESSAGES.SUCCESS, { variant: 'success' });
