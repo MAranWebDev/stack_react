@@ -19,24 +19,28 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
   // "zustand"
   const isDarkMode = useThemeModeStore((state) => state.isDarkMode);
 
-  const mode = isDarkMode ? THEME_MODES.DARK : THEME_MODES.LIGHT;
+  const themeMode = isDarkMode ? THEME_MODES.DARK : THEME_MODES.LIGHT;
 
   // Theme settings
   const theme = createTheme(
     {
-      palette: { mode },
+      palette: {
+        mode: themeMode,
+      },
       components: {
+        MuiToggleButtonGroup: {
+          defaultProps: { color: 'primary' },
+        },
+        MuiToggleButton: {
+          styleOverrides: { root: { textTransform: 'none' } },
+        },
         MuiButton: {
           styleOverrides: { root: { textTransform: 'none' } },
         },
         MuiIconButton: {
           styleOverrides: { root: { borderRadius: '16px' } },
         },
-        MuiToggleButton: {
-          styleOverrides: { root: { textTransform: 'none' } },
-        },
         MuiDrawer: {
-          styleOverrides: { paper: { borderRadius: '10px' } },
           defaultProps: { SlideProps: { appear: true } },
         },
       },
