@@ -47,7 +47,7 @@ export const SampleTable = () => {
                   {isDone ? t('status.closed') : t('status.open')}
                 </TableCell>
                 <TableCell>
-                  <SampleUpdateTrigger id={id} />
+                  <SampleUpdateTrigger id={id} name={name} isDone={isDone} />
                   <SampleDeleteTrigger id={id} />
                 </TableCell>
               </TableRow>
