@@ -35,7 +35,7 @@ export const SampleCounter = () => {
         {t('amount')}: {amount}
       </Typography>
 
-      <ButtonGroup variant="outlined" aria-label="button group">
+      <ButtonGroup variant="outlined" size="large" aria-label="button group">
         <Button onClick={handleAdd}>+1</Button>
         <Button onClick={handleAddBy}>+{ADD_BY}</Button>
         <Button onClick={handleReset}>
