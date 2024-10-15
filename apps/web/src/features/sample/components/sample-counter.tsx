@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 // Constants
 const ADD_BY = 3;
 
-export const SampleZustand = () => {
+export const SampleCounter = () => {
   // "zustand"
   const amount = useSampleStore((state) => state.amount);
   const add = useSampleStore((state) => state.add);
