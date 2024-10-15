@@ -19,8 +19,9 @@
   "actions": {
     "label": "Actions",
     "accept": "Accept",
+    "cancel": "Cancel",
     "edit": "Edit",
-    "cancel": "Cancel"
+    "update": "Update"
   },
   "messages": {
     "unauthorized": "Unauthorized",

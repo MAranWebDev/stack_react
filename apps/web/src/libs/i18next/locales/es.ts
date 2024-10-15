@@ -21,8 +21,9 @@ export const es: DefaultLocale = {
   actions: {
     label: 'Acciones',
     accept: 'Aceptar',
-    edit: 'Editar',
     cancel: 'Cancelar',
+    edit: 'Editar',
+    update: 'Actualizar',
   },
   messages: {
     unauthorized: 'Sin autorización',
