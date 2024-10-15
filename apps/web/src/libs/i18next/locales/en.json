@@ -3,6 +3,8 @@
   "settings": "Settings",
   "mode": "Mode",
   "name": "Name",
+  "table": "Table",
+  "counter": "Counter",
   "amount": "Amount",
   "themeModes": {
     "light": "Light",

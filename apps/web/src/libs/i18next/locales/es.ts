@@ -5,6 +5,8 @@ export const es: DefaultLocale = {
   settings: 'Configuración',
   mode: 'Modo',
   name: 'Nombre',
+  table: 'Tabla',
+  counter: 'Contador',
   amount: 'Cantidad',
   themeModes: {
     light: 'Luz',
