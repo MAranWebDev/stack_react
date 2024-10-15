@@ -20,7 +20,7 @@ export const SampleDeleteTrigger = ({ id }: Props) => {
   // Methods
   const handleOpenDialog = () => setIsDialogOpen(true);
   const handleCloseDialog = () => setIsDialogOpen(false);
-  const handleAccept = () => deleteSample({ id });
+  const handleAccept = () => deleteSample.mutate({ id });
 
   return (
     <>
