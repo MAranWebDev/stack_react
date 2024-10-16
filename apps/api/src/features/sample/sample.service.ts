@@ -2,7 +2,7 @@ import { db } from '@/libs/drizzle/db';
 import { sampleSchema } from '@/libs/drizzle/schemas';
 import { Context } from '@/libs/trpc/utils';
 import { SampleZod } from '@/libs/zod/schemas';
-import { and, count, eq, ilike } from 'drizzle-orm';
+import { and, asc, count, eq, ilike } from 'drizzle-orm';
 
 // Types
 interface Ctx {
@@ -28,6 +28,7 @@ export const sampleService = {
   async getAll({ input }: GetAllOpts) {
     const { page, rowsPerPage, id, name, isDone } = input;
 
+    // Values
     const previous = page > 0 ? page - 1 : null;
     const offset = page * rowsPerPage;
 
@@ -37,17 +38,22 @@ export const sampleService = {
       isDone != undefined ? eq(sampleSchema.isDone, isDone) : undefined,
     );
 
+    // Get count
     const [{ count: dataCount }] = await db
       .select({ count: count() })
       .from(sampleSchema)
       .where(where);
 
+    // Values
     const next = dataCount / rowsPerPage > page ? page + 1 : null;
+    const orderBy = asc(sampleSchema.id);
 
+    // Get all data
     const results = await db
       .select()
       .from(sampleSchema)
       .where(where)
+      .orderBy(orderBy)
       .limit(rowsPerPage)
       .offset(offset);
 
