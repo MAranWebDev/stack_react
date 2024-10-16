@@ -1,54 +1,63 @@
 import { db } from '@/libs/drizzle/db';
 import { sampleSchema } from '@/libs/drizzle/schemas';
 import { Context } from '@/libs/trpc/utils';
-import { SampleZod } from '@/libs/zod/schemas';
-import { and, asc, count, eq, ilike } from 'drizzle-orm';
+import {
+  SampleZodCreateInput,
+  SampleZodDeleteInput,
+  SampleZodGetAllInput,
+  SampleZodGetInput,
+  SampleZodUpdateInput,
+} from '@/libs/zod/schemas';
+import { and, asc, count, desc, eq, ilike } from 'drizzle-orm';
 
 // Types
 interface Ctx {
   ctx: Context;
 }
 interface GetAllOpts extends Ctx {
-  input: SampleZod['getAllInput'];
+  input: SampleZodGetAllInput;
 }
 interface GetOpts extends Ctx {
-  input: SampleZod['getInput'];
+  input: SampleZodGetInput;
 }
 interface CreateOpts extends Ctx {
-  input: SampleZod['createInput'];
+  input: SampleZodCreateInput;
 }
 interface UpdateOpts extends Ctx {
-  input: SampleZod['updateInput'];
+  input: SampleZodUpdateInput;
 }
 interface DeleteOpts extends Ctx {
-  input: SampleZod['deleteInput'];
+  input: SampleZodDeleteInput;
 }
 
 export const sampleService = {
   async getAll({ input }: GetAllOpts) {
-    const { page, rowsPerPage, id, name, isDone } = input;
+    // Inputs
+    const { filterBy, sortBy, page, rowsPerPage } = input;
+    const { id, name, isDone } = filterBy || {};
+    const { columnName, isDesc } = sortBy;
 
-    // Values
-    const previous = page > 0 ? page - 1 : null;
-    const offset = page * rowsPerPage;
-
+    // Conditions
     const where = and(
       id ? ilike(sampleSchema.id, `%${id}%`) : undefined,
       name ? ilike(sampleSchema.name, `%${name}%`) : undefined,
       isDone != undefined ? eq(sampleSchema.isDone, isDone) : undefined,
     );
 
-    // Get count
+    const schemaColumn = sampleSchema[columnName];
+    const orderBy = isDesc ? desc(schemaColumn) : asc(schemaColumn);
+    const offset = page * rowsPerPage;
+
+    // Data
+    const previous = page > 0 ? page - 1 : null;
+
     const [{ count: dataCount }] = await db
       .select({ count: count() })
       .from(sampleSchema)
       .where(where);
 
-    // Values
     const next = dataCount / rowsPerPage > page ? page + 1 : null;
-    const orderBy = asc(sampleSchema.id);
 
-    // Get all data
     const results = await db
       .select()
       .from(sampleSchema)
@@ -57,7 +66,7 @@ export const sampleService = {
       .limit(rowsPerPage)
       .offset(offset);
 
-    return { dataCount, next, previous, results };
+    return { dataCount, previous, next, results };
   },
 
   async get({ input }: GetOpts) {
