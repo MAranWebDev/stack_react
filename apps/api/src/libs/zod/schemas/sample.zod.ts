@@ -21,19 +21,19 @@ const isDone = z.boolean();
 const columnName = z.enum(SORT_BY_VALUES);
 const isDesc = z.boolean();
 
-const filterBy = z.object({ id, name, isDone });
+const filters = z.object({ id, name, isDone });
 const sortBy = z.object({ columnName, isDesc });
 
 // Exported schemas
 export const sampleZodGetAllInput = z.object({
   page: page.default(0),
   rowsPerPage: rowsPerPage.default(10),
-  filterBy: filterBy.partial().optional(),
+  filters: filters.partial().optional(),
   sortBy: sortBy.default({ columnName: SORT_BY.ID, isDesc: false }),
 });
 export const sampleZodGetInput = z.object({ id });
 export const sampleZodCreateInput = z.object({ name });
-export const sampleZodUpdateInput = filterBy.partial().merge(z.object({ id }));
+export const sampleZodUpdateInput = filters.partial().merge(z.object({ id }));
 export const sampleZodDeleteInput = z.object({ id });
 
 // Exported types

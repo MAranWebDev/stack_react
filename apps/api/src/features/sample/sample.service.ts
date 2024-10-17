@@ -33,8 +33,8 @@ interface DeleteOpts extends Ctx {
 export const sampleService = {
   async getAll({ input }: GetAllOpts) {
     // Inputs
-    const { filterBy, sortBy, page, rowsPerPage } = input;
-    const { id, name, isDone } = filterBy || {};
+    const { filters, sortBy, page, rowsPerPage } = input;
+    const { id, name, isDone } = filters || {};
     const { columnName, isDesc } = sortBy;
 
     // Conditions
