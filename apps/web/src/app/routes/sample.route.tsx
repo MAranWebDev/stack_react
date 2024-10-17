@@ -1,17 +1,19 @@
 import { MainLayout } from '@/components/layouts/main-layout';
 import { Sample } from '@/features/sample/components';
-import Box from '@mui/material/Box';
+import { useTranslation } from 'react-i18next';
 
 export const SampleRoute = () => {
+  const { t } = useTranslation();
+
   return (
     <MainLayout>
-      <Box component="section">
-        <h1>Sample</h1>
-      </Box>
+      <section>
+        <h1>{t('sample')}</h1>
+      </section>
 
-      <Box component="section">
+      <section>
         <Sample />
-      </Box>
+      </section>
     </MainLayout>
   );
 };

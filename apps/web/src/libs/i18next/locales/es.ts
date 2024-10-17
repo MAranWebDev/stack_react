@@ -8,6 +8,8 @@ export const es: DefaultLocale = {
   table: 'Tabla',
   counter: 'Contador',
   amount: 'Cantidad',
+  sample: 'Muestra',
+  home: 'Inicio',
   themeModes: {
     light: 'Luz',
     dark: 'Oscuro',

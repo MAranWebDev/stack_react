@@ -6,6 +6,8 @@
   "table": "Table",
   "counter": "Counter",
   "amount": "Amount",
+  "sample": "Sample",
+  "home": "Home",
   "themeModes": {
     "light": "Light",
     "dark": "Dark",
