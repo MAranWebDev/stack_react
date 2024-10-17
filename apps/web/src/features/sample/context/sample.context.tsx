@@ -22,7 +22,7 @@ interface ReadContext {
 interface UpdateContext {
   changePage: (page: number) => void;
   changeRowsPerPage: (rowsPerPage: number) => void;
-  filterData: (filters: Filters) => void;
+  filterData: (filters?: Filters) => void;
 }
 
 type State = Pick<ReadContext, 'page' | 'rowsPerPage' | 'filters'>;
@@ -106,7 +106,7 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
   );
 
   const filterData = useCallback(
-    (filters: Filters) => dispatch({ type: ACTIONS.SET_FILTERS, filters }),
+    (filters?: Filters) => dispatch({ type: ACTIONS.SET_FILTERS, filters }),
     [dispatch],
   );
 

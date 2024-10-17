@@ -6,12 +6,12 @@ import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
-import { sampleZod, SampleZod } from '@workspace/api';
+import { sampleZodGetAllInput, SampleZodGetAllInput } from '@workspace/api';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 // Types
-type Schema = SampleZod['getAllInput'];
+type Schema = SampleZodGetAllInput;
 
 // Styles
 const boxSx = { display: 'flex', gap: 1 };
@@ -24,12 +24,12 @@ export const SampleFilter = () => {
 
   // "react-hook-form"
   const { register, handleSubmit } = useForm<Schema>({
-    resolver: zodResolver(sampleZod.getAllInput),
+    resolver: zodResolver(sampleZodGetAllInput),
   });
 
   // Methods
-  const onSubmit = (inputs: Schema) => filterData(inputs);
-  const handleClickClean = () => filterData({});
+  const onSubmit = ({ filters }: Schema) => filterData(filters);
+  const handleClickClean = () => filterData();
 
   return (
     <Paper
@@ -42,13 +42,13 @@ export const SampleFilter = () => {
           label="Id"
           variant="outlined"
           autoComplete="off"
-          {...register('id')}
+          {...register('filters.id')}
         />
         <TextField
           label={t('name')}
           variant="outlined"
           autoComplete="off"
-          {...register('name')}
+          {...register('filters.name')}
         />
       </Box>
 
