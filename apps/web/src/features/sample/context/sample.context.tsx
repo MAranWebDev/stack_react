@@ -7,7 +7,7 @@ import { useImmerReducer } from 'use-immer';
 type SampleGetAllInput = TrpcRouterInput['sample']['getAll'];
 type SampleGetAllOutput = TrpcRouterOutput['sample']['getAll'];
 
-type Filters = Pick<SampleGetAllInput, 'id' | 'name' | 'isDone'>;
+type Filters = SampleGetAllInput['filters'];
 
 interface ReadContext {
   page: number;
@@ -51,7 +51,7 @@ const ROWS_PER_PAGE_OPTIONS = [5, 10, 25];
 const initialStateValues: State = {
   page: 0,
   rowsPerPage: ROWS_PER_PAGE_OPTIONS[1],
-  filters: {},
+  filters: undefined,
 };
 
 // Create context
@@ -87,9 +87,7 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
   const { data } = getAllSample({
     page: state.page,
     rowsPerPage: state.rowsPerPage,
-    id: state.filters.id,
-    name: state.filters.name,
-    isDone: state.filters.isDone,
+    filters: state.filters,
   });
 
   // Values
