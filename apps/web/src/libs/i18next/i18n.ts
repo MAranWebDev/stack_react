@@ -1,4 +1,5 @@
 import { en, es } from '@/libs/i18next/locales';
+import { zodEs } from '@workspace/api';
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
@@ -16,7 +17,7 @@ const defaultResource = {
 } as const;
 const resources = {
   ...defaultResource,
-  [LANGUAGES.ES]: { [DEFAULT_NS]: es },
+  [LANGUAGES.ES]: { [DEFAULT_NS]: es, zod: zodEs },
 } as const;
 
 // Settings
@@ -36,7 +37,7 @@ i18n
     },
   });
 
-// Exported i18next instance
+// Exported instance
 export { i18n };
 
 // Exported types
