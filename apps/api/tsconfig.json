@@ -13,6 +13,7 @@
     "rootDir": "./src" /* Specify the root folder within your source files. */,
     "baseUrl": "./",
     "paths": { "@/*": ["./src/*"] },
+    "resolveJsonModule": true /* Enable importing .json files. */,
 
     /* Emit */
     "outDir": "./dist",
