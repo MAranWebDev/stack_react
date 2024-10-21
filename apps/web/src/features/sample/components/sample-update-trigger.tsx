@@ -1,3 +1,4 @@
+import { INPUT_KEYS } from '@/features/sample/constants';
 import { useTrpcSample } from '@/features/sample/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import EditIcon from '@mui/icons-material/Edit';
@@ -43,12 +44,17 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
     resolver: zodResolver(sampleZodUpdateInput),
   });
 
+  const isDoneStatus = watch(INPUT_KEYS.IS_DONE)
+    ? t('status.closed')
+    : t('status.open');
+
   // Methods
   const handleOpenDialog = () => {
     reset();
-    setValue('isDone', isDone);
+    setValue(INPUT_KEYS.IS_DONE, isDone);
     setIsDialogOpen(true);
   };
+
   const handleCloseDialog = () => setIsDialogOpen(false);
 
   const onSubmit = (formData: SampleZodUpdateInput) => {
@@ -71,7 +77,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
         <DialogTitle id="update-dialog-title">{t('actions.edit')}</DialogTitle>
         <DialogContent>
           <Stack spacing={1}>
-            <input type="hidden" value={id} {...register('id')} />
+            <input type="hidden" value={id} {...register(INPUT_KEYS.ID)} />
 
             <TextField
               required
@@ -82,7 +88,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
               defaultValue={name}
               error={!!errors.name}
               helperText={errors.name?.message}
-              {...register('name')}
+              {...register(INPUT_KEYS.NAME)}
             />
 
             <Stack sx={{ px: 1 }}>
@@ -91,12 +97,13 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
               </Typography>
               <FormControlLabel
                 label={
-                  <Typography color="text.disabled">
-                    {watch('isDone') ? t('status.closed') : t('status.open')}
-                  </Typography>
+                  <Typography color="text.disabled">{isDoneStatus}</Typography>
                 }
                 control={
-                  <Checkbox defaultChecked={isDone} {...register('isDone')} />
+                  <Checkbox
+                    defaultChecked={isDone}
+                    {...register(INPUT_KEYS.IS_DONE)}
+                  />
                 }
               />
             </Stack>
