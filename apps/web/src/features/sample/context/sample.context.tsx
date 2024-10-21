@@ -6,52 +6,63 @@ import { useImmerReducer } from 'use-immer';
 // Types
 type SampleGetAllInput = TrpcRouterInput['sample']['getAll'];
 type SampleGetAllOutput = TrpcRouterOutput['sample']['getAll'];
-
 type Filters = SampleGetAllInput['filters'];
+type SortBy = SampleGetAllInput['sortBy'];
+type Results = SampleGetAllOutput['results'];
 
-interface ReadContext {
+interface State {
   page: number;
   rowsPerPage: number;
-  rowsPerPageOptions: number[];
   filters: Filters;
+  sortBy: SortBy;
+}
+interface ActionSetPage extends Pick<State, 'page'> {
+  type: typeof ACTIONS.SET_PAGE;
+}
+interface ActionSetRowsPerPage extends Pick<State, 'rowsPerPage'> {
+  type: typeof ACTIONS.SET_ROWS_PER_PAGE;
+}
+interface ActionSetFilters extends Pick<State, 'filters'> {
+  type: typeof ACTIONS.SET_FILTERS;
+}
+interface ActionSetSortBy extends Pick<State, 'sortBy'> {
+  type: typeof ACTIONS.SET_SORT_BY;
+}
+type Action =
+  | ActionSetPage
+  | ActionSetRowsPerPage
+  | ActionSetFilters
+  | ActionSetSortBy;
+
+interface ReadContext extends State {
+  rowsPerPageOptions: number[];
   dataCount: number;
-  results: SampleGetAllOutput['results'];
+  results: Results;
   isFetching: boolean;
 }
-
 interface UpdateContext {
   changePage: (page: number) => void;
   changeRowsPerPage: (rowsPerPage: number) => void;
   filterData: (filters?: Filters) => void;
+  sortDataBy: (sortBy?: SortBy) => void;
 }
-
-type State = Pick<ReadContext, 'page' | 'rowsPerPage' | 'filters'>;
-
-interface ActionSetPage extends Pick<ReadContext, 'page'> {
-  type: typeof ACTIONS.SET_PAGE;
-}
-interface ActionSetRowsPerPage extends Pick<ReadContext, 'rowsPerPage'> {
-  type: typeof ACTIONS.SET_ROWS_PER_PAGE;
-}
-interface ActionSetFilters extends Pick<ReadContext, 'filters'> {
-  type: typeof ACTIONS.SET_FILTERS;
-}
-type Action = ActionSetPage | ActionSetRowsPerPage | ActionSetFilters;
 
 // Constants
 const ACTIONS = {
   SET_PAGE: 'SET_PAGE',
   SET_ROWS_PER_PAGE: 'SET_ROWS_PER_PAGE',
   SET_FILTERS: 'SET_FILTERS',
+  SET_SORT_BY: 'SET_SORT_BY',
 } as const;
 
 const ROWS_PER_PAGE_OPTIONS = [5, 10, 25];
 
-// Initial values
+// Values
 const initialStateValues: State = {
   page: 0,
   rowsPerPage: ROWS_PER_PAGE_OPTIONS[1],
   filters: undefined,
+  sortBy: undefined,
 };
 
 // Create context
@@ -77,6 +88,10 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
         draft.page = initialStateValues.page;
         draft.filters = action.filters;
         break;
+      case ACTIONS.SET_SORT_BY:
+        draft.page = initialStateValues.page;
+        draft.sortBy = action.sortBy;
+        break;
       default:
         break;
     }
@@ -88,9 +103,9 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
     page: state.page,
     rowsPerPage: state.rowsPerPage,
     filters: state.filters,
+    sortBy: state.sortBy,
   });
 
-  // Values
   const dataCount = data?.dataCount ?? 0;
 
   // Methods
@@ -110,12 +125,18 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
     [dispatch],
   );
 
+  const sortDataBy = useCallback(
+    (sortBy?: SortBy) => dispatch({ type: ACTIONS.SET_SORT_BY, sortBy }),
+    [dispatch],
+  );
+
   // Context values
   const readContextValues: ReadContext = {
     page: dataCount > 0 ? state.page : 0,
     rowsPerPage: state.rowsPerPage,
     rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS,
     filters: state.filters,
+    sortBy: state.sortBy,
     dataCount,
     results: data?.results ?? [],
     isFetching: isGetAllSampleFetching,
@@ -126,8 +147,9 @@ export const SampleProvider = ({ children }: PropsWithChildren) => {
       changePage,
       changeRowsPerPage,
       filterData,
+      sortDataBy,
     }),
-    [changePage, changeRowsPerPage, filterData],
+    [changePage, changeRowsPerPage, filterData, sortDataBy],
   );
 
   return (
