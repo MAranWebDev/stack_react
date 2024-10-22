@@ -1,20 +1,24 @@
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
+import { SampleActionBar } from './sample-action-bar';
+import { SamplePagination } from './sample-pagination';
 import { SampleTableBody } from './sample-table-body';
-import { SampleTableFooter } from './sample-table-footer';
 import { SampleTableHead } from './sample-table-head';
 
 export const SampleTable = () => {
   return (
     <Paper>
+      <SampleActionBar />
+
       <TableContainer sx={{ height: 450 }}>
         <Table stickyHeader size="small">
           <SampleTableHead />
           <SampleTableBody />
         </Table>
       </TableContainer>
-      <SampleTableFooter />
+
+      <SamplePagination />
     </Paper>
   );
 };
