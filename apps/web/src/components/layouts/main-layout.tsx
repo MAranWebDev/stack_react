@@ -6,7 +6,7 @@ export const MainLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <MainHeader />
-      <Box sx={{ width: '90%', mx: 'auto' }} component="main">
+      <Box sx={{ width: '90%', mx: 'auto', pb: 5 }} component="main">
         {children}
       </Box>
     </>
