@@ -5,7 +5,7 @@ import {
 import TablePagination from '@mui/material/TablePagination';
 import { ChangeEvent, MouseEvent } from 'react';
 
-export const SampleTableFooter = () => {
+export const SamplePagination = () => {
   const { rowsPerPageOptions, dataCount, rowsPerPage, page } =
     useReadSampleContext();
   const { changePage, changeRowsPerPage } = useUpdateSampleContext();
