@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { SampleCounter } from './sample-counter';
 import { SampleCreateTrigger } from './sample-create-trigger';
 import { SampleFilter } from './sample-filter';
-import { SamplePagination } from './sample-pagination';
 import { SampleTable } from './sample-table';
 
 export const Sample = () => {
@@ -40,7 +39,6 @@ export const Sample = () => {
               <SampleCreateTrigger />
               <SampleFilter />
               <SampleTable />
-              <SamplePagination />
             </>
           ) : (
             <SampleCounter />
