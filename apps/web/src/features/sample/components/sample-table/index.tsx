@@ -2,9 +2,9 @@ import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
 import { SampleActionBar } from './sample-action-bar';
-import { SamplePagination } from './sample-pagination';
 import { SampleTableBody } from './sample-table-body';
 import { SampleTableHead } from './sample-table-head';
+import { SampleTablePagination } from './sample-table-pagination';
 
 export const SampleTable = () => {
   return (
@@ -18,7 +18,7 @@ export const SampleTable = () => {
         </Table>
       </TableContainer>
 
-      <SamplePagination />
+      <SampleTablePagination />
     </Paper>
   );
 };
