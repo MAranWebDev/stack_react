@@ -28,10 +28,16 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
         mode: themeMode,
       },
       components: {
+        MuiDrawer: {
+          defaultProps: { SlideProps: { appear: true } },
+        },
         MuiToggleButtonGroup: {
           defaultProps: { color: 'primary' },
         },
         MuiToggleButton: {
+          styleOverrides: { root: { textTransform: 'none' } },
+        },
+        MuiTab: {
           styleOverrides: { root: { textTransform: 'none' } },
         },
         MuiButton: {
@@ -39,9 +45,6 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
         },
         MuiIconButton: {
           styleOverrides: { root: { borderRadius: '16px' } },
-        },
-        MuiDrawer: {
-          defaultProps: { SlideProps: { appear: true } },
         },
       },
     },
