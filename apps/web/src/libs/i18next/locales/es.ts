@@ -24,6 +24,7 @@ export const es: DefaultLocale = {
     label: 'Acciones',
     accept: 'Aceptar',
     cancel: 'Cancelar',
+    create: 'Crear',
     edit: 'Editar',
     update: 'Actualizar',
   },

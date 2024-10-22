@@ -22,6 +22,7 @@
     "label": "Actions",
     "accept": "Accept",
     "cancel": "Cancel",
+    "create": "Create",
     "edit": "Edit",
     "update": "Update"
   },
