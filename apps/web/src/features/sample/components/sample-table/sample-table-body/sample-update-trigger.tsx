@@ -71,7 +71,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
       <Dialog
         PaperProps={{ component: 'form', onSubmit: handleSubmit(onSubmit) }}
         open={isDialogOpen}
-        aria-labelledby="update-dialog-title"
+        aria-labelledby="dialog title"
         onClose={handleCloseDialog}
       >
         <DialogTitle id="update-dialog-title">{t('actions.edit')}</DialogTitle>
