@@ -7,7 +7,7 @@ import { SampleTableHead } from './sample-table-head';
 
 export const SampleTable = () => {
   return (
-    <Paper sx={{ overflow: 'hidden' }}>
+    <Paper>
       <TableContainer sx={{ height: 450 }}>
         <Table stickyHeader size="small">
           <SampleTableHead />
