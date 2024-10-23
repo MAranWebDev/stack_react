@@ -44,9 +44,9 @@ export const sampleService = {
       isDone != undefined ? eq(sampleSchema.isDone, isDone) : undefined,
     );
 
+    const offset = page * rowsPerPage;
     const schemaColumn = sampleSchema[columnName];
     const orderBy = isDesc ? desc(schemaColumn) : asc(schemaColumn);
-    const offset = page * rowsPerPage;
 
     // Data
     const previous = page > 0 ? page - 1 : null;
