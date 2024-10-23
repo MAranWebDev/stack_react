@@ -38,7 +38,7 @@ export const SampleCreateTrigger = () => {
     setIsFormOpen(false);
   };
 
-  const onSubmit = (newFormValues: SampleZodCreateInput) => {
+  const onSubmitOpenConfirmation = (newFormValues: SampleZodCreateInput) => {
     setFormValues(newFormValues);
     setIsConfirmationOpen(true);
   };
@@ -48,21 +48,21 @@ export const SampleCreateTrigger = () => {
     setIsConfirmationOpen(false);
   };
 
-  const handleAccept = () => {
+  const handleAcceptConfirmation = () => {
     if (formValues) {
       createSample.mutate(formValues, {
         onSuccess() {
-          reset();
           handleCloseForm();
         },
       });
     }
+
     handleCloseConfirmation();
   };
 
   return (
     <>
-      {/* Trigger */}
+      {/* Trigger form */}
       <Button variant="outlined" arial-label="create" onClick={handleOpenForm}>
         <AddIcon />
       </Button>
@@ -73,7 +73,7 @@ export const SampleCreateTrigger = () => {
         title={t('actions.create')}
         buttonText={t('actions.create')}
         onClose={handleCloseForm}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmitOpenConfirmation)}
       >
         <TextField
           required
@@ -92,7 +92,7 @@ export const SampleCreateTrigger = () => {
         open={isConfirmationOpen}
         warningText={t('messages.warningCreate')}
         onClose={handleCloseConfirmation}
-        onAccept={handleAccept}
+        onAccept={handleAcceptConfirmation}
       />
     </>
   );

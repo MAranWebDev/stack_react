@@ -1,13 +1,9 @@
+import { ConfirmationDialog, FormDialog } from '@/components/ui/dialog';
 import { INPUT_KEYS } from '@/features/sample/constants';
 import { useTrpcSample } from '@/features/sample/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import EditIcon from '@mui/icons-material/Edit';
-import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
@@ -26,7 +22,11 @@ interface Props {
 }
 
 export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [formValues, setFormValues] = useState<SampleZodUpdateInput | null>(
+    null,
+  );
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const { updateSample } = useTrpcSample();
 
   // "react-i18next"
@@ -49,71 +49,92 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
     : t('status.open');
 
   // Methods
-  const handleOpenDialog = () => {
+  const handleOpenForm = () => setIsFormOpen(true);
+
+  const handleCloseForm = () => {
     reset();
     setValue(INPUT_KEYS.IS_DONE, isDone);
-    setIsDialogOpen(true);
+    setIsFormOpen(false);
   };
 
-  const handleCloseDialog = () => setIsDialogOpen(false);
+  const onSubmitOpenConfirmation = (newFormValues: SampleZodUpdateInput) => {
+    setFormValues(newFormValues);
+    setIsConfirmationOpen(true);
+  };
 
-  const onSubmit = (formData: SampleZodUpdateInput) => {
-    updateSample.mutate(formData);
-    handleCloseDialog();
+  const handleCloseConfirmation = () => {
+    setFormValues(null);
+    setIsConfirmationOpen(false);
+  };
+
+  const handleAcceptConfirmation = () => {
+    if (formValues) {
+      updateSample.mutate(formValues, {
+        onSuccess() {
+          handleCloseForm();
+        },
+      });
+    }
+
+    handleCloseConfirmation();
   };
 
   return (
     <>
-      <IconButton aria-label="update" onClick={handleOpenDialog}>
+      {/* Trigger form */}
+      <IconButton aria-label="update" onClick={handleOpenForm}>
         <EditIcon />
       </IconButton>
 
-      <Dialog
-        PaperProps={{ component: 'form', onSubmit: handleSubmit(onSubmit) }}
-        open={isDialogOpen}
-        aria-labelledby="dialog-title"
-        onClose={handleCloseDialog}
+      {/* Form dialog */}
+      <FormDialog
+        open={isFormOpen}
+        title={t('actions.edit')}
+        buttonText={t('actions.edit')}
+        onClose={handleCloseForm}
+        onSubmit={handleSubmit(onSubmitOpenConfirmation)}
       >
-        <DialogTitle id="dialog-title">{t('actions.edit')}</DialogTitle>
-        <DialogContent>
-          <Stack spacing={1}>
-            <input type="hidden" value={id} {...register(INPUT_KEYS.ID)} />
+        <Stack spacing={1}>
+          <input type="hidden" value={id} {...register(INPUT_KEYS.ID)} />
 
-            <TextField
-              required
-              margin="dense"
-              variant="outlined"
-              autoComplete="off"
-              label={t('name')}
-              defaultValue={name}
-              error={!!errors.name}
-              helperText={errors.name?.message}
-              {...register(INPUT_KEYS.NAME)}
+          <TextField
+            required
+            margin="dense"
+            variant="outlined"
+            autoComplete="off"
+            label={t('name')}
+            defaultValue={name}
+            error={!!errors.name}
+            helperText={errors.name?.message}
+            {...register(INPUT_KEYS.NAME)}
+          />
+
+          <Stack sx={{ px: 1 }}>
+            <Typography sx={{ fontSize: '12px', color: 'text.secondary' }}>
+              {t('status.label')}
+            </Typography>
+            <FormControlLabel
+              label={
+                <Typography color="text.disabled">{isDoneStatus}</Typography>
+              }
+              control={
+                <Checkbox
+                  defaultChecked={isDone}
+                  {...register(INPUT_KEYS.IS_DONE)}
+                />
+              }
             />
-
-            <Stack sx={{ px: 1 }}>
-              <Typography sx={{ fontSize: '12px', color: 'text.secondary' }}>
-                {t('status.label')}
-              </Typography>
-              <FormControlLabel
-                label={
-                  <Typography color="text.disabled">{isDoneStatus}</Typography>
-                }
-                control={
-                  <Checkbox
-                    defaultChecked={isDone}
-                    {...register(INPUT_KEYS.IS_DONE)}
-                  />
-                }
-              />
-            </Stack>
           </Stack>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog}>{t('actions.cancel')}</Button>
-          <Button type="submit">{t('actions.update')}</Button>
-        </DialogActions>
-      </Dialog>
+        </Stack>
+      </FormDialog>
+
+      {/* Confirmation dialog */}
+      <ConfirmationDialog
+        open={isConfirmationOpen}
+        warningText={t('messages.warningUpdate')}
+        onClose={handleCloseConfirmation}
+        onAccept={handleAcceptConfirmation}
+      />
     </>
   );
 };
