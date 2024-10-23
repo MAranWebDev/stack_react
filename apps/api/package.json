@@ -12,7 +12,7 @@
     "drizzle:migrate": "ts-node -r tsconfig-paths/register ./src/libs/drizzle/migrate.ts"
   },
   "dependencies": {
-    "@trpc/server": "11.0.0-rc.566",
+    "@trpc/server": "11.0.0-rc.593",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.35.3",
