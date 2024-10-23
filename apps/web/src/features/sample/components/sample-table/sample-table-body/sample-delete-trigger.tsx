@@ -30,7 +30,7 @@ export const SampleDeleteTrigger = ({ id }: Props) => {
 
       <ConfirmationDialog
         open={isDialogOpen}
-        textWarning={t('messages.warningDelete')}
+        warningText={t('messages.warningDelete')}
         onClose={handleCloseDialog}
         onAccept={handleAccept}
       />
