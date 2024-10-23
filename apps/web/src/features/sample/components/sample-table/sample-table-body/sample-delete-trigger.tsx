@@ -11,30 +11,30 @@ interface Props {
 }
 
 export const SampleDeleteTrigger = ({ id }: Props) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const { deleteSample } = useTrpcSample();
 
   // "react-i18next"
   const { t } = useTranslation();
 
   // Methods
-  const handleOpenDialog = () => setIsDialogOpen(true);
-  const handleCloseDialog = () => setIsDialogOpen(false);
-  const handleAccept = () => deleteSample.mutate({ id });
+  const handleOpenConfirmation = () => setIsConfirmationOpen(true);
+  const handleCloseConfirmation = () => setIsConfirmationOpen(false);
+  const handleAcceptConfirmation = () => deleteSample.mutate({ id });
 
   return (
     <>
       {/* Trigger dialog */}
-      <IconButton aria-label="delete" onClick={handleOpenDialog}>
+      <IconButton aria-label="delete" onClick={handleOpenConfirmation}>
         <ClearIcon />
       </IconButton>
 
       {/* Confirmation dialog */}
       <ConfirmationDialog
-        open={isDialogOpen}
+        open={isConfirmationOpen}
         warningText={t('messages.warningDelete')}
-        onClose={handleCloseDialog}
-        onAccept={handleAccept}
+        onClose={handleCloseConfirmation}
+        onAccept={handleAcceptConfirmation}
       />
     </>
   );
