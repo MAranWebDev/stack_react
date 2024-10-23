@@ -71,10 +71,10 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
       <Dialog
         PaperProps={{ component: 'form', onSubmit: handleSubmit(onSubmit) }}
         open={isDialogOpen}
-        aria-labelledby="dialog title"
+        aria-labelledby="dialog-title"
         onClose={handleCloseDialog}
       >
-        <DialogTitle id="update-dialog-title">{t('actions.edit')}</DialogTitle>
+        <DialogTitle id="dialog-title">{t('actions.edit')}</DialogTitle>
         <DialogContent>
           <Stack spacing={1}>
             <input type="hidden" value={id} {...register(INPUT_KEYS.ID)} />
