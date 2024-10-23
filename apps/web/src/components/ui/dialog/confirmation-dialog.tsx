@@ -9,14 +9,14 @@ import { useTranslation } from 'react-i18next';
 // Types
 interface Props {
   open: boolean;
-  textWarning: string;
+  warningText: string;
   onClose: () => void;
   onAccept: () => void;
 }
 
 export const ConfirmationDialog = ({
   open,
-  textWarning,
+  warningText,
   onClose,
   onAccept,
 }: Props) => {
@@ -35,7 +35,7 @@ export const ConfirmationDialog = ({
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="confirmation-dialog-description">
-          {textWarning}
+          {warningText}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
