@@ -8,10 +8,10 @@ const connection = postgres(DATABASE_URL, { max: 1 });
 const db = drizzle(connection, { logger: true });
 
 const main = async () => {
-  // This will run migrations on the database, skipping the ones already applied
+  // This will run migrations on the database, skipping the ones already applied.
   await migrate(db, { migrationsFolder: MIGRATIONS_FOLDER });
 
-  // Don't forget to close the connection, otherwise the script will hang
+  // Don't forget to close the connection, otherwise the script will hang.
   await connection.end();
 };
 
