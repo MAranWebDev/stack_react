@@ -24,7 +24,7 @@ export const SampleDeleteTrigger = ({ id }: Props) => {
 
   return (
     <>
-      {/* Trigger */}
+      {/* Trigger dialog */}
       <IconButton aria-label="delete" onClick={handleOpenDialog}>
         <ClearIcon />
       </IconButton>
