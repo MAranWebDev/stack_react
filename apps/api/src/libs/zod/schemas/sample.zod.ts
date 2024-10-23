@@ -20,7 +20,6 @@ const name = z.string().trim().min(2).max(20);
 const isDone = z.boolean();
 const columnName = z.enum(SORT_BY_VALUES);
 const isDesc = z.boolean();
-
 const filters = z.object({ id, name, isDone });
 const sortBy = z.object({ columnName, isDesc });
 
@@ -36,7 +35,7 @@ export const sampleZodCreateInput = z.object({ name });
 export const sampleZodUpdateInput = filters.partial().merge(z.object({ id }));
 export const sampleZodDeleteInput = z.object({ id });
 
-// Exported types
+// Exported schema types
 export type SampleZodGetAllInput = z.infer<typeof sampleZodGetAllInput>;
 export type SampleZodGetInput = z.infer<typeof sampleZodGetInput>;
 export type SampleZodCreateInput = z.infer<typeof sampleZodCreateInput>;

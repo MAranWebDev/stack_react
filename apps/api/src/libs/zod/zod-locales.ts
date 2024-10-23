@@ -1,3 +1,5 @@
+// This file is used only in the client to translate form errors.
+// Libs
 import { z } from 'zod';
 import { zodI18nMap } from 'zod-i18n-map';
 
