@@ -34,6 +34,7 @@ export const es: DefaultLocale = {
     notFound: 'No encontrado',
     confirmation: 'Está seguro de querer continuar?',
     warningCreate: 'Advertencia: Esta acción creará un nuevo registro.',
+    warningUpdate: 'Advertencia: Esta acción actualizará el registro.',
     warningDelete:
       'Advertencia: Esta acción eliminará el registro permanentemente.',
   },

@@ -32,6 +32,7 @@
     "notFound": "Not found",
     "confirmation": "Are you sure you want to proceed?",
     "warningCreate": "Warning: This action will create a new record.",
+    "warningUpdate": "Warning: This action will update the record.",
     "warningDelete": "Warning: This action will delete the record permanently."
   }
 }
