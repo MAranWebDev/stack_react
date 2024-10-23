@@ -24,10 +24,12 @@ export const SampleDeleteTrigger = ({ id }: Props) => {
 
   return (
     <>
+      {/* Trigger */}
       <IconButton aria-label="delete" onClick={handleOpenDialog}>
         <ClearIcon />
       </IconButton>
 
+      {/* Confirmation dialog */}
       <ConfirmationDialog
         open={isDialogOpen}
         warningText={t('messages.warningDelete')}
