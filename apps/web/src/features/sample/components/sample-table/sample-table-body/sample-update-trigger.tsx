@@ -1,6 +1,6 @@
 import { ConfirmationDialog, FormDialog } from '@/components/ui/dialog';
 import { INPUT_KEYS } from '@/features/sample/constants';
-import { useTrpcSample } from '@/features/sample/hooks';
+import { useTrpcSampleMutation } from '@/features/sample/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import EditIcon from '@mui/icons-material/Edit';
 import Checkbox from '@mui/material/Checkbox';
@@ -27,7 +27,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
     null,
   );
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
-  const { updateSample } = useTrpcSample();
+  const { updateSample } = useTrpcSampleMutation();
 
   // "react-i18next"
   const { t } = useTranslation();
