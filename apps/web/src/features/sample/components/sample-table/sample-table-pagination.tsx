@@ -1,14 +1,19 @@
-import {
-  useReadSampleContext,
-  useUpdateSampleContext,
-} from '@/features/sample/context';
+import { useSampleTableStore } from '@/libs/zustand/stores';
 import TablePagination from '@mui/material/TablePagination';
 import { ChangeEvent, MouseEvent } from 'react';
 
 export const SampleTablePagination = () => {
-  const { rowsPerPageOptions, dataCount, rowsPerPage, page } =
-    useReadSampleContext();
-  const { changePage, changeRowsPerPage } = useUpdateSampleContext();
+  // "zustand"
+  const rowsPerPageOptions = useSampleTableStore(
+    (state) => state.rowsPerPageOptions,
+  );
+  const dataCount = useSampleTableStore((state) => state.dataCount);
+  const rowsPerPage = useSampleTableStore((state) => state.rowsPerPage);
+  const page = useSampleTableStore((state) => state.page);
+  const changePage = useSampleTableStore((state) => state.changePage);
+  const changeRowsPerPage = useSampleTableStore(
+    (state) => state.changeRowsPerPage,
+  );
 
   // Methods
   const handleChangePage = (
