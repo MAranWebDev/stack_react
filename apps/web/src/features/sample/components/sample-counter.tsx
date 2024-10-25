@@ -1,4 +1,4 @@
-import { useSampleStore } from '@/libs/zustand/stores';
+import { useSampleCounterStore } from '@/libs/zustand/stores';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -12,10 +12,10 @@ const ADD_BY = 3;
 
 export const SampleCounter = () => {
   // "zustand"
-  const amount = useSampleStore((state) => state.amount);
-  const add = useSampleStore((state) => state.add);
-  const addBy = useSampleStore((state) => state.addBy);
-  const reset = useSampleStore((state) => state.reset);
+  const amount = useSampleCounterStore((state) => state.amount);
+  const add = useSampleCounterStore((state) => state.add);
+  const addBy = useSampleCounterStore((state) => state.addBy);
+  const reset = useSampleCounterStore((state) => state.reset);
 
   // "react-i18next"
   const { t } = useTranslation();

@@ -13,7 +13,7 @@ interface Store {
 const PERSIST_STORE_NAME = 'sampleStore';
 const PERSIST_KEYS = ['amount'] as const;
 
-export const useSampleStore = create<Store>()(
+export const useSampleCounterStore = create<Store>()(
   applyMiddlewares({
     persistStoreName: PERSIST_STORE_NAME,
     persistKeys: PERSIST_KEYS,
