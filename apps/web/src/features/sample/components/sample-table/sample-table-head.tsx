@@ -1,6 +1,6 @@
 import { SORT_ORDERS } from '@/constants/sort-orders';
 import { INPUT_KEYS } from '@/features/sample/constants';
-import { useUpdateSampleContext } from '@/features/sample/context';
+import { useSampleTableStore } from '@/libs/zustand/stores';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
@@ -19,7 +19,9 @@ export const SampleTableHead = () => {
     direction: SORT_ORDERS.ASC,
     byColumn: INPUT_KEYS.ID,
   });
-  const { sortDataBy } = useUpdateSampleContext();
+
+  // "zustand"
+  const sortDataBy = useSampleTableStore((state) => state.sortDataBy);
 
   // "react-i18next"
   const { t } = useTranslation();
