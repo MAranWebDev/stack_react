@@ -1,5 +1,5 @@
 import { ConfirmationDialog } from '@/components/ui/dialog';
-import { useTrpcSample } from '@/features/sample/hooks';
+import { useTrpcSampleMutation } from '@/features/sample/hooks';
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
@@ -12,7 +12,7 @@ interface Props {
 
 export const SampleDeleteTrigger = ({ id }: Props) => {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
-  const { deleteSample } = useTrpcSample();
+  const { deleteSample } = useTrpcSampleMutation();
 
   // "react-i18next"
   const { t } = useTranslation();
