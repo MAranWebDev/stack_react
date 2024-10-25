@@ -9,18 +9,18 @@ import { SampleCounter } from './sample-counter';
 import { SampleTable } from './sample-table';
 
 // Constants
-const TABS = [
-  { id: 0, label: 'table' },
-  { id: 1, label: 'counter' },
-] as const;
-
-const tabIds = TABS.map(({ id }) => id);
+const tabLabels = ['table', 'counter'] as const;
 
 export const Sample = () => {
   const [tabId, setTab] = useState(0);
 
   // "react-i18next"
   const { t } = useTranslation();
+
+  const tabList = tabLabels.map((label, index) => ({
+    id: index,
+    label: t(label),
+  }));
 
   // Methods
   const handleChange = (_: SyntheticEvent, newTab: number) => setTab(newTab);
@@ -30,16 +30,16 @@ export const Sample = () => {
     <SampleProvider>
       <Stack sx={{ minWidth: 650 }} spacing={2}>
         <Tabs value={tabId} onChange={handleChange}>
-          {TABS.map(({ id, label }) => (
-            <Tab key={id} id={String(id)} label={t(label)} />
+          {tabList.map(({ id, label }) => (
+            <Tab key={id} id={String(id)} label={label} />
           ))}
         </Tabs>
 
-        <Stack sx={{ display: getTabDisplay(tabIds[0]) }}>
+        <Stack sx={{ display: getTabDisplay(tabList[0].id) }}>
           <SampleTable />
         </Stack>
 
-        <Box sx={{ display: getTabDisplay(tabIds[1]) }}>
+        <Box sx={{ display: getTabDisplay(tabList[1].id) }}>
           <SampleCounter />
         </Box>
       </Stack>
