@@ -1,5 +1,5 @@
 import { TableSkeleton } from '@/components/ui/table';
-import { useReadSampleContext } from '@/features/sample/context';
+import { useSampleTableStore } from '@/libs/zustand/stores';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
@@ -11,7 +11,10 @@ import { SampleUpdateTrigger } from './sample-update-trigger';
 const NUM_COLUMNS = 4;
 
 export const SampleTableBody = () => {
-  const { results, isFetching, rowsPerPage } = useReadSampleContext();
+  // "zustand"
+  const results = useSampleTableStore((state) => state.results);
+  const isFetching = useSampleTableStore((state) => state.isFetching);
+  const rowsPerPage = useSampleTableStore((state) => state.rowsPerPage);
 
   // "react-i18next"
   const { t } = useTranslation();
