@@ -23,7 +23,7 @@ export const useSampleCounterStore = create<Store>()(
         set((state) => {
           state.amount += 1;
         }),
-      addBy: (by: number) =>
+      addBy: (by) =>
         set((state) => {
           state.amount += by;
         }),

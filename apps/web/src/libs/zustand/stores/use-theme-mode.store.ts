@@ -30,7 +30,7 @@ export const useThemeModeStore = create<Store>()(
     store: (set) => ({
       isDarkMode: getIsDarkMode(THEME_MODES.SYSTEM),
       themeMode: THEME_MODES.SYSTEM,
-      changeThemeMode: (themeMode: THEME_MODES) =>
+      changeThemeMode: (themeMode) =>
         set((state) => {
           state.themeMode = themeMode;
           state.isDarkMode = getIsDarkMode(themeMode);
