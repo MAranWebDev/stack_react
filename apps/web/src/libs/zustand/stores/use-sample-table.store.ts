@@ -15,13 +15,14 @@ interface Store {
   rowsPerPageOptions: number[];
   filters: Filters;
   sortBy: SortBy;
-  dataCount: number;
-  results: Results;
   isFetching: boolean;
+  results: Results;
+  dataCount: number;
   changePage: (page: number) => void;
   changeRowsPerPage: (rowsPerPage: number) => void;
   filterData: (filters?: Filters) => void;
   sortDataBy: (sortBy?: SortBy) => void;
+  setResults: (results: Results, isFetching: boolean) => void;
 }
 
 // Zustand constants
@@ -40,37 +41,41 @@ export const useSampleTableStore = create<Store>()(
     persistKeys: PERSIST_KEYS,
     store: (set) => {
       return {
-        // Initial values
         page: initialPage,
         rowsPerPage: ROWS_PER_PAGE_OPTIONS[1],
         rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS,
         filters: undefined,
         sortBy: undefined,
-        dataCount: 0,
-        results: [],
         isFetching: false,
-
-        // Methods
-        changePage: (page: number) =>
+        results: [],
+        dataCount: 0,
+        changePage: (page) =>
           set((state) => {
             state.page = page;
           }),
-        changeRowsPerPage: (rowsPerPage: number) => {
+        changeRowsPerPage: (rowsPerPage) => {
           set((state) => {
             state.page = initialPage;
             state.rowsPerPage = rowsPerPage;
           });
         },
-        filterData: (filters?: Filters) => {
+        filterData: (filters) => {
           set((state) => {
             state.page = initialPage;
             state.filters = filters;
           });
         },
-        sortDataBy: (sortBy?: SortBy) => {
+        sortDataBy: (sortBy) => {
           set((state) => {
             state.page = initialPage;
             state.sortBy = sortBy;
+          });
+        },
+        setResults: (results, isFetching) => {
+          set((state) => {
+            state.isFetching = isFetching;
+            state.results = results;
+            state.dataCount = results.length;
           });
         },
       };
