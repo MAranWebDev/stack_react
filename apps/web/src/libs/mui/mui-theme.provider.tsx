@@ -57,9 +57,7 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
       <CssBaseline />
 
       {/* "notistack": must be inside theme provider to inherit styles */}
-      <SnackbarProvider maxSnack={1} preventDuplicate={true}>
-        {children}
-      </SnackbarProvider>
+      <SnackbarProvider maxSnack={1}>{children}</SnackbarProvider>
     </ThemeProvider>
   );
 };
