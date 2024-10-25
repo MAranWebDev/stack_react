@@ -1,5 +1,5 @@
 import { ConfirmationDialog, FormDialog } from '@/components/ui/dialog';
-import { useTrpcSample } from '@/features/sample/hooks';
+import { useTrpcSampleMutation } from '@/features/sample/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '@mui/material/Button';
@@ -15,7 +15,7 @@ export const SampleCreateTrigger = () => {
     null,
   );
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
-  const { createSample } = useTrpcSample();
+  const { createSample } = useTrpcSampleMutation();
 
   // "react-i18next"
   const { t } = useTranslation();
