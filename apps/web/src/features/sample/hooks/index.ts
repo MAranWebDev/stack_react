@@ -1,1 +1,1 @@
-export * from './use-trpc-sample';
+export * from './use-trpc-sample-mutation';
