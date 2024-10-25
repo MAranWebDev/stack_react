@@ -1,4 +1,4 @@
-import { useUpdateSampleContext } from '@/features/sample/context';
+import { useSampleTableStore } from '@/libs/zustand/stores';
 import { zodResolver } from '@hookform/resolvers/zod';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,7 +11,8 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 export const SampleFilterForm = () => {
-  const { filterData } = useUpdateSampleContext();
+  // "zustand"
+  const filterData = useSampleTableStore((state) => state.filterData);
 
   // "react-i18next"
   const { t } = useTranslation();
