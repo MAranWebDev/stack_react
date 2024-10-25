@@ -89,8 +89,8 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
       {/* Form dialog */}
       <FormDialog
         open={isFormOpen}
-        title={t('actions.edit')}
-        buttonText={t('actions.edit')}
+        title={t('actions.update')}
+        buttonText={t('actions.update')}
         onClose={handleCloseForm}
         onSubmit={handleSubmit(onSubmitOpenConfirmation)}
       >
