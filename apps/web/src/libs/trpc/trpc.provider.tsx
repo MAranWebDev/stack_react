@@ -9,13 +9,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { httpBatchLink } from '@trpc/client';
 import { useSnackbar } from 'notistack';
 import { PropsWithChildren, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { trpc } from './hooks';
-
-// Constants
-const MESSAGES = {
-  ERROR: 'El error del servidor viene vacío',
-  SUCCESS: 'Petición exitosa',
-} as const;
 
 export const TrpcProvider = ({ children }: PropsWithChildren) => {
   // "trpc"
@@ -26,9 +21,12 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
   // "notistack"
   const { enqueueSnackbar } = useSnackbar();
 
+  // "react-i18next"
+  const { t } = useTranslation();
+
   // Methods
   const enqueueError = (message: string) => {
-    const errorMessage = message || MESSAGES.ERROR;
+    const errorMessage = message || t('messages.errorResponse');
     enqueueSnackbar(errorMessage, { variant: 'error' });
   };
 
@@ -46,7 +44,9 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
             enqueueError(message);
           },
           onSuccess() {
-            enqueueSnackbar(MESSAGES.SUCCESS, { variant: 'success' });
+            enqueueSnackbar(t('messages.successResponse'), {
+              variant: 'success',
+            });
           },
         }),
       }),

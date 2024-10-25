@@ -37,5 +37,7 @@ export const es: DefaultLocale = {
     warningUpdate: 'Advertencia: Esta acción actualizará el registro.',
     warningDelete:
       'Advertencia: Esta acción eliminará el registro permanentemente.',
+    errorResponse: 'Ocurrió un error interno del servidor.',
+    successResponse: '¡Tu solicitud se procesó con éxito!',
   },
 };

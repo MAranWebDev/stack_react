@@ -5,11 +5,11 @@ import { PropsWithChildren } from 'react';
 
 export const AppProvider = ({ children }: PropsWithChildren) => {
   return (
-    // "mui" must be first to trigger functionalities in other providers
     <MuiThemeProvider>
-      <TrpcProvider>
-        <I18nextSSRProvider>{children}</I18nextSSRProvider>
-      </TrpcProvider>
+      <I18nextSSRProvider>
+        {/* "trpc" uses "mui-notistack" and "react-i18next" */}
+        <TrpcProvider>{children}</TrpcProvider>
+      </I18nextSSRProvider>
     </MuiThemeProvider>
   );
 };
