@@ -1,4 +1,3 @@
-import { SampleProvider } from '@/features/sample/context';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
@@ -27,22 +26,20 @@ export const Sample = () => {
   const getTabDisplay = (id: number) => (id !== tabId ? 'none' : '');
 
   return (
-    <SampleProvider>
-      <Stack sx={{ minWidth: 650 }} spacing={2}>
-        <Tabs value={tabId} onChange={handleChange}>
-          {tabList.map(({ id, label }) => (
-            <Tab key={id} id={String(id)} label={label} />
-          ))}
-        </Tabs>
+    <Stack sx={{ minWidth: 650 }} spacing={2}>
+      <Tabs value={tabId} onChange={handleChange}>
+        {tabList.map(({ id, label }) => (
+          <Tab key={id} id={String(id)} label={label} />
+        ))}
+      </Tabs>
 
-        <Stack sx={{ display: getTabDisplay(tabList[0].id) }}>
-          <SampleTable />
-        </Stack>
-
-        <Box sx={{ display: getTabDisplay(tabList[1].id) }}>
-          <SampleCounter />
-        </Box>
+      <Stack sx={{ display: getTabDisplay(tabList[0].id) }}>
+        <SampleTable />
       </Stack>
-    </SampleProvider>
+
+      <Box sx={{ display: getTabDisplay(tabList[1].id) }}>
+        <SampleCounter />
+      </Box>
+    </Stack>
   );
 };
