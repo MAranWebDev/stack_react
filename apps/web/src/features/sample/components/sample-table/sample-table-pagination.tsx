@@ -1,3 +1,4 @@
+import { useTrpcSampleGetAll } from '@/features/sample/hooks';
 import { useSampleTableStore } from '@/libs/zustand/stores';
 import TablePagination from '@mui/material/TablePagination';
 import { ChangeEvent, MouseEvent } from 'react';
@@ -7,13 +8,15 @@ export const SampleTablePagination = () => {
   const rowsPerPageOptions = useSampleTableStore(
     (state) => state.rowsPerPageOptions,
   );
-  const dataCount = useSampleTableStore((state) => state.dataCount);
   const rowsPerPage = useSampleTableStore((state) => state.rowsPerPage);
   const page = useSampleTableStore((state) => state.page);
   const changePage = useSampleTableStore((state) => state.changePage);
   const changeRowsPerPage = useSampleTableStore(
     (state) => state.changeRowsPerPage,
   );
+
+  const { data } = useTrpcSampleGetAll();
+  const dataCount = data?.dataCount ?? 0;
 
   // Methods
   const handleChangePage = (
