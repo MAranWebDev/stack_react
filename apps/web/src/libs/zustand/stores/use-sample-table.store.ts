@@ -1,13 +1,11 @@
 import { applyMiddlewares } from '@/libs/zustand/utils';
-import { TrpcRouterInput, TrpcRouterOutput } from '@workspace/api';
+import { TrpcRouterInput } from '@workspace/api';
 import { create } from 'zustand';
 
 // Types
 type SampleGetAllInput = TrpcRouterInput['sample']['getAll'];
-type SampleGetAllOutput = TrpcRouterOutput['sample']['getAll'];
 type Filters = SampleGetAllInput['filters'];
 type SortBy = SampleGetAllInput['sortBy'];
-type Results = SampleGetAllOutput['results'];
 
 interface Store {
   page: number;
@@ -15,14 +13,10 @@ interface Store {
   rowsPerPageOptions: number[];
   filters: Filters;
   sortBy: SortBy;
-  isFetching: boolean;
-  results: Results;
-  dataCount: number;
   changePage: (page: number) => void;
   changeRowsPerPage: (rowsPerPage: number) => void;
   filterData: (filters?: Filters) => void;
   sortDataBy: (sortBy?: SortBy) => void;
-  setResults: (results: Results, isFetching: boolean) => void;
 }
 
 // Zustand constants
@@ -69,13 +63,6 @@ export const useSampleTableStore = create<Store>()(
           set((state) => {
             state.page = initialPage;
             state.sortBy = sortBy;
-          });
-        },
-        setResults: (results, isFetching) => {
-          set((state) => {
-            state.isFetching = isFetching;
-            state.results = results;
-            state.dataCount = results.length;
           });
         },
       };
