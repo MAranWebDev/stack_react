@@ -1,4 +1,5 @@
 import { TableSkeleton } from '@/components/ui/table';
+import { useTrpcSampleGetAll } from '@/features/sample/hooks';
 import { useSampleTableStore } from '@/libs/zustand/stores';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,46 +13,41 @@ const NUM_COLUMNS = 4;
 
 export const SampleTableBody = () => {
   // "zustand"
-  const results = useSampleTableStore((state) => state.results);
-  const isFetching = useSampleTableStore((state) => state.isFetching);
   const rowsPerPage = useSampleTableStore((state) => state.rowsPerPage);
 
   // "react-i18next"
   const { t } = useTranslation();
 
-  const isEmptyResults = results.length === 0;
-  const isNoData = !isFetching && isEmptyResults;
-  const isData = !isFetching && !isEmptyResults;
+  const { data, isFetching } = useTrpcSampleGetAll();
+  const dataCount = data?.dataCount ?? 0;
+  const hasData = dataCount > 0;
 
-  return (
-    <TableBody>
-      {isFetching ? (
-        <TableSkeleton columns={NUM_COLUMNS} rows={rowsPerPage} />
-      ) : null}
+  // Render
+  const renderContent = () => {
+    if (isFetching)
+      return <TableSkeleton columns={NUM_COLUMNS} rows={rowsPerPage} />;
 
-      {isNoData ? (
+    if (!hasData)
+      return (
         <TableRow>
           <TableCell colSpan={NUM_COLUMNS} align="center">
             {t('messages.noData')}
           </TableCell>
         </TableRow>
-      ) : null}
+      );
 
-      {isData
-        ? results.map(({ id, name, isDone }) => (
-            <TableRow key={id} hover>
-              <TableCell>{id}</TableCell>
-              <TableCell>{name}</TableCell>
-              <TableCell>
-                {isDone ? t('status.closed') : t('status.open')}
-              </TableCell>
-              <TableCell sx={{ display: 'flex' }}>
-                <SampleUpdateTrigger id={id} name={name} isDone={isDone} />
-                <SampleDeleteTrigger id={id} />
-              </TableCell>
-            </TableRow>
-          ))
-        : null}
-    </TableBody>
-  );
+    return data?.results.map(({ id, name, isDone }) => (
+      <TableRow key={id} hover>
+        <TableCell>{id}</TableCell>
+        <TableCell>{name}</TableCell>
+        <TableCell>{isDone ? t('status.closed') : t('status.open')}</TableCell>
+        <TableCell sx={{ display: 'flex' }}>
+          <SampleUpdateTrigger id={id} name={name} isDone={isDone} />
+          <SampleDeleteTrigger id={id} />
+        </TableCell>
+      </TableRow>
+    ));
+  };
+
+  return <TableBody>{renderContent()}</TableBody>;
 };
