@@ -5,7 +5,6 @@ import { UnauthorizedRoute } from '@/app/routes/unauthorized.route';
 import { ROUTES } from '@/constants/routes';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-// Settings
 const router = createBrowserRouter([
   {
     path: ROUTES.HOME,
