@@ -16,8 +16,5 @@ export const useTrpcSampleGetAll = () => {
     sortBy,
   });
 
-  return {
-    data,
-    isFetching,
-  };
+  return { data, isFetching };
 };
