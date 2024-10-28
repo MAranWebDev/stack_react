@@ -25,9 +25,9 @@ export const ConfirmationDialog = ({
 
   return (
     <Dialog
-      open={open}
       aria-labelledby="confirmation-dialog-title"
       aria-describedby="confirmation-dialog-description"
+      open={open}
       onClose={onClose}
     >
       <DialogTitle id="confirmation-dialog-title">
