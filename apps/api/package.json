@@ -27,7 +27,7 @@
     "@types/cors": "^2.8.17",
     "@types/eslint__js": "^8.42.3",
     "@types/express": "^5.0.0",
-    "@types/node": "^22.8.0",
+    "@types/node": "^22.8.1",
     "drizzle-kit": "^0.26.2",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
