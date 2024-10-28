@@ -2,11 +2,12 @@ import { useSampleTableStore } from '@/libs/zustand/stores';
 import { zodResolver } from '@hookform/resolvers/zod';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import SearchIcon from '@mui/icons-material/Search';
+import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import TextField from '@mui/material/TextField';
-import { sampleZodGetAllInput, SampleZodGetAllInput } from '@workspace/api';
+import { SampleZodGetAllForm, sampleZodGetAllForm } from '@workspace/api';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -16,34 +17,56 @@ export const SampleFilterForm = () => {
 
   // "react-i18next"
   const { t } = useTranslation();
+  const options = [t('status.open'), t('status.closed')];
 
   // "react-hook-form"
-  const { register, handleSubmit } = useForm<SampleZodGetAllInput>({
-    resolver: zodResolver(sampleZodGetAllInput),
+  const { register, handleSubmit } = useForm<SampleZodGetAllForm>({
+    resolver: zodResolver(sampleZodGetAllForm),
   });
 
   // Methods
-  const onSubmit = ({ filters }: SampleZodGetAllInput) => filterData(filters);
+  const onSubmit = (inputs: SampleZodGetAllForm) => {
+    const { isDone } = inputs;
+    const newIsDone =
+      isDone === options[0] ? false : isDone === options[1] ? true : undefined;
+    const filters = { ...inputs, isDone: newIsDone };
+    filterData(filters);
+  };
+
   const handleClickClean = () => filterData();
 
   return (
     <Box
-      sx={{ display: 'flex', justifyContent: 'space-between', flexGrow: 1 }}
+      sx={{ display: 'flex', flexGrow: 1, gap: 1 }}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Box sx={{ display: 'flex', gap: 1 }}>
+      <Box sx={{ display: 'flex', flexGrow: 1, gap: 1 }}>
         <TextField
+          fullWidth
           label="Id"
           variant="outlined"
           autoComplete="off"
-          {...register('filters.id')}
+          {...register('id')}
         />
         <TextField
+          fullWidth
           label={t('name')}
           variant="outlined"
           autoComplete="off"
-          {...register('filters.name')}
+          {...register('name')}
+        />
+        <Autocomplete
+          fullWidth
+          disablePortal
+          options={options}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label={t('status.label')}
+              {...register('isDone')}
+            />
+          )}
         />
       </Box>
 
