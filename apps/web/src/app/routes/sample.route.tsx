@@ -3,6 +3,7 @@ import { Sample } from '@/features/sample/components';
 import { useTranslation } from 'react-i18next';
 
 export const SampleRoute = () => {
+  // "react-i18next"
   const { t } = useTranslation();
 
   return (
