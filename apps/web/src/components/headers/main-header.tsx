@@ -17,7 +17,7 @@ export const MainHeader = () => {
   const isMutating = useIsMutating();
 
   const howManyRequests = isFetching || isMutating;
-  const visibilityStatus = howManyRequests ? 'visible' : 'hidden';
+  const progressVisibility = howManyRequests ? 'visible' : 'hidden';
 
   // Methods
   const toggleDrawer = (newIsDrawerOpen: boolean) => () =>
@@ -33,8 +33,8 @@ export const MainHeader = () => {
         }}
         position="fixed"
       >
-        <Toolbar sx={{ mx: 1, justifyContent: 'space-between' }}>
-          <Typography variant="h6" component="div">
+        <Toolbar sx={{ justifyContent: 'space-between', mx: 1 }}>
+          <Typography component="p" variant="h6">
             Mario
           </Typography>
 
@@ -42,7 +42,7 @@ export const MainHeader = () => {
             <CustomIconButton onClick={toggleDrawer(true)}>
               <SettingsOutlinedIcon fontSize="small" />
             </CustomIconButton>
-            <CircularProgress sx={{ visibility: visibilityStatus }} />
+            <CircularProgress sx={{ visibility: progressVisibility }} />
           </Stack>
         </Toolbar>
       </AppBar>
