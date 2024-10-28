@@ -8,7 +8,7 @@ import {
   SampleZodGetInput,
   SampleZodUpdateInput,
 } from '@/libs/zod/schemas';
-import { and, asc, count, desc, eq, ilike } from 'drizzle-orm';
+import { and, asc, count, desc, eq, ilike, sql } from 'drizzle-orm';
 
 // Types
 interface Ctx {
@@ -38,12 +38,13 @@ export const sampleService = {
     const { columnName, isDesc } = sortBy;
 
     // Conditions
-    const where = and(
-      id ? ilike(sampleSchema.id, `%${id}%`) : undefined,
+    const whereConditions = [
+      id ? sql`cast(${sampleSchema.id} as text) ilike ${`%${id}%`}` : undefined,
       name ? ilike(sampleSchema.name, `%${name}%`) : undefined,
       isDone != undefined ? eq(sampleSchema.isDone, isDone) : undefined,
-    );
+    ].filter(Boolean);
 
+    const where = and(...whereConditions);
     const offset = page * rowsPerPage;
     const schemaColumn = sampleSchema[columnName];
     const orderBy = isDesc ? desc(schemaColumn) : asc(schemaColumn);
@@ -58,13 +59,12 @@ export const sampleService = {
 
     const next = dataCount / rowsPerPage > page ? page + 1 : null;
 
-    const results = await db
-      .select()
-      .from(sampleSchema)
-      .where(where)
-      .orderBy(orderBy)
-      .limit(rowsPerPage)
-      .offset(offset);
+    const results = await db.query.sampleSchema.findMany({
+      where,
+      orderBy,
+      limit: rowsPerPage,
+      offset,
+    });
 
     return { dataCount, previous, next, results };
   },

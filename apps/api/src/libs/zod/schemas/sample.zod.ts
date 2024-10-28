@@ -18,32 +18,31 @@ const rowsPerPage = z.number().positive().lte(25);
 const id = z.string().trim().max(60);
 const name = z.string().trim().min(2).max(20);
 const isDone = z.boolean();
-const formIsDone = z.enum(['true', 'false', 'undefined']);
+const formText = z.string().trim().max(20);
 const columnName = z.enum(SORT_BY_VALUES);
 const isDesc = z.boolean();
-const filters = z.object({ id, name, isDone });
-const formFilters = filters.extend({ isDone: formIsDone });
 const sortBy = z.object({ columnName, isDesc });
+const filters = z.object({ id, name: formText, isDone });
 
 // Exported schemas
 export const sampleZodGetAllInput = z.object({
   page: page.default(0),
   rowsPerPage: rowsPerPage.default(10),
-  filters: filters.partial().optional(),
   sortBy: sortBy.default({ columnName: SORT_BY.ID, isDesc: false }),
-});
-export const sampleZodGetAllFormInput = z.object({
-  filters: formFilters.partial().optional(),
+  filters: filters.partial().optional(),
 });
 export const sampleZodGetInput = z.object({ id });
 export const sampleZodCreateInput = z.object({ name });
 export const sampleZodUpdateInput = filters.partial().merge(z.object({ id }));
 export const sampleZodDeleteInput = z.object({ id });
+export const sampleZodGetAllForm = filters
+  .extend({ isDone: formText })
+  .partial();
 
 // Exported types
 export type SampleZodGetAllInput = z.infer<typeof sampleZodGetAllInput>;
-export type SampleZodGetAllFormInput = z.infer<typeof sampleZodGetAllFormInput>;
 export type SampleZodGetInput = z.infer<typeof sampleZodGetInput>;
 export type SampleZodCreateInput = z.infer<typeof sampleZodCreateInput>;
 export type SampleZodUpdateInput = z.infer<typeof sampleZodUpdateInput>;
 export type SampleZodDeleteInput = z.infer<typeof sampleZodDeleteInput>;
+export type SampleZodGetAllForm = z.infer<typeof sampleZodGetAllForm>;
