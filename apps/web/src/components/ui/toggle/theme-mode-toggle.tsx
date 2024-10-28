@@ -51,10 +51,10 @@ export const ThemeModeToggle = () => {
   return (
     <ToggleButtonGroup
       fullWidth
-      value={themeMode}
       exclusive
       size="medium"
       aria-label="theme mode toggle"
+      value={themeMode}
       onChange={handleChange}
     >
       {translatedToggleValues.map(({ value, text, Icon }) => (
