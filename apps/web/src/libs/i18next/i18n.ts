@@ -22,9 +22,9 @@ const resources = {
 
 // Settings
 i18n
-  .use(LanguageDetector) // detect user language
-  .use(initReactI18next) // pass the i18n instance to react-i18next.
-  // init i18next
+  .use(LanguageDetector) // Detect user language
+  .use(initReactI18next) // Pass the i18n instance to react-i18next.
+  // Init i18next
   .init({
     resources, // Translations
 
@@ -43,5 +43,4 @@ export { i18n };
 // Exported types
 export type DefaultLocale =
   (typeof defaultResource)[DefaultLanguage][DefaultNS];
-
 export type DefaultResources = (typeof resources)[DefaultLanguage];
