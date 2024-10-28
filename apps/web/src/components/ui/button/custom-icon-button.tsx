@@ -1,6 +1,7 @@
 import IconButton from '@mui/material/IconButton';
 import { MouseEventHandler, PropsWithChildren } from 'react';
 
+// Types
 interface Props {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
