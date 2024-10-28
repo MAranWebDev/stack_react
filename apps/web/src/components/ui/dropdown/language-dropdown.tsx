@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 export const LanguageDropdown = () => {
   // "react-i18next"
   const { t, i18n } = useTranslation();
+
   const currentLanguage = i18n.resolvedLanguage;
 
   // Methods
