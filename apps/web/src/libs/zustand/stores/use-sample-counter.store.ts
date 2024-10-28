@@ -17,7 +17,7 @@ export const useSampleCounterStore = create<Store>()(
   applyMiddlewares({
     persistStoreName: PERSIST_STORE_NAME,
     persistKeys: PERSIST_KEYS,
-    store: (set) => ({
+    store: (set): Store => ({
       amount: 0,
       add: () =>
         set((state) => {

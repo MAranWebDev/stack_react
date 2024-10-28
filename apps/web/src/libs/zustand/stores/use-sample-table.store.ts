@@ -19,22 +19,18 @@ interface Store {
   sortDataBy: (sortBy?: SortBy) => void;
 }
 
-// Zustand constants
+// Constants
 const PERSIST_STORE_NAME = 'sampleTableStore';
 const PERSIST_KEYS = [] as const;
-
-// Constants
 const ROWS_PER_PAGE_OPTIONS = [5, 10, 25];
-
-// Values
-const initialPage = 0;
+const INITIAL_PAGE = 0;
 
 export const useSampleTableStore = create<Store>()(
   applyMiddlewares({
     persistStoreName: PERSIST_STORE_NAME,
     persistKeys: PERSIST_KEYS,
-    store: (set) => ({
-      page: initialPage,
+    store: (set): Store => ({
+      page: INITIAL_PAGE,
       rowsPerPage: ROWS_PER_PAGE_OPTIONS[1],
       rowsPerPageOptions: ROWS_PER_PAGE_OPTIONS,
       filters: undefined,
@@ -45,19 +41,19 @@ export const useSampleTableStore = create<Store>()(
         }),
       changeRowsPerPage: (rowsPerPage) => {
         set((state) => {
-          state.page = initialPage;
+          state.page = INITIAL_PAGE;
           state.rowsPerPage = rowsPerPage;
         });
       },
       filterData: (filters) => {
         set((state) => {
-          state.page = initialPage;
+          state.page = INITIAL_PAGE;
           state.filters = filters;
         });
       },
       sortDataBy: (sortBy) => {
         set((state) => {
-          state.page = initialPage;
+          state.page = INITIAL_PAGE;
           state.sortBy = sortBy;
         });
       },
