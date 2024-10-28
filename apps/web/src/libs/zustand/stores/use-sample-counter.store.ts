@@ -10,7 +10,7 @@ interface Store {
 }
 
 // Constants
-const PERSIST_STORE_NAME = 'sampleStore';
+const PERSIST_STORE_NAME = 'sampleCounterStore';
 const PERSIST_KEYS = ['amount'] as const;
 
 export const useSampleCounterStore = create<Store>()(
