@@ -1,11 +1,16 @@
+import { ES, US } from 'country-flag-icons/react/3x2';
+
 // Constants
-export const LANGUAGES = {
-  EN: 'en', // English
-  ES: 'es', // Spanish
+export const LANGUAGE_CODES = {
+  EN: 'en',
+  ES: 'es',
 } as const;
 
-export const LANGUAGE_VALUES = Object.values(LANGUAGES);
+export const LANGUAGES = [
+  { code: LANGUAGE_CODES.EN, name: 'English', FlagComponent: US },
+  { code: LANGUAGE_CODES.ES, name: 'Español', FlagComponent: ES },
+] as const;
 
 // Exported types
-export type LANGUAGES = (typeof LANGUAGES)[keyof typeof LANGUAGES];
-export type LanguageValues = typeof LANGUAGE_VALUES;
+export type LanguageCodes =
+  (typeof LANGUAGE_CODES)[keyof typeof LANGUAGE_CODES];

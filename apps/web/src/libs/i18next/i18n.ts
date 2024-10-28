@@ -3,21 +3,21 @@ import { zodEs } from '@workspace/api';
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import { DEFAULT_NS, DefaultNS, LANGUAGES } from './constants';
+import { DEFAULT_NS, DefaultNS, LANGUAGE_CODES } from './constants';
 
 // Types
 type DefaultLanguage = typeof DEFAULT_LANGUAGE;
 
 // Constants
-const DEFAULT_LANGUAGE = LANGUAGES.EN;
+const DEFAULT_LANGUAGE = LANGUAGE_CODES.EN;
 
 // Translations
 const defaultResource = {
-  [LANGUAGES.EN]: { [DEFAULT_NS]: en },
+  [LANGUAGE_CODES.EN]: { [DEFAULT_NS]: en },
 } as const;
 const resources = {
   ...defaultResource,
-  [LANGUAGES.ES]: { [DEFAULT_NS]: es, zod: zodEs },
+  [LANGUAGE_CODES.ES]: { [DEFAULT_NS]: es, zod: zodEs },
 } as const;
 
 // Settings
