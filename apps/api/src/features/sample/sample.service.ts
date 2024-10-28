@@ -33,9 +33,15 @@ interface DeleteOpts extends Ctx {
 export const sampleService = {
   async getAll({ input }: GetAllOpts) {
     // Inputs
-    const { filters, sortBy, page, rowsPerPage } = input;
+    const { page, rowsPerPage, sortBy, filters } = input;
+    const newPage = page ?? 0;
+    const newRowsPerPage = rowsPerPage ?? 10;
     const { id, name, isDone } = filters || {};
-    const { columnName, isDesc } = sortBy;
+
+    const { columnName, isDesc } = sortBy || {
+      columnName: 'id',
+      isDesc: false,
+    };
 
     // Conditions
     const whereConditions = [
@@ -43,21 +49,22 @@ export const sampleService = {
       name ? ilike(sampleSchema.name, `%${name}%`) : undefined,
       isDone != undefined ? eq(sampleSchema.isDone, isDone) : undefined,
     ].filter(Boolean);
-
     const where = and(...whereConditions);
-    const offset = page * rowsPerPage;
+
     const schemaColumn = sampleSchema[columnName];
     const orderBy = isDesc ? desc(schemaColumn) : asc(schemaColumn);
 
+    const offset = newPage * newRowsPerPage;
+
     // Data
-    const previous = page > 0 ? page - 1 : null;
+    const previous = newPage > 0 ? newPage - 1 : null;
 
     const [{ count: dataCount }] = await db
       .select({ count: count() })
       .from(sampleSchema)
       .where(where);
 
-    const next = dataCount / rowsPerPage > page ? page + 1 : null;
+    const next = dataCount / newRowsPerPage > newPage ? newPage + 1 : null;
 
     const results = await db.query.sampleSchema.findMany({
       where,
@@ -66,7 +73,12 @@ export const sampleService = {
       offset,
     });
 
-    return { dataCount, previous, next, results };
+    return {
+      dataCount,
+      previous,
+      next,
+      results,
+    };
   },
 
   async get({ input }: GetOpts) {

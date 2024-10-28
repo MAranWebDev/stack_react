@@ -1,34 +1,25 @@
 import { z } from 'zod';
 
-// Types
-type SortByValues = [(typeof SORT_BY)[keyof typeof SORT_BY]];
-
 // Constants
-const SORT_BY = {
-  ID: 'id',
-  NAME: 'name',
-  IS_DONE: 'isDone',
-} as const;
-
-const SORT_BY_VALUES = Object.values(SORT_BY) as SortByValues;
+const COLUMNS = ['id', 'name', 'isDone'] as const;
 
 // Base schemas
 const page = z.number().nonnegative();
 const rowsPerPage = z.number().positive().lte(25);
+const columnName = z.enum(COLUMNS);
+const isDesc = z.boolean();
+const sortBy = z.object({ columnName, isDesc });
 const id = z.string().trim().max(60);
 const name = z.string().trim().min(2).max(20);
 const isDone = z.boolean();
 const formText = z.string().trim().max(20);
-const columnName = z.enum(SORT_BY_VALUES);
-const isDesc = z.boolean();
-const sortBy = z.object({ columnName, isDesc });
 const filters = z.object({ id, name: formText, isDone });
 
 // Exported schemas
 export const sampleZodGetAllInput = z.object({
-  page: page.default(0),
-  rowsPerPage: rowsPerPage.default(10),
-  sortBy: sortBy.default({ columnName: SORT_BY.ID, isDesc: false }),
+  page: page.optional(),
+  rowsPerPage: rowsPerPage.optional(),
+  sortBy: sortBy.optional(),
   filters: filters.partial().optional(),
 });
 export const sampleZodGetInput = z.object({ id });
