@@ -18,7 +18,7 @@ export const SampleTablePagination = () => {
   const { data } = useTrpcSampleGetAll();
   const dataCount = data?.dataCount ?? 0;
 
-  // Methods
+  // Utils
   const handleChangePage = (
     _: MouseEvent<HTMLButtonElement> | null,
     newPage: number,

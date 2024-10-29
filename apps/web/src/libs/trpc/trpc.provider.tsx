@@ -24,7 +24,7 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
   // "react-i18next"
   const { t } = useTranslation();
 
-  // Methods
+  // Utils
   const enqueueError = (message: string) => {
     const errorMessage = message || t('messages.errorResponse');
     enqueueSnackbar(errorMessage, { variant: 'error' });

@@ -17,7 +17,7 @@ export const SampleDeleteTrigger = ({ id }: Props) => {
   // "react-i18next"
   const { t } = useTranslation();
 
-  // Methods
+  // Utils
   const handleOpenConfirmation = () => setIsConfirmationOpen(true);
   const handleCloseConfirmation = () => setIsConfirmationOpen(false);
   const handleAcceptConfirmation = () => deleteSample.mutate({ id });

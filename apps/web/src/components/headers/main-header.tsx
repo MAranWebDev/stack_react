@@ -19,7 +19,7 @@ export const MainHeader = () => {
   const howManyRequests = isFetching || isMutating;
   const progressVisibility = howManyRequests ? 'visible' : 'hidden';
 
-  // Methods
+  // Utils
   const toggleDrawer = (newIsDrawerOpen: boolean) => () =>
     setIsDrawerOpen(newIsDrawerOpen);
 

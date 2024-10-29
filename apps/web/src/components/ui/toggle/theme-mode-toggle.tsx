@@ -40,7 +40,7 @@ export const ThemeModeToggle = () => {
     text: t(text),
   }));
 
-  // Methods
+  // Utils
   const handleChange = (
     _: MouseEvent<HTMLElement>,
     newThemeMode: THEME_MODES,

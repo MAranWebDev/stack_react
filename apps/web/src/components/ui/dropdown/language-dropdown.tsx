@@ -13,7 +13,7 @@ export const LanguageDropdown = () => {
 
   const currentLanguage = i18n.resolvedLanguage;
 
-  // Methods
+  // Utils
   const handleChange = (event: SelectChangeEvent) =>
     i18n.changeLanguage(event.target.value);
 

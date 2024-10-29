@@ -21,7 +21,7 @@ export const Sample = () => {
     label: t(label),
   }));
 
-  // Methods
+  // Utils
   const handleChange = (_: SyntheticEvent, newTab: number) => setTab(newTab);
   const getTabDisplay = (id: number) => (id !== tabId ? 'none' : '');
 

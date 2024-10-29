@@ -30,7 +30,7 @@ export const SampleCreateTrigger = () => {
     resolver: zodResolver(sampleZodCreateInput),
   });
 
-  // Methods
+  // Utils
   const handleOpenForm = () => setIsFormOpen(true);
 
   const handleCloseForm = () => {

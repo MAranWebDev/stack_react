@@ -20,7 +20,7 @@ export const SampleCounter = () => {
   // "react-i18next"
   const { t } = useTranslation();
 
-  // Methods
+  // Utils
   const handleAdd = () => add();
   const handleAddBy = () => addBy(ADD_BY);
   const handleReset = () => reset();

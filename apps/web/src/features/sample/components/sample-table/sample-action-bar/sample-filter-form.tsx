@@ -24,7 +24,7 @@ export const SampleFilterForm = () => {
     resolver: zodResolver(sampleZodGetAllForm),
   });
 
-  // Methods
+  // Utils
   const onSubmit = (inputs: SampleZodGetAllForm) => {
     const { isDone } = inputs;
     const newIsDone =

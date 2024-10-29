@@ -48,7 +48,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
     ? t('status.closed')
     : t('status.open');
 
-  // Methods
+  // Utils
   const handleOpenForm = () => setIsFormOpen(true);
 
   const handleCloseForm = () => {

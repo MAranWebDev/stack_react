@@ -32,7 +32,7 @@ export const SampleTableHead = () => {
     { key: INPUT_KEYS.IS_DONE, text: t('status.label') },
   ];
 
-  // Methods
+  // Utils
   const handleSort = (columnKey: INPUT_KEYS) => () =>
     setOrder((draft) => {
       const isCurrentColumn = draft.byColumn === columnKey;
