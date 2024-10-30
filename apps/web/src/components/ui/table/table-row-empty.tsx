@@ -7,7 +7,7 @@ interface Props {
   numColumns: number;
 }
 
-export const TableRowNoData = ({ numColumns }: Props) => {
+export const TableRowEmpty = ({ numColumns }: Props) => {
   // "react-i18next"
   const { t } = useTranslation();
 

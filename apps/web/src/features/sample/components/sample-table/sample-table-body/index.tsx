@@ -1,4 +1,4 @@
-import { TableRowNoData, TableSkeleton } from '@/components/ui/table';
+import { TableRowEmpty, TableSkeleton } from '@/components/ui/table';
 import { useTrpcSampleGetAll } from '@/features/sample/hooks';
 import { useSampleTableStore } from '@/libs/zustand/stores';
 import TableBody from '@mui/material/TableBody';
@@ -27,7 +27,7 @@ export const SampleTableBody = () => {
     if (isFetching)
       return <TableSkeleton columns={NUM_COLUMNS} rows={rowsPerPage} />;
 
-    if (!hasData) return <TableRowNoData numColumns={NUM_COLUMNS} />;
+    if (!hasData) return <TableRowEmpty numColumns={NUM_COLUMNS} />;
 
     return data?.results.map(({ id, name, isDone }) => (
       <TableRow key={id} hover>
