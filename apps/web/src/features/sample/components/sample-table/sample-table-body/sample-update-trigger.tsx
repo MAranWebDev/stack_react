@@ -1,5 +1,4 @@
 import { ConfirmationDialog, FormDialog } from '@/components/ui/dialog';
-import { INPUT_KEYS } from '@/features/sample/constants';
 import { useTrpcSampleMutation } from '@/features/sample/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import EditIcon from '@mui/icons-material/Edit';
@@ -14,7 +13,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-// Ojo
 // Types
 interface Props {
   id: string;
@@ -45,16 +43,14 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
     resolver: zodResolver(sampleZodUpdateInput),
   });
 
-  const isDoneStatus = watch(INPUT_KEYS.IS_DONE)
-    ? t('status.closed')
-    : t('status.open');
+  const isDoneStatus = watch('isDone') ? t('status.closed') : t('status.open');
 
   // Utils
   const handleOpenForm = () => setIsFormOpen(true);
 
   const handleCloseForm = () => {
     reset();
-    setValue(INPUT_KEYS.IS_DONE, isDone);
+    setValue('isDone', isDone);
     setIsFormOpen(false);
   };
 
@@ -96,7 +92,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
         onSubmit={handleSubmit(onSubmitOpenConfirmation)}
       >
         <Stack spacing={1}>
-          <input type="hidden" value={id} {...register(INPUT_KEYS.ID)} />
+          <input type="hidden" value={id} {...register('id')} />
 
           <TextField
             required
@@ -107,11 +103,11 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
             defaultValue={name}
             error={!!errors.name}
             helperText={errors.name?.message}
-            {...register(INPUT_KEYS.NAME)}
+            {...register('name')}
           />
 
           <Stack sx={{ px: 1 }}>
-            <Typography sx={{ fontSize: '12px', color: 'text.secondary' }}>
+            <Typography sx={{ color: 'text.secondary', fontSize: '12px' }}>
               {t('status.label')}
             </Typography>
             <FormControlLabel
@@ -119,10 +115,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
                 <Typography color="text.disabled">{isDoneStatus}</Typography>
               }
               control={
-                <Checkbox
-                  defaultChecked={isDone}
-                  {...register(INPUT_KEYS.IS_DONE)}
-                />
+                <Checkbox defaultChecked={isDone} {...register('isDone')} />
               }
             />
           </Stack>
