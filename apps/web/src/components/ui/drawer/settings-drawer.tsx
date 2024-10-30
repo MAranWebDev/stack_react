@@ -37,7 +37,7 @@ export const SettingsDrawer = ({ open, onClose }: Props) => {
           direction="row"
         >
           <Typography sx={{ fontWeight: 'medium' }}>{t('settings')}</Typography>
-          <IconButton arial-label="close" onClick={onClose}>
+          <IconButton onClick={onClose}>
             <CloseIcon color="primary" fontSize="small" />
           </IconButton>
         </Stack>

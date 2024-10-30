@@ -13,7 +13,6 @@ export const CustomIconButton = ({
   return (
     <IconButton
       sx={{ borderColor: 'text.disabled', color: 'primary.main', border: 1 }}
-      aria-label="icon button"
       onClick={onClick}
     >
       {children}

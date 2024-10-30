@@ -53,7 +53,6 @@ export const ThemeModeToggle = () => {
       fullWidth
       exclusive
       size="medium"
-      aria-label="theme mode toggle"
       value={themeMode}
       onChange={handleChange}
     >

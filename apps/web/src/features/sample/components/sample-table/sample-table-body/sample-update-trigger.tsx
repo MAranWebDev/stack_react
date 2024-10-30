@@ -82,7 +82,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
   return (
     <>
       {/* Trigger form */}
-      <IconButton aria-label="update" onClick={handleOpenForm}>
+      <IconButton onClick={handleOpenForm}>
         <EditIcon />
       </IconButton>
 

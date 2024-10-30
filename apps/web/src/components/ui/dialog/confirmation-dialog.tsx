@@ -24,12 +24,7 @@ export const ConfirmationDialog = ({
   const { t } = useTranslation();
 
   return (
-    <Dialog
-      aria-labelledby="confirmation-dialog-title"
-      aria-describedby="confirmation-dialog-description"
-      open={open}
-      onClose={onClose}
-    >
+    <Dialog open={open} onClose={onClose}>
       <DialogTitle id="confirmation-dialog-title">
         {t('messages.confirmation')}
       </DialogTitle>

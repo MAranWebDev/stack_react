@@ -34,7 +34,6 @@ export const FormDialog = ({
         onSubmit: onSubmit,
       }}
       open={open}
-      aria-labelledby="dialog-title"
       onClose={onClose}
     >
       <DialogTitle id="dialog-title">{title}</DialogTitle>

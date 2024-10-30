@@ -63,7 +63,7 @@ export const SampleCreateTrigger = () => {
   return (
     <>
       {/* Trigger form */}
-      <Button variant="outlined" arial-label="create" onClick={handleOpenForm}>
+      <Button variant="outlined" onClick={handleOpenForm}>
         <AddIcon />
       </Button>
 
