@@ -7,6 +7,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { MouseEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useShallow } from 'zustand/react/shallow';
 
 // Constants
 const TOGGLE_VALUES = [
@@ -29,8 +30,12 @@ const TOGGLE_VALUES = [
 
 export const ThemeModeToggle = () => {
   // "zustand"
-  const changeThemeMode = useThemeModeStore((state) => state.changeThemeMode);
-  const themeMode = useThemeModeStore((state) => state.themeMode);
+  const { themeMode, changeThemeMode } = useThemeModeStore(
+    useShallow((state) => ({
+      themeMode: state.themeMode,
+      changeThemeMode: state.changeThemeMode,
+    })),
+  );
 
   // "react-i18next"
   const { t } = useTranslation();
