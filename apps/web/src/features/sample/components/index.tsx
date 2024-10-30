@@ -7,19 +7,15 @@ import { useTranslation } from 'react-i18next';
 import { SampleCounter } from './sample-counter';
 import { SampleTable } from './sample-table';
 
-// Constants
-const tabLabels = ['table', 'counter'] as const;
-
 export const Sample = () => {
   const [tabId, setTab] = useState(0);
 
   // "react-i18next"
   const { t } = useTranslation();
-
-  const tabList = tabLabels.map((label, index) => ({
-    id: index,
-    label: t(label),
-  }));
+  const tabList = [
+    { id: 0, label: t('table') },
+    { id: 1, label: t('counter') },
+  ] as const;
 
   // Utils
   const handleChange = (_: SyntheticEvent, newTab: number) => setTab(newTab);
