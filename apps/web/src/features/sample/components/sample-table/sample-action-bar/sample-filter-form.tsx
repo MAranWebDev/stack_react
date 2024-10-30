@@ -31,10 +31,10 @@ export const SampleFilterForm = () => {
   // Utils
   const onSubmit = (inputs: SampleZodGetAllForm) => {
     const { isDone } = inputs;
-    const newIsDone =
-      isDone === options[0] ? false : isDone === options[1] ? true : undefined;
-    const filters = { ...inputs, isDone: newIsDone };
-    filterData(filters);
+    const isOpen = isDone === options[0];
+    const isClosed = isDone === options[1];
+    const newIsDone = isClosed ? true : isOpen ? false : undefined;
+    filterData({ ...inputs, isDone: newIsDone });
   };
 
   const handleClickClean = () => filterData();
