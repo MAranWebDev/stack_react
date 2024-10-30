@@ -1,4 +1,5 @@
 import { VITE_TRPC_URL } from '@/config/env';
+import { useEnqueueMessages } from '@/libs/mui/hooks';
 import {
   MutationCache,
   QueryCache,
@@ -7,28 +8,16 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { httpBatchLink } from '@trpc/client';
-import { useSnackbar } from 'notistack';
 import { PropsWithChildren, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { trpc } from './hooks';
 
 export const TrpcProvider = ({ children }: PropsWithChildren) => {
+  const { enqueueError, enqueueSuccess } = useEnqueueMessages();
+
   // "trpc"
   const [trpcClient] = useState(() =>
     trpc.createClient({ links: [httpBatchLink({ url: VITE_TRPC_URL })] }),
   );
-
-  // "notistack"
-  const { enqueueSnackbar } = useSnackbar();
-
-  // "react-i18next"
-  const { t } = useTranslation();
-
-  // Utils
-  const enqueueError = (message: string) => {
-    const errorMessage = message || t('messages.errorResponse');
-    enqueueSnackbar(errorMessage, { variant: 'error' });
-  };
 
   // "react-query"
   const [reactQueryClient] = useState(
@@ -44,9 +33,7 @@ export const TrpcProvider = ({ children }: PropsWithChildren) => {
             enqueueError(message);
           },
           onSuccess() {
-            enqueueSnackbar(t('messages.successResponse'), {
-              variant: 'success',
-            });
+            enqueueSuccess();
           },
         }),
       }),
