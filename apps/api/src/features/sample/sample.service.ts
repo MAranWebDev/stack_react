@@ -37,7 +37,6 @@ export const sampleService = {
     const newPage = page ?? 0;
     const newRowsPerPage = rowsPerPage ?? 10;
     const { id, name, isDone } = filters || {};
-
     const { columnName, isDesc } = sortBy || {
       columnName: 'id',
       isDesc: false,
