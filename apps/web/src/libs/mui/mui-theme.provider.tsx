@@ -47,7 +47,7 @@ export const MuiThemeProvider = ({ children }: PropsWithChildren) => {
         },
       },
     },
-    muiLocale, // It's a variable, not a prop
+    muiLocale, // muiLocale it's a variable, not a prop
   );
 
   return (
