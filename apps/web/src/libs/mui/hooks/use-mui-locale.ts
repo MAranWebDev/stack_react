@@ -16,5 +16,7 @@ export const useMuiLocale = () => {
     LANGUAGE_CODES.EN) as LanguageCodes;
   const muiLocale = MUI_LOCALES[assertedLanguage];
 
-  return { muiLocale };
+  return {
+    muiLocale,
+  };
 };
