@@ -1,31 +1,16 @@
 {
   "compilerOptions": {
-    /* Visit https://aka.ms/tsconfig to read more about this file */
-
-    /* Projects */
     "composite": true /* Enable constraints that allow a TypeScript project to be used with project references. */,
-
-    /* Language and Environment */
     "target": "ES2021" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-
-    /* Modules */
     "module": "commonjs" /* Specify what module code is generated. */,
     "rootDir": "./src" /* Specify the root folder within your source files. */,
     "baseUrl": "./",
     "paths": { "@/*": ["./src/*"] },
     "resolveJsonModule": true /* Enable importing .json files. */,
-
-    /* Emit */
     "outDir": "./dist",
-
-    /* Interop Constraints */
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
-
-    /* Type Checking */
     "strict": true /* Enable all strict type-checking options. */,
-
-    /* Completeness */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": ["./src"]
