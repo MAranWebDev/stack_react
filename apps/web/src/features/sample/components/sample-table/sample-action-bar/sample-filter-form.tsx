@@ -20,7 +20,11 @@ export const SampleFilterForm = () => {
   const options = [t('status.open'), t('status.closed')];
 
   // "react-hook-form"
-  const { register, handleSubmit } = useForm<SampleZodGetAllForm>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SampleZodGetAllForm>({
     resolver: zodResolver(sampleZodGetAllForm),
   });
 
@@ -44,16 +48,20 @@ export const SampleFilterForm = () => {
       <Box sx={{ display: 'flex', flexGrow: 1, gap: 1 }}>
         <TextField
           fullWidth
-          label="Id"
           variant="outlined"
           autoComplete="off"
+          label="Id"
+          error={!!errors.id}
+          helperText={errors.id?.message}
           {...register('id')}
         />
         <TextField
           fullWidth
-          label={t('name')}
           variant="outlined"
           autoComplete="off"
+          label={t('name')}
+          error={!!errors.name}
+          helperText={errors.name?.message}
           {...register('name')}
         />
         <Autocomplete
@@ -64,6 +72,8 @@ export const SampleFilterForm = () => {
             <TextField
               {...params}
               label={t('status.label')}
+              error={!!errors.isDone}
+              helperText={errors.isDone?.message}
               {...register('isDone')}
             />
           )}
