@@ -5,7 +5,7 @@ export const useTrpcSampleMutation = () => {
   const utils = trpc.useUtils();
   const getAllInvalidate = utils.sample.getAll.invalidate;
 
-  // Mutations
+  // Utils
   const createSample = trpc.sample.create.useMutation({
     onSuccess() {
       getAllInvalidate();
@@ -24,5 +24,9 @@ export const useTrpcSampleMutation = () => {
     },
   });
 
-  return { createSample, updateSample, deleteSample };
+  return {
+    createSample,
+    updateSample,
+    deleteSample,
+  };
 };
