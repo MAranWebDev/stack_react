@@ -2,17 +2,24 @@ import { useTrpcSampleGetAll } from '@/features/sample/hooks';
 import { useSampleTableStore } from '@/libs/zustand/stores';
 import TablePagination from '@mui/material/TablePagination';
 import { ChangeEvent, MouseEvent } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 export const SampleTablePagination = () => {
   // "zustand"
-  const rowsPerPageOptions = useSampleTableStore(
-    (state) => state.rowsPerPageOptions,
-  );
-  const rowsPerPage = useSampleTableStore((state) => state.rowsPerPage);
-  const page = useSampleTableStore((state) => state.page);
-  const changePage = useSampleTableStore((state) => state.changePage);
-  const changeRowsPerPage = useSampleTableStore(
-    (state) => state.changeRowsPerPage,
+  const {
+    rowsPerPageOptions,
+    rowsPerPage,
+    page,
+    changePage,
+    changeRowsPerPage,
+  } = useSampleTableStore(
+    useShallow((state) => ({
+      rowsPerPageOptions: state.rowsPerPageOptions,
+      rowsPerPage: state.rowsPerPage,
+      page: state.page,
+      changePage: state.changePage,
+      changeRowsPerPage: state.changeRowsPerPage,
+    })),
   );
 
   const { data } = useTrpcSampleGetAll();
