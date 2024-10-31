@@ -7,9 +7,9 @@ const COLUMNS = ['id', 'name', 'isDone'] as const;
 const page = z.number().nonnegative();
 const rowsPerPage = z.number().positive().lte(25);
 
-const columnName = z.enum(COLUMNS);
+const column = z.enum(COLUMNS);
 const isDesc = z.boolean();
-const sortBy = z.object({ columnName, isDesc });
+const sortBy = z.object({ column, isDesc });
 
 const id = z.string().trim().max(60);
 const name = z.string().trim().min(2).max(20);

@@ -37,10 +37,7 @@ export const sampleService = {
     const newPage = page ?? 0;
     const newRowsPerPage = rowsPerPage ?? 10;
     const { id, name, isDone } = filters || {};
-    const { columnName, isDesc } = sortBy || {
-      columnName: 'id',
-      isDesc: false,
-    };
+    const { column, isDesc } = sortBy || { column: 'id', isDesc: false };
 
     // Conditions
     const whereConditions = [
@@ -50,7 +47,7 @@ export const sampleService = {
     ].filter(Boolean);
     const where = and(...whereConditions);
 
-    const schemaColumn = sampleSchema[columnName];
+    const schemaColumn = sampleSchema[column];
     const orderBy = isDesc ? desc(schemaColumn) : asc(schemaColumn);
 
     const offset = newPage * newRowsPerPage;
