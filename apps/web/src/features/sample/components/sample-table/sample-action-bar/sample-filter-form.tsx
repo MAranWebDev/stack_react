@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import TextField from '@mui/material/TextField';
 import { SampleZodGetAllForm, sampleZodGetAllForm } from '@workspace/api';
+import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +18,7 @@ export const SampleFilterForm = () => {
 
   // "react-i18next"
   const { t } = useTranslation();
-  const options = [t('status.open'), t('status.closed')];
+  const options = useMemo(() => [t('status.open'), t('status.closed')], [t]);
 
   // "react-hook-form"
   const {
@@ -31,8 +32,8 @@ export const SampleFilterForm = () => {
   // Utils
   const onSubmit = (inputs: SampleZodGetAllForm) => {
     const { isDone } = inputs;
-    const isOpen = isDone === options[0];
     const isClosed = isDone === options[1];
+    const isOpen = isDone === options[0];
     const newIsDone = isClosed ? true : isOpen ? false : undefined;
     filterData({ ...inputs, isDone: newIsDone });
   };

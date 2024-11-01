@@ -24,9 +24,5 @@ export const useTrpcSampleMutation = () => {
     },
   });
 
-  return {
-    createSample,
-    updateSample,
-    deleteSample,
-  };
+  return { createSample, updateSample, deleteSample };
 };

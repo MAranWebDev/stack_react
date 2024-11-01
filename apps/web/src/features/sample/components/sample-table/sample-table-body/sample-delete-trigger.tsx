@@ -24,12 +24,10 @@ export const SampleDeleteTrigger = ({ id }: Props) => {
 
   return (
     <>
-      {/* Trigger dialog */}
       <IconButton onClick={handleOpenConfirmation}>
         <ClearIcon />
       </IconButton>
 
-      {/* Confirmation dialog */}
       <ConfirmationDialog
         open={isConfirmationOpen}
         warningText={t('messages.warningDelete')}

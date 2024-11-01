@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SampleCounter } from './sample-counter';
 import { SampleTable } from './sample-table';
@@ -12,10 +12,14 @@ export const Sample = () => {
 
   // "react-i18next"
   const { t } = useTranslation();
-  const tabList = [
-    { id: 0, label: t('table') },
-    { id: 1, label: t('counter') },
-  ] as const;
+
+  const tabList = useMemo(
+    () => [
+      { id: 0, label: t('table') },
+      { id: 1, label: t('counter') },
+    ],
+    [t],
+  );
 
   // Utils
   const handleChange = (_: SyntheticEvent, newTab: number) => setTab(newTab);

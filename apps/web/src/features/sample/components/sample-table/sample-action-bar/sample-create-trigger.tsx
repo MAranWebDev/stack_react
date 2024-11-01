@@ -14,6 +14,7 @@ export const SampleCreateTrigger = () => {
   const [formValues, setFormValues] = useState<SampleZodCreateInput | null>(
     null,
   );
+
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const { createSample } = useTrpcSampleMutation();
 
@@ -62,12 +63,10 @@ export const SampleCreateTrigger = () => {
 
   return (
     <>
-      {/* Trigger form */}
       <Button variant="outlined" onClick={handleOpenForm}>
         <AddIcon />
       </Button>
 
-      {/* Form dialog */}
       <FormDialog
         open={isFormOpen}
         title={t('actions.create')}
@@ -87,7 +86,6 @@ export const SampleCreateTrigger = () => {
         />
       </FormDialog>
 
-      {/* Confirmation dialog */}
       <ConfirmationDialog
         open={isConfirmationOpen}
         warningText={t('messages.warningCreate')}

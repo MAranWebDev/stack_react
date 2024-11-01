@@ -25,6 +25,7 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
   const [formValues, setFormValues] = useState<SampleZodUpdateInput | null>(
     null,
   );
+
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const { updateSample } = useTrpcSampleMutation();
 
@@ -78,12 +79,10 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
 
   return (
     <>
-      {/* Trigger form */}
       <IconButton onClick={handleOpenForm}>
         <EditIcon />
       </IconButton>
 
-      {/* Form dialog */}
       <FormDialog
         open={isFormOpen}
         title={t('actions.update')}
@@ -122,7 +121,6 @@ export const SampleUpdateTrigger = ({ id, name, isDone }: Props) => {
         </Stack>
       </FormDialog>
 
-      {/* Confirmation dialog */}
       <ConfirmationDialog
         open={isConfirmationOpen}
         warningText={t('messages.warningUpdate')}

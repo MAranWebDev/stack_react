@@ -4,7 +4,7 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 // Types
@@ -26,11 +26,15 @@ export const SampleTableHead = () => {
 
   // "react-i18next"
   const { t } = useTranslation();
-  const columnsSort = [
-    { key: SORT_KEYS.ID, text: 'Id' },
-    { key: SORT_KEYS.NAME, text: t('name') },
-    { key: SORT_KEYS.STATUS, text: t('status.label') },
-  ];
+
+  const columnsSort = useMemo(
+    () => [
+      { key: SORT_KEYS.ID, text: 'Id' },
+      { key: SORT_KEYS.NAME, text: t('name') },
+      { key: SORT_KEYS.STATUS, text: t('status.label') },
+    ],
+    [t],
+  );
 
   useEffect(() => {
     if (activeKey) {
