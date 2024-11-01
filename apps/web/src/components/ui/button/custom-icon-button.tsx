@@ -12,7 +12,7 @@ export const CustomIconButton = ({
 }: PropsWithChildren<Props>) => {
   return (
     <IconButton
-      sx={{ borderColor: 'text.disabled', color: 'primary.main', border: 1 }}
+      sx={{ border: 1, borderColor: 'text.disabled', color: 'primary.main' }}
       onClick={onClick}
     >
       {children}
