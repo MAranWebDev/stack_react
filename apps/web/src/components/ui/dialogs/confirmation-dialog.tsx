@@ -28,11 +28,13 @@ export const ConfirmationDialog = ({
       <DialogTitle id="confirmation-dialog-title">
         {t('messages.confirmation')}
       </DialogTitle>
+
       <DialogContent>
         <DialogContentText id="confirmation-dialog-description">
           {warningText}
         </DialogContentText>
       </DialogContent>
+
       <DialogActions>
         <Button onClick={onClose}>{t('actions.cancel')}</Button>
         <Button onClick={onAccept} autoFocus>

@@ -20,6 +20,7 @@ export const LanguageDropdown = () => {
   return (
     <FormControl fullWidth>
       <InputLabel id="select-label">{t('language')}</InputLabel>
+
       <Select
         labelId="select-label"
         id="select"

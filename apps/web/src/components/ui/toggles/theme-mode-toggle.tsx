@@ -5,28 +5,9 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { MouseEvent } from 'react';
+import { MouseEvent, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useShallow } from 'zustand/react/shallow';
-
-// Constants
-const TOGGLE_VALUES = [
-  {
-    Icon: LightModeIcon,
-    value: THEME_MODES.LIGHT,
-    text: 'themeModes.light',
-  },
-  {
-    Icon: SettingsBrightnessOutlinedIcon,
-    value: THEME_MODES.SYSTEM,
-    text: 'themeModes.system',
-  },
-  {
-    Icon: DarkModeOutlinedIcon,
-    value: THEME_MODES.DARK,
-    text: 'themeModes.dark',
-  },
-] as const;
 
 export const ThemeModeToggle = () => {
   // "zustand"
@@ -40,10 +21,26 @@ export const ThemeModeToggle = () => {
   // "react-i18next"
   const { t } = useTranslation();
 
-  const translatedToggleValues = TOGGLE_VALUES.map(({ text, ...rest }) => ({
-    ...rest,
-    text: t(text),
-  }));
+  const toggleValues = useMemo(
+    () => [
+      {
+        Icon: LightModeIcon,
+        value: THEME_MODES.LIGHT,
+        text: t('themeModes.light'),
+      },
+      {
+        Icon: SettingsBrightnessOutlinedIcon,
+        value: THEME_MODES.SYSTEM,
+        text: t('themeModes.system'),
+      },
+      {
+        Icon: DarkModeOutlinedIcon,
+        value: THEME_MODES.DARK,
+        text: t('themeModes.dark'),
+      },
+    ],
+    [t],
+  );
 
   // Utils
   const handleChange = (
@@ -61,7 +58,7 @@ export const ThemeModeToggle = () => {
       value={themeMode}
       onChange={handleChange}
     >
-      {translatedToggleValues.map(({ value, text, Icon }) => (
+      {toggleValues.map(({ value, text, Icon }) => (
         <ToggleButton key={value} value={value}>
           <Icon sx={{ mr: 1 }} />
           {text}

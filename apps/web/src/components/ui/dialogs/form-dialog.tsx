@@ -37,7 +37,9 @@ export const FormDialog = ({
       onClose={onClose}
     >
       <DialogTitle id="dialog-title">{title}</DialogTitle>
+
       <DialogContent>{children}</DialogContent>
+
       <DialogActions>
         <Button variant="outlined" onClick={onClose}>
           {t('actions.cancel')}
