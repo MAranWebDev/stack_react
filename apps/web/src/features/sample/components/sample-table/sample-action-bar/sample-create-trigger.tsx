@@ -1,4 +1,4 @@
-import { ConfirmationDialog, FormDialog } from '@/components/ui/dialog';
+import { ConfirmationDialog, FormDialog } from '@/components/ui/dialogs';
 import { useTrpcSampleMutation } from '@/features/sample/hooks';
 import { zodResolver } from '@hookform/resolvers/zod';
 import AddIcon from '@mui/icons-material/Add';

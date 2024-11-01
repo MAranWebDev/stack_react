@@ -1,4 +1,4 @@
-import { TableRowEmpty, TableSkeleton } from '@/components/ui/table';
+import { TableRowEmpty, TableSkeleton } from '@/components/ui/tables';
 import { useTrpcSampleGetAll } from '@/features/sample/hooks';
 import { useSampleTableStore } from '@/libs/zustand/stores';
 import TableBody from '@mui/material/TableBody';

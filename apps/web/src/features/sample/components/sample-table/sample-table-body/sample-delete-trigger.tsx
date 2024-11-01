@@ -1,4 +1,4 @@
-import { ConfirmationDialog } from '@/components/ui/dialog';
+import { ConfirmationDialog } from '@/components/ui/dialogs';
 import { useTrpcSampleMutation } from '@/features/sample/hooks';
 import ClearIcon from '@mui/icons-material/Clear';
 import IconButton from '@mui/material/IconButton';
