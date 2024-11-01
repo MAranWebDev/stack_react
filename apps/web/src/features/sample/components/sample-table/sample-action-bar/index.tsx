@@ -7,8 +7,8 @@ export const SampleActionBar = () => {
     <Box
       sx={{
         display: 'flex',
-        borderColor: 'divider',
         borderBottom: 1,
+        borderColor: 'divider',
         gap: 1,
         p: 2,
       }}
