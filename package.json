@@ -1,5 +1,6 @@
 {
-  "name": "t3",
+  "name": "stack_react",
+  "license": "MIT",
   "scripts": {
     "prepare": "husky || true",
     "dev": "concurrently \"pnpm --filter @workspace/api run dev\" \"pnpm --filter @workspace/web run dev\"",
